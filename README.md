@@ -22,6 +22,7 @@
 
     Andmebaas:
     [Andmebaas](https://pma.zone.ee/naturaalmajand.us)
+    
     * KOKKUVÕTE
 
 ## Abiks
