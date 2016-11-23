@@ -6,6 +6,8 @@
     * Toomas Thetloff
 2. **Eesmärgid:**
     * Hea teeninduskultuuri propageerimine
+    * Teenendajate profesionaalse arengu tagasiside tööriist
+    * Taskuraha 
     * ????
     * etc
     
