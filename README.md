@@ -1,13 +1,10 @@
 # TIPIT
-
 1. **Liikmed:**
     * Veljo Lasn
     * Henry Savi
     * Toomas Thetloff
 2. **Eesmärgid:**
     * Hea teeninduskultuuri propageerimine
-    * Teenendajate profesionaalse arengu tagasiside tööriist
-    * Taskuraha 
     * ????
     * etc
     
@@ -20,7 +17,8 @@
         * v0.2 - Kasutajakontod
         * v0.3 - etc
     * Andmebaasiskeem:
-    ![alt text](https://www.upload.ee/image/6381485/data.png "Andmebaasiskeem")
+    [kättesaadav](https://drive.google.com/a/tlu.ee/file/d/0B9uDvSHM3eIyakxHZEVvMVNxNmc/view?usp=sharing)
+    ![alt text](https://www.upload.ee/image/6376739/dbschema.PNG "Andmebaasiskeem")
 
     * KOKKUVÕTE
 
