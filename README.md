@@ -1,5 +1,4 @@
 # TIPIT
-SIIA TULEB PILT
 1. **Liikmed:**
     * Veljo Lasn
     * Henry Savi
