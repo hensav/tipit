@@ -18,7 +18,9 @@
         * v0.1 - Reitingusüsteem "placeholder" teenindajatele
         * v0.2 - Kasutajakontod
         * v0.3 - etc
-    * Andmebaasiskeem
+    * Andmebaasiskeem:
+    ![alt text](https://www.upload.ee/image/6376739/dbschema.PNG "Andmebaasiskeem")
+
     * KOKKUVÕTE
 
 ## Abiks
