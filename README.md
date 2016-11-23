@@ -20,7 +20,7 @@
     [kättesaadav](https://drive.google.com/a/tlu.ee/file/d/0B9uDvSHM3eIyakxHZEVvMVNxNmc/view?usp=sharing)
     ![alt text](https://www.upload.ee/image/6376739/dbschema.PNG "Andmebaasiskeem")
 
-    *Andmebaas:
+    Andmebaas:
     [Andmebaas](https://pma.zone.ee/naturaalmajand.us)
     * KOKKUVÕTE
 
