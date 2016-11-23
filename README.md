@@ -1,6 +1,4 @@
 # TIPIT
-### siia tuleb pilt
-
 1. **Liikmed:**
     * Veljo Lasn
     * Henry Savi
