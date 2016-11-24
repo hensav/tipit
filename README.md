@@ -1,5 +1,4 @@
 # TIPIT
-![alt tag](https://cdn.meme.am/instances/55198758.jpg)
 
 1. **Liikmed:**
     * Veljo Lasn
