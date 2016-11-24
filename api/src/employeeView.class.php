@@ -23,7 +23,7 @@ class employeeView{
 
         #WHERE user.id=:employeeId
         );
-        $stmt->bindParam('employeeId',$employeeId,PDO::PARAM_INT);
+        $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
         $stmt->execute;
         $result = $stmt->fetchAll();
         $this->conn->close;
