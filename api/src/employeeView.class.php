@@ -21,7 +21,6 @@ class employeeView{
         #SQL query here
 
 
-
         #WHERE user.id=:employeeId
         );
         $stmt->bindParam('employeeId',$employeeId,PDO::PARAM_INT);
