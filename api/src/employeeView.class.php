@@ -2,7 +2,8 @@
 
 /**
  * Class employeeView
- * Returns
+ * Returns required data for the employee to assess their performance
+ *
  */
 
 
