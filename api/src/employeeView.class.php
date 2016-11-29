@@ -10,26 +10,25 @@ class employeeView{
 
     private $PDO;
 
-    private function __construct($PDO)
+    public function __construct($PDO)
     {
         $this->conn = $PDO;
     }
 
     function fetchView($employeeId){
         $stmt = $this->conn->prepare(
-        "SELECT COUNT(rating)as rating_count,
+        "SELECT COUNT(main_score)as rating_count,
         (SELECT sum(amount) FROM transactions where employee_id=:employeeId) as earned,
-        AVG(main_score)as rating_score,
+        AVG(main_score)as main_score,
         AVG(param2_score) as rating_p2,
         AVG(param3_score) as rating_p3
         FROM ratings
-        WHERE user.id=:employeeId
+        WHERE employee_id=:employeeId
         ");
         $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
-        $stmt->execute;
-        $result = $stmt->fetchAll();
-        $this->conn->close;
-        return json_encode($result);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
     }
 
 }
