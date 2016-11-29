@@ -26,3 +26,8 @@ if(isset($_GET['employeeId'])){
 } else {
     echo("These are not the droids you're looking for");
 }
+?>
+<div class="header">
+    <button class="header__button btn-green">asd</button>
+    <button class="header__button btn-red">dfg</button>
+</div>

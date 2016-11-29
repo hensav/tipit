@@ -18,16 +18,17 @@ class auth
             SELECT id, role, name, email
             FROM user
             WHERE phone=:phoneNo AND 
-            WHERE auth=:authKey
+            auth=:authKey
         ");
         $stmt->bindParam(':phoneNo',$phone,PDO::PARAM_INT);
         $stmt->bindParam(':authKey',$pass,PDO::PARAM_STR);
-        $stmt->execute;
-        $result = $stmt->fetch();
-
-        if(is_int($result['id'])){
-            var_dump($result);
-            return json_encode($result);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result['id']>1){
+            return array(
+                'status' => 'success',
+                'response' => $result
+            );
         } else {
             return 'login failed';
         }
