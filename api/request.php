@@ -43,11 +43,22 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for";
             }
         }
+
+        if($_GET['submit']=='shortRegistration'){
+            if(isset($_GET['phone'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
+                $regPass = hash('sha512',$_GET['pass']);
+                $response = $Auth->firstRegister($_GET['phone'],$pass,$_GET['role']);
+                print_r(json_encode($response));
+            }else{
+                echo "these are not the droids you're looking for";
+            }
+        }
+
         if($_GET['submit']=='rateEmployee'){
             echo "hindamise script";
         }
         if($_GET['submit']=='employeeAddDetails'){
-            echo "loginiskript jookseb siin";
+            echo "Töötaja lisab siin oma detaile.";
         }
         if($_GET['submit']=='register'){
             echo "registreerimisskript jookseb siin";
