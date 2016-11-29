@@ -7,21 +7,21 @@
 
 
 <div class="login">
-    <div class="form_field">
+    <div class="login_form">
 
         <form method="POST">
             
-            <input class="auth_field" type="email" placeholder="your e-mail" name="loginEmail" value="">
+            <input class="login_field" type="email" placeholder="your e-mail" name="loginEmail" value="">
             <br><br>
-            <input class="auth_field" type="text" name="firstname" value="">
+            <input class="login_field" type="text" name="firstname" value="">
             <br><br>
-            <input class="auth_field" type="text" name="phone" value="">
+            <input class="login_field" type="text" name="phone" value="">
             <br><br>
-            <input class="auth_field" type="text" name="lastname" value="">
+            <input class="login_field" type="text" name="lastname" value="">
             <br><br>
-            <input class="auth_field" type="password" placeholder="verification code" name="auth">
+            <input class="login_field" type="password" placeholder="verification code" name="auth">
             <br><br>
-            <input class="auth_button" type="submit" value="logi sisse">
+            <input class="login_button" type="submit" value="logi sisse">
 
         </form>
     </div>
