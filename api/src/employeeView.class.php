@@ -27,7 +27,7 @@ class employeeView{
         ");
         $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
