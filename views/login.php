@@ -8,7 +8,7 @@
 
 <div class="login">
 
-    <form method="POST" class="login form>
+    <form method="POST" class="login form">
         <input type="text" name="phone" value="" class="form__field">
         <br><br>
         <input type="password" placeholder="verification code" name="auth" class="form__field">
@@ -18,15 +18,16 @@
 
 </div>
 
+optional modifier'id
 
 <div class="signup">
     <form method="POST" class="signup form">
 
         <input placeholder="your e-mail" name="loginEmail" value="" class="form__field">
         <br><br>
-        <input type="text" name="firstname" value="" class="form__field">
+        <input type="text" name="firstname" value="" class="form__field field--optional">
         <br><br>
-        <input type="text" name="lastname" value="" class="form__field">
+        <input type="text" name="lastname" value="" class="form__field field--optional">
         <br><br>
         <input type="text" name="role" value="" class="form__field">
         <br><br
