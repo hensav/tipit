@@ -6,7 +6,7 @@
  * Date: 29.11.2016
  * Time: 22:16
  */
-class auth
+class Auth
 {
     public function __construct($PDO)
     {

@@ -2,10 +2,8 @@
 /**
  *
  */
-require('src/auth.class.php');
 require('../../../dbdata.php');
 $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass);
-$Auth = new auth($PDO);
 $params = array();
 $parts = explode('/', $_SERVER['REQUEST_URI']);
 //skip through the segments by 2
@@ -35,6 +33,9 @@ if(isset($_GET['apikey'])) {
         }
     }
     if (isset($_GET['submit'])){
+        $Auth = new Auth($PDO);
+        require('src/auth.class.php');
+
         if($_GET['submit']=='login'){
             if(isset($_GET['phone'])&&isset($_GET['pass'])){
                 $response = $Auth->login($_GET['phone'],$_GET['pass']);
@@ -52,6 +53,9 @@ if(isset($_GET['apikey'])) {
             }else{
                 echo "these are not the droids you're looking for";
             }
+        }
+        if($_GET['submit']=='followUpregistration'){
+            //carry on after finishing short registration
         }
 
         if($_GET['submit']=='rateEmployee'){
