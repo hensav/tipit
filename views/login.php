@@ -1,7 +1,8 @@
 <?php
 
 
-require("./functions.php");
+/*
+ * require("./functions.php");
 require ("User.class.php");
 $User = new User($mysqli);
 
@@ -11,6 +12,7 @@ $Helper = new Helper ();
 if (isset($_SESSION["userid"])) {
     header("Location: data.php");
 }
+*/
 
 // MUUTUJAD
 $signupEmail = "";
@@ -101,9 +103,9 @@ if (isset($_POST["loginEmail"]) &&
 <div class="login">
 
     <form method="POST" class="login form">
-        <?=$loginSavedEmail;?>"> <?php echo $loginEmailError; ?>
-        <input type = "email" placeholder="your e-mail" name="loginEmail" value="" class="form__field">
-        <input type="text" name="phone" value="" class="form__field field--optional">
+        <input type = "email" placeholder="your e-mail" name="loginEmail" class="form__field" value="
+				<?=$loginSavedEmail;?>">
+        <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
         <input type="password" placeholder="verification code" name="signupPassword" class="form__field">
         <input type="submit" value="login" class="form__button">
     </form>
@@ -113,12 +115,12 @@ if (isset($_POST["loginEmail"]) &&
 
 <div class="signup">
     <form method="POST" class="signup form">
-        <input type="text" name="role" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-        <input type="text" name="phone" value="" class="form__field field--optional">
-        <input type="email" name="signupEmail" value="" class="form__field">
-        <input type="text" name="firstname" value="" class="form__field field--optional">
-        <input type="text" name="lastname" value="" class="form__field field--optional">
-        <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>>
+        <input type="text" placeholder="choose role" name="role" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+        <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
+        <input type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
+        <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
+        <input type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
+        <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>
         <input type="submit" value="register" class="form__button">
     </form>
 </div>
