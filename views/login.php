@@ -7,38 +7,37 @@
 
 
 <div class="login">
-    <div class="login_form">
-        <form method="POST">
-            <input class="form_field" type="text" name="phone" value="">
-            <br><br>
-            <input class="form_field" type="password" placeholder="verification code" name="auth">
-            <br><br>
-            <input class="form_button" type="submit" value="logi sisse">
-        </form>
-    </div>
+
+    <form method="POST" class="login form>
+        <input type="text" name="phone" value="" class="form__field">
+        <br><br>
+        <input type="password" placeholder="verification code" name="auth" class="form__field">
+        <br><br>
+        <input type="submit" value="logi sisse" class="form__button">
+    </form>
+
 </div>
 
 
 <div class="signup">
-    <div class="signup_form">
-        <form method="POST">
+    <form method="POST" class="signup form">
 
-            <input class="form_field" type="email" placeholder="your e-mail" name="loginEmail" value="">
-            <br><br>
-            <input class="form_field" type="text" name="firstname" value="">
-            <br><br>
-            <input class="form_field" type="text" name="lastname" value="">
-            <br><br>
-            <input class="form_field" type="text" name="role" value="">
-            <br><br>
-            <input class="form_field" type="text" name="phone" value="">
-            <br><br>
-            <input class="form_field" type="password" placeholder="verification code" name="auth">
-            <br><br>
-            <input class="form_button" type="submit" value="logi sisse">
+        <input placeholder="your e-mail" name="loginEmail" value="" class="form__field">
+        <br><br>
+        <input type="text" name="firstname" value="" class="form__field">
+        <br><br>
+        <input type="text" name="lastname" value="" class="form__field">
+        <br><br>
+        <input type="text" name="role" value="" class="form__field">
+        <br><br
+        <input type="text" name="phone" value="" class="form__field">
+        <br><br>
+        <input type="password" placeholder="verification code" name="auth" class="form__field">
+        <br><br>
+        <input type="submit" value="logi sisse" class="form__button">
 
-        </form>
-    </div>
+    </form>
+</div>
 
 </body>
 </html>
