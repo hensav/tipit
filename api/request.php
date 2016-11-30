@@ -2,6 +2,9 @@
 /**
  *
  */
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require('../../../dbdata.php');
 $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass);
 $params = array();
@@ -33,8 +36,10 @@ if(isset($_GET['apikey'])) {
         }
     }
     if (isset($_GET['submit'])){
+        //initialize auth src and class
+        require('./src/auth.class.php');
         $Auth = new Auth($PDO);
-        require('src/auth.class.php');
+
 
         if($_GET['submit']=='login'){
             if(isset($_GET['phone'])&&isset($_GET['pass'])){
@@ -54,7 +59,7 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for";
             }
         }
-        if($_GET['submit']=='followUpregistration'){
+        if($_GET['submit']=='followUpRegistration'){
             //carry on after finishing short registration
         }
 
