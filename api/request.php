@@ -53,7 +53,7 @@ if(isset($_GET['apikey'])) {
         if($_GET['submit']=='shortRegistration'){
             if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
                 $regPass = hash('sha512',$_GET['pass']);
-                $response = $Auth->firstRegister($_GET['phone'],$regPass,$_GET['role']);
+                $response = $Auth->firstRegister($_GET['email'],$regPass,$_GET['role']);
                 print_r(json_encode($response));
             }else{
                 echo "these are not the droids you're looking for";

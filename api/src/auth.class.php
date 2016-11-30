@@ -71,13 +71,13 @@ class Auth
         }
     }
 
-    public function firstRegister($phone,$pass,$role){
+    public function firstRegister($email,$pass,$role){
         $stmt = $this->conn->prepare("
         SELECT id, role
         FROM user
-        WHERE phone=:phoneNo
+        WHERE email=:email
         ");
-        $stmt->bindParam('phoneNo',$phone,PDO::PARAM_STR);
+        $stmt->bindParam(':email',$email,PDO::PARAM_STR);
         $stmt->execute();
         $checking=$stmt->fetch(PDO::FETCH_ASSOC);
         if($checking['id']>1){
@@ -86,17 +86,17 @@ class Auth
                 'response'=>'Details already in use, please try again');
         } else {
             $stmt = $this->conn->prepare("
-                INSERT INTO user(id,phone,auth,role,created,closed) VALUES(DEFAULT,:phone,:auth,:role,CURRENT_TIMESTAMP,NULL)
+                INSERT INTO user(id,email,auth,role,created,closed) VALUES(DEFAULT,:email,:auth,:role,CURRENT_TIMESTAMP,NULL)
             ");
 
-            $stmt->bindParam(':phone', $phone, PDO::PARAM_INT);
+            $stmt->bindParam(':email',$email,PDO::PARAM_STR);
             $stmt->bindParam(':auth', $pass, PDO::PARAM_STR);
             $stmt->bindParam(':role', $role, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 return array(
                     'status'=>'success',
-                    'response'=>'Phone number and password registered!'
+                    'response'=>'E-mail address and password registered!'
                 );
             }
         }

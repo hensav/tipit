@@ -1,5 +1,5 @@
 <?php
-$url = "http://http://naturaalmajand.us/tipit/api/request.php/";
+$url = "http://naturaalmajand.us/tipit/api/request.php/";
 
 require("./class/clientAuth.class.php");
 
