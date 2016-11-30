@@ -13,14 +13,14 @@ class Auth
         $this->conn = $PDO;
     }
 
-    public function login($phone,$pass){
+    public function login($email,$pass){
         $stmt = $this->conn->prepare("
-            SELECT id, role, name, email
+            SELECT id, role, name
             FROM user
-            WHERE phone=:phoneNo AND 
+            WHERE email=:email AND 
             auth=:authKey
         ");
-        $stmt->bindParam(':phoneNo',$phone,PDO::PARAM_INT);
+        $stmt->bindParam(':email',$email,PDO::PARAM_STR);
         $stmt->bindParam(':authKey',$pass,PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

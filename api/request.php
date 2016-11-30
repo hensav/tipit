@@ -42,8 +42,8 @@ if(isset($_GET['apikey'])) {
 
 
         if($_GET['submit']=='login'){
-            if(isset($_GET['phone'])&&isset($_GET['pass'])){
-                $response = $Auth->login($_GET['phone'],$_GET['pass']);
+            if(isset($_GET['email'])&&isset($_GET['pass'])){
+                $response = $Auth->login($_GET['email'],$_GET['pass']);
                 print_r(json_encode($response));
             }else{
                 echo "these are not the droids you're looking for";
@@ -51,7 +51,7 @@ if(isset($_GET['apikey'])) {
         }
         //first registration
         if($_GET['submit']=='shortRegistration'){
-            if(isset($_GET['phone'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
+            if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
                 $regPass = hash('sha512',$_GET['pass']);
                 $response = $Auth->firstRegister($_GET['phone'],$regPass,$_GET['role']);
                 print_r(json_encode($response));
