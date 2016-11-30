@@ -106,7 +106,7 @@ if (isset($_POST["loginEmail"]) &&
         <input type = "email" placeholder="your e-mail" name="loginEmail" class="form__field" value="
 				<?=$loginSavedEmail;?>">
         <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="password" placeholder="verification code" name="signupPassword" class="form__field">
+        <input type="password" placeholder="password" name="signupPassword" class="form__field">
         <input type="submit" value="login" class="form__button">
     </form>
 
