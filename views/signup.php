@@ -115,6 +115,7 @@ if (isset($_POST["loginEmail"]) &&
         <input id='sel-name' type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
         <input id='sel-pass' type="password" class="form__field" name="signupPassword" placeholder="password"><?php echo $signupPasswordError; ?>
         <input id='sel-register' type="submit" value="register" class="form__button">
+
     </form>
 </div>
 </div>

@@ -4,13 +4,17 @@
 	box-sizing: border-box;
 }
 
+h1{
+	font-size: 64px;
+	margin-bottom: 10vh;
+	font-weight: 800;
+}
 body{
 	margin: auto;
 	font-family: 'Lato', sans-serif;
 }
 .wrapper{
-	max-width: 600px;
-	padding: 80px 0 10px 0;
+	max-width: 500px;
 	margin: auto;
 	background-color: white;
 	display: block;
@@ -18,10 +22,12 @@ body{
 	
 }
 .signup__form{
+	padding-top: 80px;
 	display: block;
 	width: 100%;
 	margin: auto;
 	text-align: center;
+
 
 	
 
@@ -33,16 +39,21 @@ body{
 	height: 10vh;
 	border: 0;
 	border-bottom: 2px solid #FF8000;
-	font-size: 21px;
+	font-size: 24px;
+	padding-left: 20px;
 	font-weight: 300;
-	padding-left: 15px;
+
 	
+}
+
+select {
+  -webkit-appearance: none;
 }
 
 .form__button{
 	display: block;
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin-top: 25px;
+    margin-bottom: 15px;
     width: 80%;
 	background-color: #FF8000; 
     border: none;
@@ -57,8 +68,10 @@ body{
     letter-spacing: 2px;
 }
 
-
-
+.inactive--button.form__button{
+	background-color: lightgrey;
+	margin-top: 5px;
+}
 
 
 
