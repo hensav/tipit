@@ -37,7 +37,7 @@ class Auth
         }
     }
 
-    public function fullRegister($name,$email,$phone,$auth,$role)
+    public function register($name,$email,$phone,$auth,$role)
     {
         $stmt = $this->conn->prepare("
             SELECT id, role, name, email
@@ -56,6 +56,15 @@ class Auth
             $stmt = $this->conn->prepare("
                 INSERT INTO user VALUES(DEFAULT,:name,:email,:phone,:auth,:role,CURRENT_TIMESTAMP,NULL)
             ");
+
+            if(empty($phone)){
+                $phone=null;
+            }
+
+            if(empty($name)){
+                $name=null;
+            }
+
             $stmt->bindParam(':name', $name, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':phone', $phone, PDO::PARAM_INT);
