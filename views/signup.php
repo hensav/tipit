@@ -1,5 +1,13 @@
 <?php
+$url = "http://naturaalmajand.us/tipit/api/request.php/";
 
+require("./class/clientAuth.class.php");
+
+$clientAuth = new clientAuth;
+$user = "veljo@naturaalmajand.us";
+$pass = "parool";
+$result = $clientAuth -> registerRequest($url,$email,$pass,$phone,$name,$role);
+var_dump($result);
 $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
@@ -84,6 +92,10 @@ if (isset($_POST["loginEmail"]) &&
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./main.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -92,20 +104,21 @@ if (isset($_POST["loginEmail"]) &&
 <div class="signup">
     <form method="POST" class="signup__form">
         
-        <select name="role_choice" class="form__field">
+        <select onchange="regHide();" id='sel-role' name="role_choice" class="form__field">
                 <option value="Client">Client</option>
                 <option value="Employee">Employee</option>
                 <option value="Employer">Employer</option>
         </select>
-        <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="email" placeholder="your e-mail" name="signupEmail" value="" class="form__field">
-        <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
-        <input type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
-        <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>
-        <input type="submit" value="register" class="form__button">
+        <input id='sel-phone' type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
+        <input id='sel-email' type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
+        <input id='sel-name' type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
+        <input id='sel-name' type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
+        <input id='sel-pass' type="password" class="form__field" name="signupPassword" placeholder="password"><?php echo $signupPasswordError; ?>
+        <input id='sel-register' type="submit" value="register" class="form__button">
+
     </form>
 </div>
 </div>
-
+<script src="js/login-reg.js"></script>
 </body>
 </html>

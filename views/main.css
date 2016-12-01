@@ -12,14 +12,13 @@ h1{
 body{
 	margin: auto;
 	font-family: 'Lato', sans-serif;
-
 }
 .wrapper{
 	max-width: 500px;
 	margin: auto;
 	background-color: white;
 	display: block;
-	
+
 	
 }
 .signup__form{
