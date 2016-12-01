@@ -50,7 +50,9 @@ require('./class/clientAuth.class.php');
                 echo "these are not the droids you're looking for";
             }
         }
+
         //first registration
+
         if($_GET['submit']=='shortRegistration'){
             if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
                 $regPass = hash('sha512',$_GET['pass']);
