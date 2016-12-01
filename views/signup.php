@@ -1,20 +1,5 @@
 <?php
 
-
-/*
- * require("./functions.php");
-require ("User.class.php");
-$User = new User($mysqli);
-
-require ("Helper.class.php");
-$Helper = new Helper ();
-
-if (isset($_SESSION["userid"])) {
-    header("Location: data.php");
-}
-*/
-
-// MUUTUJAD
 $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
@@ -77,7 +62,7 @@ if ($signupEmailError == "" &&
 }
 
 $notice = "";
-//$defaultEmail = "sisesta_email";
+
 if (isset($_POST["loginEmail"]) &&
     isset($_POST["loginPassword"]) &&
     !empty($_POST["loginEmail"]) &&
@@ -96,21 +81,25 @@ if (isset($_POST["loginEmail"]) &&
 <html>
 <head>
     <title>tipit dirty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 <body>
+<div class="wrapper">
 
 
-<div class="login">
-
-    <form method="POST" class="login form">
-        <input type = "email" placeholder="your e-mail" name="loginEmail" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+<div class="signup">
+    <form method="POST" class="signup__form">
+        <input type="text" placeholder="choose role" name="role" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
         <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="password" placeholder="password" name="signupPassword" class="form__field"><?php echo $signupPasswordError; ?>
-        <input type="submit" value="login" class="form__button">
+        <input type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
+        <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
+        <input type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
+        <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>
+        <input type="submit" value="register" class="form__button">
     </form>
-
 </div>
-
+</div>
 
 </body>
 </html>
