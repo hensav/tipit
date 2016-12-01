@@ -50,7 +50,12 @@ if (isset ($_POST["loginPassword"])) {
 }
 
 
-
+if(isset($_POST['loginEmail'])&&isset($_POST['loginPassword'])){
+    if(!empty($_POST['loginEmail'])&&!empty($_POST['loginPassword'])){
+        $attempt = $clientAuth->loginRequest($url, $_POST['loginEmail'],$_POST['loginPassword']);
+        var_dump($attempt);
+    }
+}
 
 ?>
 
