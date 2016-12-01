@@ -96,20 +96,20 @@ if (isset($_POST["loginEmail"]) &&
 <div class="signup">
     <form method="POST" class="signup__form">
         
-        <select name="role_choice" class="form__field">
+        <select onchange="regHide();" id='sel-role' name="role_choice" class="form__field">
                 <option value="Client">Client</option>
                 <option value="Employee">Employee</option>
                 <option value="Employer">Employer</option>
         </select>
-        <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
-        <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
-        <input type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
-        <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>
-        <input type="submit" value="register" class="form__button">
+        <input id='sel-phone' type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
+        <input id='sel-email' type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
+        <input id='sel-name' type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
+        <input id='sel-name' type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
+        <input id='sel-pass' type="password" class="form__field" name="signupPassword" placeholder="password"><?php echo $signupPasswordError; ?>
+        <input id='sel-register' type="submit" value="register" class="form__button">
     </form>
 </div>
 </div>
-
+<script src="js/login-reg.js"></script>
 </body>
 </html>
