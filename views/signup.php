@@ -12,11 +12,6 @@ $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
 $signupPasswordError = "";
-$loginEmail = "";
-$loginEmailError = "";
-$loginPassword = "";
-$loginPasswordError = "";
-$loginSavedEmail = "";
 $role = "";
 $phone = "";
 
