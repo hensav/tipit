@@ -17,6 +17,8 @@ class clientAuth
     }
     public function registerRequest($url,$email,$pass,$phone,$name,$role){
         $hashpass=hash('sha512',$pass);
-        $fullurl = $url."apikey/123/submit/register/email/$email/phone/$phone/name/$name/phone/$phone/pass/$hashpass";
+        $fullurl = $url."apikey/123/submit/register/email/$email/phone/$phone/name/$name/phone/$phone/pass/role/$role/pass/$hashpass";
+        $result = file_get_contents($fullurl);
+        return $result;
     }
 }
