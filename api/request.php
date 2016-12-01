@@ -40,6 +40,7 @@ if(isset($_GET['apikey'])) {
         require('./src/auth.class.php');
         $Auth = new Auth($PDO);
 
+require('./class/clientAuth.class.php');
 
         if($_GET['submit']=='login'){
             if(isset($_GET['email'])&&isset($_GET['pass'])){
