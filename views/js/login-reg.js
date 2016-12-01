@@ -4,17 +4,23 @@
 
 $(document).ready(function(){
 
-
-    var regHide = function(){
+    function regHide(){
+        console.log('Hide/show');
         var viewType = $('#sel-role').val();
-        if(viewType=="Client"){
-            $('#sel-fName, #sel-lName, #sel-phone').hide();
+        if(viewType=="client"){
+            $('#sel-fName').hide();
+            $('#sel-lName').hide();
+            $('#sel-phone').hide();
         } else {
-            $('#sel-fName, #sel-lName, #sel-phone').show();
+            $('#sel-fName').show();
+            $('#sel-lName').show();
+            $('#sel-phone').show();
         }
-    }
+    };
+
     regHide();
-    $('#sel-role').on('change', regHide);
+
+    $('#sel-role').on('change', regHide());
 
 });
 

@@ -41,29 +41,32 @@ if(isset($_GET['apikey'])) {
         $Auth = new Auth($PDO);
 
 
-        if($_GET['submit']=='login'){
-            if(isset($_GET['email'])&&isset($_GET['pass'])){
-                $response = $Auth->login($_GET['email'],$_GET['pass']);
-                print_r(json_encode($response));
-            }else{
-                echo "these are not the droids you're looking for (login)";
-            }
+    if($_GET['submit']=='login'){
+        if(isset($_GET['email'])&&isset($_GET['pass'])){
+            $response = $Auth->login($_GET['email'],$_GET['pass']);
+            print_r(json_encode($response));
+        }else{
+            echo "these are not the droids you're looking for (login)";
         }
+    }
 
-        //first registration
+        /** Deprecated, kept here for reference purposes
 
-        if($_GET['submit']=='shortRegistration'){
-            if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
-                $regPass = hash('sha512',$_GET['pass']);
-                $response = $Auth->firstRegister($_GET['email'],$regPass,$_GET['role']);
-                print_r(json_encode($response));
-            }else{
-                echo "these are not the droids you're looking for (1reg)";
+            if($_GET['submit']=='shortRegistration'){
+                if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])) {
+                    $regPass = hash('sha512',$_GET['pass']);
+                    $response = $Auth->firstRegister($_GET['email'],$regPass,$_GET['role']);
+                    print_r(json_encode($response));
+                }else{
+                    echo "these are not the droids you're looking for (1reg)";
+                }
             }
-        }
+
+
         if($_GET['submit']=='followUpRegistration'){
             //carry on after finishing short registration
         }
+         */
 
         if($_GET['submit']=='rateEmployee'){
             echo "hindamise script";
@@ -73,10 +76,7 @@ if(isset($_GET['apikey'])) {
         }
 
         if($_GET['submit']=='register'){
-
-            if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])
-
-            ) {
+            if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])){
                 $response = $Auth->register($_GET['name'],$_GET['email'],$_GET['phone'],$_GET['pass'],$_GET['role']);
                 print_r(json_encode($response));
             } else {
