@@ -98,7 +98,7 @@ if (isset($_POST["loginEmail"]) &&
                 <option value="Employer">Employer</option>
         </select>
         <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
+        <input type="email" placeholder="your e-mail" name="signupEmail" value="" class="form__field">
         <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
         <input type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
         <input type="password" class="form__field" name="signupPassword"><?php echo $signupPasswordError; ?>
