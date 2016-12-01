@@ -83,6 +83,11 @@ if (isset($_POST["loginEmail"]) &&
     <title>tipit dirty</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -90,7 +95,12 @@ if (isset($_POST["loginEmail"]) &&
 
 <div class="signup">
     <form method="POST" class="signup__form">
-        <input type="text" placeholder="choose role" name="role" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+        
+        <select name="role_choice" class="form__field">
+                <option value="Client">Client</option>
+                <option value="Employee">Employee</option>
+                <option value="Employer">Employer</option>
+        </select>
         <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
         <input type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
         <input type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">

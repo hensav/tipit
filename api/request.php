@@ -10,9 +10,9 @@ $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass);
 $params = array();
 $parts = explode('/', $_SERVER['REQUEST_URI']);
 //skip through the segments by 2
-for($i = 0; $i < count($parts); $i = $i + 2){
-    $params[$parts[$i]] = $parts[$i+1];
-
+for($i = 0; $i < count($parts); $i = $i + 2) {
+    $params[$parts[$i]] = $parts[$i + 1];
+}
 
 $_GET = $params;
 if(isset($_GET['apikey'])) {
