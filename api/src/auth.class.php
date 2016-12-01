@@ -42,10 +42,10 @@ class Auth
         $stmt = $this->conn->prepare("
             SELECT id, role, name, email
             FROM user
-            WHERE phone=:phoneNo OR WHERE email=:email
+            WHERE email=:email
+            LIMIT 1
         ");
-        $stmt->bindParam(':phoneNo', $phone, PDO::PARAM_INT);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_INT);
         $stmt->execute();
         $checking = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($checking['id'] > 1) {

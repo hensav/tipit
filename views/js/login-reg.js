@@ -8,13 +8,9 @@ $(document).ready(function(){
     var regHide = function(){
         var viewType = $('#sel-role').val();
         if(viewType=="Client"){
-            $('#sel-name').hide();
-            $('#sel-phone').hide();
-            $('#sel-name').hide;
+            $('#sel-fName, #sel-lName, #sel-phone').hide();
         } else {
-            $('#sel-name').show();
-            $('#sel-phone').show();
-            $('#sel-name').show()
+            $('#sel-fName, #sel-lName, #sel-phone').show();
         }
     }
     regHide();

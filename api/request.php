@@ -46,7 +46,7 @@ if(isset($_GET['apikey'])) {
                 $response = $Auth->login($_GET['email'],$_GET['pass']);
                 print_r(json_encode($response));
             }else{
-                echo "these are not the droids you're looking for";
+                echo "these are not the droids you're looking for (login)";
             }
         }
 
@@ -58,7 +58,7 @@ if(isset($_GET['apikey'])) {
                 $response = $Auth->firstRegister($_GET['email'],$regPass,$_GET['role']);
                 print_r(json_encode($response));
             }else{
-                echo "these are not the droids you're looking for";
+                echo "these are not the droids you're looking for (1reg)";
             }
         }
         if($_GET['submit']=='followUpRegistration'){
@@ -71,17 +71,17 @@ if(isset($_GET['apikey'])) {
         if($_GET['submit']=='employeeAddDetails'){
             echo "Töötaja lisab siin oma detaile.";
         }
+
         if($_GET['submit']=='register'){
             if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])
 
             ) {
 
 
-                //($name,$email,$phone,$auth,$role)
                 $response = $Auth->register($_GET['name'],$_GET['email'],$_GET['phone'],$_GET['pass'],$_GET['role']);
                 print_r(json_encode($response));
             }else{
-                echo "these are not the droids you're looking for";
+                echo "these are not the droids you're looking for!";
             }
         }
     }
