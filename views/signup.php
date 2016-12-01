@@ -4,35 +4,21 @@ $url = "http://naturaalmajand.us/tipit/api/request.php/";
 require("./class/clientAuth.class.php");
 
 $clientAuth = new clientAuth;
-$user = "veljo@naturaalmajand.us";
-$pass = "parool";
-$result = $clientAuth -> registerRequest($url,$email,$pass,$phone,$name,$role);
-var_dump($result);
+
+
 $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
 $signupPasswordError = "";
 $role = "";
 $phone = "";
+$errorClass = "input-error";
 
-
-// LOGIN EMAIL
-if (isset($_POST["loginEmail"])) {
-    if (empty($_POST["loginEmail"])) {
-        $loginEmailError = "insert e-mail";
-    }
-}
-
-if(isset($_POST["loginPassword"])){
-    if(empty($_POST["loginPassword"])){
-        $loginPasswordError="insert password";
-    }
-}
 
 // SIGNUP EMAIL
 if (isset($_POST["signupEmail"])) {
     if (empty ($_POST["signupEmail"])) {
-        $signupEmailError = " field is required";
+        $signupEmailError = $errorClass;
     } else {
         $signupEmail = $_POST["signupEmail"];
     }
@@ -40,41 +26,38 @@ if (isset($_POST["signupEmail"])) {
 
 if (isset($_POST["signupPassword"])) {
     if (empty ($_POST["signupPassword"])) {
-        $signupPasswordError = " field is required";
+        $signupPasswordError = $errorClass;
     } else {
         $signupPassword = $_POST["signupPassword"];
     }
 }
 
 // Kontrollin, kas signupEmailError ja signupPasswordError on "" ehk e-post ja parool on sisestatud
-if ($signupEmailError == "" &&
-    $signupPasswordError == "" &&
-    isset($_POST["signupEmail"]) &&
-    isset($_POST["signupPassword"])
-) {
-//see osa on vajalik vaid testimiseks, kas eelnev on õige
-    echo "Salvestan.. <br>";
-    echo "email: ".$signupEmail."<br>";
-    echo "parool: ".$_POST["signupPassword"]."<br>";
-// parool krüpteeritakse
-    $password = hash("sha512", $_POST["signupPassword"]);
-
-    echo $password."<br>";
-// signup FUNCTION
-    signup($signupEmail, $password);
-}
-
-$notice = "";
 
 if (isset($_POST["loginEmail"]) &&
     isset($_POST["loginPassword"]) &&
-    !empty($_POST["loginEmail"]) &&
-    !empty($_POST["loginPassword"])
+    empty($errorClass)
 ) {
-// login Autofill
-    $loginSavedEmail = $_POST["loginEmail"];
-//
-    $notice = login ($_POST["loginEmail"], $_POST["loginPassword"]);
+    if(!isset($_POST['phone'])){
+        $regPhone=null;
+    } else {
+        $regPhone=$_POST['phone'];
+    }
+
+    if(!isset($_POST['firstname'])){
+        $regFName=null;
+    } else {
+        $regFName=$_POST['firstname'];
+    }
+
+    if(!isset($_POST['lastname'])){
+        $regLName=null;
+    } else {
+        $regLName=$_POST['lastname'];
+    }
+
+    $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['pass'],$phone,$regFName.' '.$regLName,$_POST['role_choice']);
+    var_dump($result);
 }
 
 ?>
