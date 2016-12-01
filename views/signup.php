@@ -46,14 +46,15 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])
         $regPhone=$_POST['phone'];
     }
 
-    $name = $_POST['firstname'].' '.$_POST['lastname'];
-    if($name==' '){
+    $name = $_POST['firstname'].'_'.$_POST['lastname'];
+    if($name=='_'){
         $name = '';
     }
 
     //registerRequest($url,$email,$pass,$phone,$name,$role)
     $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],$regPhone,$name,$_POST['role_choice']);
     var_dump($result);
+
 }
 
 ?>

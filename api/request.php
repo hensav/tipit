@@ -73,14 +73,13 @@ if(isset($_GET['apikey'])) {
         }
 
         if($_GET['submit']=='register'){
+
             if(isset($_GET['email'])&&isset($_GET['pass'])&&isset($_GET['role'])
 
             ) {
-
-
                 $response = $Auth->register($_GET['name'],$_GET['email'],$_GET['phone'],$_GET['pass'],$_GET['role']);
                 print_r(json_encode($response));
-            }else{
+            } else {
                 echo "these are not the droids you're looking for!";
             }
         }
