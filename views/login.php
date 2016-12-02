@@ -1,24 +1,20 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $url = "http://naturaalmajand.us/tipit/api/request.php/";
+
 require("./class/clientAuth.class.php");
+
 $clientAuth = new clientAuth;
-$user = "veljo@naturaalmajand.us";
+
+/*$user = "veljo@naturaalmajand.us";
 $pass = "parool";
 $result = $clientAuth -> loginRequest($url,$user,$pass);
 var_dump($result);
-
-/*
- * require("./functions.php");
-require ("User.class.php");
-$User = new User($mysqli);
-
-require ("Helper.class.php");
-$Helper = new Helper ();
-
-if (isset($_SESSION["userid"])) {
-    header("Location: data.php");
-}
 */
+
 
 // MUUTUJAD
 
@@ -27,6 +23,26 @@ $loginEmailError = "";
 $loginPassword = "";
 $loginPasswordError = "";
 $phone = "";
+$errorClass = "input-error";
+
+
+// e-mail error handling
+if (isset($_POST["loginEmail"])) {
+    if (empty ($_POST["loginEmail"])) {
+        $loginEmailError = $errorClass;
+    } else {
+        $loginEmail = $_POST["loginEmail"];
+    }
+}
+//Password error handling
+if (isset($_POST["loginPassword"])) {
+    if (empty ($_POST["loginPassword"])) {
+        $loginPasswordError = $errorClass;
+    } else {
+        $loginPassword = $_POST["loginPassword"];
+    }
+}
+
 
 
 // LOGIN EMAIL
