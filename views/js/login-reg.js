@@ -4,21 +4,23 @@
 
 $(document).ready(function(){
 
-
-    var regHide = function(){
+    function regHide(){
+        console.log('Hide/show');
         var viewType = $('#sel-role').val();
-        if(viewType=="Client"){
-            $('#sel-name').hide();
-            $('#sel-phone').hide();
-            $('#sel-name').hide;
+        if(viewType=="client"){
+           // $('#sel-fName').hide();
+            //$('#sel-lName').hide();
+            //$('#sel-phone').hide();
         } else {
-            $('#sel-name').show();
+            $('#sel-fName').show();
+            $('#sel-lName').show();
             $('#sel-phone').show();
-            $('#sel-name').show()
         }
-    }
+    };
+
     regHide();
-    $('#sel-role').on('change', regHide);
+    $('#sel-role').on('change', regHide());
+
 
 });
 

@@ -1,24 +1,20 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $url = "http://naturaalmajand.us/tipit/api/request.php/";
+
 require("./class/clientAuth.class.php");
+
 $clientAuth = new clientAuth;
-$user = "veljo@naturaalmajand.us";
+
+/*$user = "veljo@naturaalmajand.us";
 $pass = "parool";
 $result = $clientAuth -> loginRequest($url,$user,$pass);
 var_dump($result);
-
-/*
- * require("./functions.php");
-require ("User.class.php");
-$User = new User($mysqli);
-
-require ("Helper.class.php");
-$Helper = new Helper ();
-
-if (isset($_SESSION["userid"])) {
-    header("Location: data.php");
-}
 */
+
 
 // MUUTUJAD
 
@@ -27,67 +23,38 @@ $loginEmailError = "";
 $loginPassword = "";
 $loginPasswordError = "";
 $phone = "";
+$errorClass = "input-error";
 
 
-// LOGIN EMAIL
+// e-mail error handling
 if (isset($_POST["loginEmail"])) {
-    if (empty($_POST["loginEmail"])) {
-        $loginEmailError = "insert e-mail";
-    }
-}
-
-if(isset($_POST["loginPassword"])){
-    if(empty($_POST["loginPassword"])){
-        $loginPasswordError="insert password";
-    }
-}
-
-// SIGNUP EMAIL
-if (isset($_POST["signupEmail"])) {
-    if (empty ($_POST["signupEmail"])) {
-        $signupEmailError = " field is required";
+    if (empty ($_POST["loginEmail"])) {
+        $loginEmailError = $errorClass;
     } else {
-        $signupEmail = $_POST["signupEmail"];
+        $loginEmail = $_POST["loginEmail"];
     }
 }
-
-if (isset($_POST["signupPassword"])) {
-    if (empty ($_POST["signupPassword"])) {
-        $signupPasswordError = " field is required";
+//Password error handling
+if (isset($_POST["loginPassword"])) {
+    if (empty ($_POST["loginPassword"])) {
+        $loginPasswordError = $errorClass;
     } else {
-        $signupPassword = $_POST["signupPassword"];
+        $loginPassword = $_POST["loginPassword"];
     }
 }
 
-// Kontrollin, kas signupEmailError ja signupPasswordError on "" ehk e-post ja parool on sisestatud
-if ($signupEmailError == "" &&
-    $signupPasswordError == "" &&
-    isset($_POST["signupEmail"]) &&
-    isset($_POST["signupPassword"])
-) {
-//see osa on vajalik vaid testimiseks, kas eelnev on õige
-    echo "Salvestan.. <br>";
-    echo "email: ".$signupEmail."<br>";
-    echo "parool: ".$_POST["signupPassword"]."<br>";
-// parool krüpteeritakse
-    $password = hash("sha512", $_POST["signupPassword"]);
+//checking if loginEmail and loginPassword have been posted
+if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])){
+//replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
+    if(empty($_POST['phone'])){
+        $phone='';
+    } else {
+        $phone=$_POST['phone'];
+    }
 
-    echo $password."<br>";
-// signup FUNCTION
-    signup($signupEmail, $password);
-}
-
-$notice = "";
-//$defaultEmail = "sisesta_email";
-if (isset($_POST["loginEmail"]) &&
-    isset($_POST["loginPassword"]) &&
-    !empty($_POST["loginEmail"]) &&
-    !empty($_POST["loginPassword"])
-) {
-// login Autofill
-    $loginSavedEmail = $_POST["loginEmail"];
-//
-    $notice = login ($_POST["loginEmail"], $_POST["loginPassword"]);
+    //$result = $clientAuth -> loginRequest($url,$user,$pass);
+    $result = $clientAuth->loginRequest($url,$_POST['loginEmail'],$_POST['loginPassword'],$phone);
+    var_dump($result);
 }
 
 ?>
@@ -96,22 +63,38 @@ if (isset($_POST["loginEmail"]) &&
 <!DOCTYPE html>
 <html>
 <head>
-    <title>tipit dirty</title>
+    <title>tipit dirty login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,900" rel="stylesheet">
+    <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
 </head>
 <body>
-
+<div class="wrapper">
 
 <div class="login">
 
-    <form method="POST" class="login form">
-        <input type = "email" placeholder="your e-mail" name="loginEmail" class="form__field" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-        <input type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input type="password" placeholder="password" name="signupPassword" class="form__field"><?php echo $signupPasswordError; ?>
+    <form method="POST" class="login__form">
+        <input type ="email" placeholder="your e-mail" name="loginEmail" class="form__field" value="<?=$loginEmail;?>">
+        <input type="password" placeholder="password" name="loginPassword" class="form__field <?=$signupPasswordError ?>">
         <input type="submit" value="login" class="form__button">
     </form>
 
 </div>
-
-
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

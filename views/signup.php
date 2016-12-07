@@ -1,85 +1,58 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $url = "http://naturaalmajand.us/tipit/api/request.php/";
 
 require("./class/clientAuth.class.php");
 
 $clientAuth = new clientAuth;
-$user = "veljo@naturaalmajand.us";
-$pass = "parool";
-$result = $clientAuth -> registerRequest($url,$email,$pass,$phone,$name,$role);
-var_dump($result);
+
+
 $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
 $signupPasswordError = "";
-$loginEmail = "";
-$loginEmailError = "";
-$loginPassword = "";
-$loginPasswordError = "";
-$loginSavedEmail = "";
 $role = "";
 $phone = "";
+$errorClass = "input-error";
 
 
-// LOGIN EMAIL
-if (isset($_POST["loginEmail"])) {
-    if (empty($_POST["loginEmail"])) {
-        $loginEmailError = "insert e-mail";
-    }
-}
-
-if(isset($_POST["loginPassword"])){
-    if(empty($_POST["loginPassword"])){
-        $loginPasswordError="insert password";
-    }
-}
-
-// SIGNUP EMAIL
+// e-mail error handling
 if (isset($_POST["signupEmail"])) {
     if (empty ($_POST["signupEmail"])) {
-        $signupEmailError = " field is required";
+        $signupEmailError = $errorClass;
     } else {
         $signupEmail = $_POST["signupEmail"];
     }
 }
-
+//Password error handling
 if (isset($_POST["signupPassword"])) {
     if (empty ($_POST["signupPassword"])) {
-        $signupPasswordError = " field is required";
+        $signupPasswordError = $errorClass;
     } else {
         $signupPassword = $_POST["signupPassword"];
     }
 }
 
-// Kontrollin, kas signupEmailError ja signupPasswordError on "" ehk e-post ja parool on sisestatud
-if ($signupEmailError == "" &&
-    $signupPasswordError == "" &&
-    isset($_POST["signupEmail"]) &&
-    isset($_POST["signupPassword"])
-) {
-//see osa on vajalik vaid testimiseks, kas eelnev on õige
-    echo "Salvestan.. <br>";
-    echo "email: ".$signupEmail."<br>";
-    echo "parool: ".$_POST["signupPassword"]."<br>";
-// parool krüpteeritakse
-    $password = hash("sha512", $_POST["signupPassword"]);
+//checking if signupEmail and signupPassword have been posted
+if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
+    //replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
+    if(empty($_POST['phone'])){
+        $regPhone='';
+    } else {
+        $regPhone=$_POST['phone'];
+    }
+    //Same as above + concatenating first- and last name as URL doesn't tolerate whitespace
+    $name = $_POST['firstname'].'_'.$_POST['lastname'];
+    if($name=='_'){
+        $name = '';
+    }
 
-    echo $password."<br>";
-// signup FUNCTION
-    signup($signupEmail, $password);
-}
+    $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],$regPhone,$name,$_POST['role_choice']);
+    var_dump($result);
 
-$notice = "";
-
-if (isset($_POST["loginEmail"]) &&
-    isset($_POST["loginPassword"]) &&
-    !empty($_POST["loginEmail"]) &&
-    !empty($_POST["loginPassword"])
-) {
-// login Autofill
-    $loginSavedEmail = $_POST["loginEmail"];
-//
-    $notice = login ($_POST["loginEmail"], $_POST["loginPassword"]);
 }
 
 ?>
@@ -88,7 +61,7 @@ if (isset($_POST["loginEmail"]) &&
 <!DOCTYPE html>
 <html>
 <head>
-    <title>tipit dirty</title>
+    <title>tipit dirty signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./main.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -104,18 +77,19 @@ if (isset($_POST["loginEmail"]) &&
 <div class="signup">
     <form method="POST" class="signup__form">
         
-        <select onchange="regHide();" id='sel-role' name="role_choice" class="form__field">
-                <option value="Client">Client</option>
-                <option value="Employee">Employee</option>
-                <option value="Employer">Employer</option>
+        <select id='sel-role' name="role_choice" class="form__field">
+                <option value="client">Client</option>
+                <option value="employee">Employee</option>
+                <option value="employer">Employer</option>
         </select>
-        <input id='sel-phone' type="text" placeholder="optional phone number" name="phone" value="" class="form__field field--optional">
-        <input id='sel-email' type="email" placeholder="you e-mail" name="signupEmail" value="" class="form__field">
-        <input id='sel-name' type="text" placeholder="optional first name" name="firstname" value="" class="form__field field--optional">
-        <input id='sel-name' type="text" placeholder="optional last name" name="lastname" value="" class="form__field field--optional">
-        <input id='sel-pass' type="password" class="form__field" name="signupPassword" placeholder="password"><?php echo $signupPasswordError; ?>
+        <input id='sel-phone' type="text" placeholder="phone number" name="phone" value="" class="form__field field--optional">
+        <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field">
+        <input id='sel-fName' type="text" placeholder="first name" name="firstname" value="" class="form__field field--optional">
+        <input id='sel-lName' type="text" placeholder="last name" name="lastname" value="" class="form__field field--optional">
+        <input id='sel-pass' type="password" class="form__field <?=$signupPasswordError ?>" name="signupPassword" placeholder="password">
         <input id='sel-register' type="submit" value="register" class="form__button">
     </form>
+
 </div>
 </div>
 <script src="js/login-reg.js"></script>
