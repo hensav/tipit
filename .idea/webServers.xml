@@ -10,6 +10,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="4a5d8280-be9e-493b-8e43-966d6be3b762" name="naturaalmajand.us" url="http://naturaalmajand.us">
+        <fileTransfer host="naturaalmajand.us" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
