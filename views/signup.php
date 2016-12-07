@@ -1,3 +1,5 @@
+<?php require("header.php"); ?>
+
 <?php
 
 error_reporting(E_ALL);
@@ -83,7 +85,7 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
                 <option value="employer">Employer</option>
         </select>
         <input id='sel-phone' type="text" placeholder="phone number" name="phone" value="" class="form__field field--optional">
-        <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field">
+        <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field <?=$signupEmailError ?>">
         <input id='sel-fName' type="text" placeholder="first name" name="firstname" value="" class="form__field field--optional">
         <input id='sel-lName' type="text" placeholder="last name" name="lastname" value="" class="form__field field--optional">
         <input id='sel-pass' type="password" class="form__field <?=$signupPasswordError ?>" name="signupPassword" placeholder="password">
@@ -91,6 +93,9 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     </form>
 
 </div>
+
+
+    
 </div>
 <script src="js/login-reg.js"></script>
 </body>
