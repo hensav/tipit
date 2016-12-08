@@ -478,14 +478,14 @@ body{
 	background-color: white;
 	display: block;
 	text-align: center;
-	background: rgba(255, 255, 121, 0.1);
-	
+	background: rgba(255, 255, 121, 0.01);
+
 }
 
 h1{
 	font-size: 74px;
 	margin-bottom: 10vh;
-	font-weight: 300;
+	font-weight: 900;
 	text-align: left;
 	color: #FF8000;
 }
@@ -498,20 +498,51 @@ h2{
 	color: #FF8000;
 }
 
-
-p{
+h6{
 	font-size: 21px;
-	padding-bottom: 12px;
-	text-align: left;
-	line-height: 1.5em;
+	margin-left: 1vw;
+	margin-top: 1vh;
+	font-weight: 900;
+	color: lightgrey;
+
 }
 
+p{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.2em;
+	padding-bottom: 5vh;
+	text-align: left;
+	line-height: 1.5em;
+	color: dimgrey;
+}
+
+a{
+	text-decoration: no-underline;
+}
+.txt-center{
+	text-align: center;
+
+}
 
 .welcome{
 	padding-top: 0px;
 	display: block;
 	width: 90%;
 	margin: auto;
+
+}
+
+.header{
+	padding-top: 1px;
+	display: block;
+	width: 90%;
+	margin: auto;
+	text-align: left;
+	font-size: 24px;
+	font-weight: 300;
+
+
+
 
 }
 
@@ -524,7 +555,7 @@ p{
 }
 
 .employee__auth{
-	padding-top: 80px;
+	padding-top: 0px;
 	display: block;
 	width: 90%;
 	margin: auto;
@@ -534,7 +565,7 @@ p{
 }
 
 .signup__form{
-	padding-top: 80px;
+	padding-top: 0px;
 	display: block;
 	width: 90%;
 	margin: auto;
@@ -543,7 +574,7 @@ p{
 }
 
 .login__form{
-	padding-top: 80px;
+	padding-top: 0px;
 	display: block;
 	width: 90%;
 	margin: auto;
@@ -565,36 +596,60 @@ p{
 	padding-left: 20px;
 	padding-right: 20px;
 	font-weight: 300;
+	font-family: 'Source Sans Pro', sans-serif;
 
-	
+
 }
 
 .progress-bar{
 	margin-top: 100px;
 
 }
+
+.w3-progress-container{
+	width:100%;
+	height:1.5em;
+	position:relative;
+	background-color:#f1f1f1
+}
+
+
+.w3-progressbar{
+	background-color:#757575;
+	height:100%;
+	position:absolute;
+	line-height:inherit
+}
+
+
+.w3-green,.w3-hover-green:hover{
+	color:#fff!important;
+	background-color:#4CAF50!important
+}
+
+
 select {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 
 input[type="submit"].form__button{
 	display: block;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    width: 100%;
+	margin-top: 25px;
+	margin-bottom: 15px;
+	width: 100%;
 	background-color: white;
-    border-style: solid;
-    border-color: #FF8000;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+	border-style: solid;
+	border-color: #FF8000;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 	font-family: 'Lato', sans-serif;
 	color: #FF8000;
-    font-size: 30px;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: 2px;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 300;
+	letter-spacing: 2px;
 }
 
 input[type="submit"].form__button:hover {
