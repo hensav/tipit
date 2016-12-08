@@ -9,4 +9,4 @@
 <body>
 <div class="wrapper header logo">
 	<h6>Tip!t</h6>
-</div>
+
