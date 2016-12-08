@@ -66,7 +66,7 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     <title>tipit dirty signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./main.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,900" rel="stylesheet">
     <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -89,7 +89,7 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
         <input id='sel-fName' type="text" placeholder="first name" name="firstname" value="" class="form__field field--optional">
         <input id='sel-lName' type="text" placeholder="last name" name="lastname" value="" class="form__field field--optional">
         <input id='sel-pass' type="password" class="form__field <?=$signupPasswordError ?>" name="signupPassword" placeholder="password">
-        <input id='sel-register' type="submit" value="register" class="form__button">
+        <input id='sel-register' type="submit" value="sign up" class="form__button">
     </form>
 
 </div>

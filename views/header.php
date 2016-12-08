@@ -7,12 +7,6 @@
 </head>
 
 <body>
-<div class="wrapper">
-    <div class="header">
-        Tip!t
-    </div>
+<div class="wrapper header logo">
+	<h6>Tip!t</h6>
 </div>
-
-
-</body>
-</html>

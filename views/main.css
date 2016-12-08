@@ -479,7 +479,7 @@ body{
 	display: block;
 	text-align: center;
 	background: rgba(255, 255, 121, 0.01);
-
+	
 }
 
 h1{
@@ -500,8 +500,6 @@ h2{
 
 h6{
 	font-size: 21px;
-	margin-left: 1vw;
-	margin-top: 1vh;
 	font-weight: 900;
 	color: lightgrey;
 
@@ -519,12 +517,22 @@ p{
 a{
 	text-decoration: no-underline;
 }
+
+
+
+.logo{
+	margin-left: 0;
+	margin-top: 1vh;
+	text-align: left;
+}
+
+
 .txt-center{
 	text-align: center;
 
 }
 
-.welcome{
+.welcome {
 	padding-top: 0px;
 	display: block;
 	width: 90%;
@@ -532,21 +540,16 @@ a{
 
 }
 
-.header{
+.header {
 	padding-top: 1px;
 	display: block;
-	width: 90%;
+	width: 100%;
 	margin: auto;
-	text-align: left;
-	font-size: 24px;
-	font-weight: 300;
-
-
-
+	
 
 }
 
-.employee{
+.employee {
 	padding-top: 0px;
 	display: block;
 	width: 90%;
@@ -598,7 +601,7 @@ a{
 	font-weight: 300;
 	font-family: 'Source Sans Pro', sans-serif;
 
-
+	
 }
 
 .progress-bar{
@@ -629,27 +632,27 @@ a{
 
 
 select {
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 input[type="submit"].form__button{
 	display: block;
-	margin-top: 25px;
-	margin-bottom: 15px;
-	width: 100%;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 100%;
 	background-color: white;
-	border-style: solid;
-	border-color: #FF8000;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
+    border-style: solid;
+    border-color: #FF8000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 	font-family: 'Lato', sans-serif;
 	color: #FF8000;
-	font-size: 30px;
-	text-transform: uppercase;
-	font-weight: 300;
-	letter-spacing: 2px;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
 input[type="submit"].form__button:hover {

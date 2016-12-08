@@ -58,7 +58,7 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])){
 }
 
 ?>
-<?php require("header.php"); ?>
+<!-- <?php require("header.php"); ?> -->
 
 
 <!DOCTYPE html>

@@ -1,5 +1,3 @@
-<?php require("header.php"); ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +10,13 @@
 
 <div class="wrapper">
     <div class="welcome">
-        <h1>What is Tipit!</h1>
-        <p>
-        Tipit! is a nice way for saying "Thank You!" Do it like you mean it! You could also say "cats are the source of all evil". Or you could just give us all your moneys.
-        </p>
-
+        <h1 class="txt-center">You are great! Thank you!</h1>
+        <a href="signup.php">
+            <p class="txt-center ">Don't mind if I do.</p>
+        </a>
+        <!--
         <a href="signup.php"><input type="button" value="Don't mind if I do" class="href__button"></a>
-
+        -->
     </div>
 </div>
 
