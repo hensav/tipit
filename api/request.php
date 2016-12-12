@@ -23,7 +23,11 @@ if(isset($_GET['apikey'])) {
             echo "performance analysis stuff for employee";
         }
         if ($_GET['view'] == 'employeePage') {
-            echo "View for client, allows reading employee description and";
+            //emp_description
+            require('./src/emp_description.class.php');
+            $emp_description= new emp_description($PDO);
+
+
         }
         if ($_GET['view'] == 'employeesByCompany') {
             echo "returns names, photo-urls and ratings of employees in company";
