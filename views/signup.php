@@ -1,5 +1,3 @@
-<?php require("header.php"); ?>
-
 <?php
 
 error_reporting(E_ALL);
