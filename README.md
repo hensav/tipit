@@ -5,8 +5,8 @@
     * Toomas Thetloff
 2. **Eesmärgid:**
     * Hea teeninduskultuuri propageerimine
-    * ????
-    * etc
+    * Teenusmajanduse sektori töötajatele spetsiifilise tagasiside andmise võimalus
+    * tööandjale töötajate oskustest jm. täpse ülevaate andmine 
     
 3. **Kirjeldus**
     * Sihtrühm:

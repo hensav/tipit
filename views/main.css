@@ -525,14 +525,15 @@ p{
 
 a{
 	text-decoration: none;
-	color: lightgrey;
-
+	border-bottom: 2px solid;
+	border-bottom-color: rgba(92, 48, 255, 0.7);
 }
 
 
+
 a:hover{
-	text-decoration: none;
 	color: rgba(92, 48, 255, 0.7);
+
 }
 
 

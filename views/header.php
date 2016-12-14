@@ -8,5 +8,6 @@
 
 <body>
 <div class="wrapper header logo">
-	<h6>Tip!t</h6>
+<a href="index.php"><h6>Tip!it</h6></a>
+	
 
