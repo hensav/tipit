@@ -533,6 +533,7 @@ a{
 
 a:hover{
 	color: rgba(92, 48, 255, 0.7);
+	text-decoration: none;
 
 }
 
