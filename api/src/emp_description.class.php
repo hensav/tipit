@@ -24,14 +24,12 @@ class emp_description
             ON user.id=emp_description.employee_id
             WHERE emp_description.employee_id=:employeeId;
         ");
-
-
+        //echo ("testing..");
         $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
-
-
 
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
+
     }
 }
