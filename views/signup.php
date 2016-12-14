@@ -81,6 +81,5 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
 
     
 </div>
-<script src="js/login-reg.js"></script>
-</body>
-</html>
+
+<?php require("footer.php"); ?>

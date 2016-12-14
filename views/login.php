@@ -63,16 +63,15 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])){
 <div class="login">
 
     <form method="POST" class="login__form">
-        <input type ="email" placeholder="your e-mail" name="loginEmail" class="form__field" <?=$loginEmailError ?>value="<?=$loginEmail;?>">
+        <input type ="email" placeholder="your e-mail" name="loginEmail" value="<?=$loginEmail;?>" class="form__field <?=$loginEmailError ?>">
         <input type="password" placeholder="password" name="loginPassword" class="form__field <?=$signupPasswordError ?>">
         <input type="submit" value="login" class="form__button">
     </form>
 
 </div>
     </div>
-</body>
-</html>
 
+<?php require("footer.php"); ?>
 
 
 

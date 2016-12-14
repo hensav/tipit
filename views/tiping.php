@@ -18,6 +18,6 @@
     </div>
 
 </div>
-<script src="js/progressbar.js"></script>
-</body>
-</html>
+
+
+<?php require("footer.php"); ?>
