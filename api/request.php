@@ -26,7 +26,12 @@ if(isset($_GET['apikey'])) {
             //emp_description
             require('./src/emp_description.class.php');
             $emp_description= new emp_description($PDO);
+            if (isset($_GET["employeeID"])&&!empty($_GET["employeeID"]){
 
+                $result = $emp_description->fetchView($_GET["employeeID"]);
+                print_r(json_encode($result));
+
+            {
 
         }
         if ($_GET['view'] == 'employeesByCompany') {
