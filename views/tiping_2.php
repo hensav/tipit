@@ -17,7 +17,7 @@
 
 
 
-<a class="href__button" href="tiping_3.php">Feedback</a> 
+<a class="href__button" href="thankyou.php">Feedback</a>
     <div class="w3-container">
         <div class="w3-progress-container">
             <div class="w3-progressbar" style="width:50%"></div>
