@@ -72,7 +72,7 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
         <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field <?=$signupEmailError ?>">
         <input id='sel-fName' type="text" placeholder="first name" name="firstname" value="" class="form__field field--optional">
         <input id='sel-lName' type="text" placeholder="last name" name="lastname" value="" class="form__field field--optional">
-        <input id='sel-pass' type="password" class="form__field <?=$signupPasswordError ?>" name="signupPassword" placeholder="password">
+        <input id='sel-pass' type="password" name="signupPassword" placeholder="password" class="form__field <?=$signupPasswordError ?>">
         <input id='sel-register' type="submit" value="sign up" class="form__button">
     </form>
 

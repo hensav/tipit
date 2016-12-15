@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div class="wrapper header logo">
+<div class="wrapper logo">
 <a href="index.php"><h6>Tip!it</h6></a>
 	
 
