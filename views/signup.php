@@ -53,9 +53,9 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     <form method="POST" class="signup__form">
         
         <select id='sel-role' name="role_choice" class="form__field">
-                <option value="client">Client</option>
-                <option value="employee">Employee</option>
-                <option value="employer">Employer</option>
+                <option value="0">Client</option>
+                <option value="1">Employee</option>
+                <option value="1">Employer</option>
         </select>
         <input id='sel-phone' type="text" placeholder="phone number" name="phone" value="" class="form__field field--optional">
         <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field <?=$signupEmailError ?>">
@@ -67,4 +67,6 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
 
     </div>
 </div>
+<script src="js/login-reg.js"></script>
+
 <?php require("footer.php"); ?>

@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    $('#sel-fName').hide();
-    $('#sel-lName').hide();
-    $('#sel-phone').hide();
+   $('#sel-fName').hide();
+   $('#sel-lName').hide();
+   $('#sel-phone').hide();
 
 
     $('select').change(function () {
