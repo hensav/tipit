@@ -18,6 +18,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="16d3d612-03cb-46c4-813c-3efa0cd0f31d" name="loalhost" url="http://localhost">
+        <fileTransfer host="localhost" port="2222" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

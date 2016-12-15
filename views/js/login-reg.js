@@ -1,27 +1,18 @@
-/**
- * Created by clstrfvck on 1.12.16.
- */
-
 $(document).ready(function(){
+    $('#sel-fName').hide();
+    $('#sel-lName').hide();
+    $('#sel-phone').hide();
 
-    function regHide(){
-        console.log('Hide/show');
-        var viewType = $('#sel-role').val();
-        if(viewType=="client"){
-           // $('#sel-fName').hide();
-            //$('#sel-lName').hide();
-            //$('#sel-phone').hide();
-        } else {
+
+    $('select').change(function () {
+
+            if($(this).val() === '1') {
             $('#sel-fName').show();
             $('#sel-lName').show();
-            $('#sel-phone').show();
-        }
-    };
-
-    regHide();
-    $('#sel-role').on('change', regHide());
-
-
+            $('#sel-phone').show();    }
+        else {
+            $('#sel-fName').hide();
+            $('#sel-lName').hide();
+            $('#sel-phone').hide();    }
+    });
 });
-
-

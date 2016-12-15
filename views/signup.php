@@ -1,24 +1,16 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 $url = "http://naturaalmajand.us/tipit/api/request.php/";
-
 require("./class/clientAuth.class.php");
-
 $clientAuth = new clientAuth;
-
-
 $signupEmail = "";
 $signupEmailError = "";
 $signupPassword = "";
 $signupPasswordError = "";
-$role = "";
+$role_choice = "";
 $phone = "";
 $errorClass = "input-error";
-
-
 // e-mail error handling
 if (isset($_POST["signupEmail"])) {
     if (empty ($_POST["signupEmail"])) {
@@ -35,7 +27,6 @@ if (isset($_POST["signupPassword"])) {
         $signupPassword = $_POST["signupPassword"];
     }
 }
-
 //checking if signupEmail and signupPassword have been posted
 if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     //replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
@@ -49,13 +40,11 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     if($name=='_'){
         $name = '';
     }
-
     $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],$regPhone,$name,$_POST['role_choice']);
     var_dump($result);
-
 }
-
 ?>
+
 
 <?php require("header.php"); ?> 
 
@@ -76,10 +65,6 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
         <input id='sel-register' type="submit" value="sign up" class="form__button">
     </form>
 
+    </div>
 </div>
 
-
-    
-</div>
-
-<?php require("footer.php"); ?>
