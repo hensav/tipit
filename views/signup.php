@@ -67,4 +67,4 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
 
     </div>
 </div>
-
+<?php require("footer.php"); ?>
