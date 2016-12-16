@@ -1,18 +1,15 @@
 $(document).ready(function(){
-    $('#sel-fName').hide();
-    $('#sel-lName').hide();
-    $('#sel-phone').hide();
 
+    if($('select').val()=='client'){
+        $('#sel-fName, #sel-lName, #sel-phone').hide();
+    };
 
     $('select').change(function () {
-
         if($(this).val() !== 'client') {
-            $('#sel-fName').show();
-            $('#sel-lName').show();
-            $('#sel-phone').show();    }
+            $('#sel-fName, #sel-lName, #sel-phone').show();
+        }
         else {
-            $('#sel-fName').hide();
-            $('#sel-lName').hide();
-            $('#sel-phone').hide();    }
+            $('#sel-fName, #sel-lName, #sel-phone').hide();
+        }
     });
 });
