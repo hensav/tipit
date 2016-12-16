@@ -11,6 +11,23 @@ $signupPasswordError = "";
 $role_choice = "";
 $phone = "";
 $errorClass = "input-error";
+
+//Default role & post-error select retention
+$rolesel = 'client';
+if(isset($_POST['role_choice'])){
+    $rolesel = $_POST['role_choice'];
+}
+$sel_client = '';
+$sel_employee = '';
+$sel_employer = '';
+if($rolesel == 'employee'){
+    $sel_employee = "selected = 'selected'";
+} elseif($rolesel == 'employer'){
+    $sel_employer = "selected = 'selected'";
+} else {
+    $sel_client = "selected = 'selected'";
+}
+
 // e-mail error handling
 if (isset($_POST["signupEmail"])) {
     if (empty ($_POST["signupEmail"])) {
@@ -53,9 +70,9 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     <form method="POST" class="signup__form">
         
         <select id='sel-role' name="role_choice" class="form__field">
-                <option value="client">Client</option>
-                <option value="employee">Employee</option>
-                <option value="employer">Employer</option>
+                <option value="client" <?=$sel_client?>>Client</option>
+                <option value="employee" <?=$sel_employee?>>Employee</option>
+                <option value="employer" <?=$sel_employer?>>Employer</option>
         </select>
         <input id='sel-phone' type="text" placeholder="phone number" name="phone" value="" class="form__field field--optional">
         <input id='sel-email' type="email" placeholder="your e-mail address" name="signupEmail" value="<?=$signupEmail?>" class="form__field <?=$signupEmailError ?>">
