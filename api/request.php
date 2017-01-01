@@ -24,7 +24,12 @@ if(isset($_GET['apikey'])) {
     if (isset($_GET['view'])) {
 
         if ($_GET['view'] == 'employeePrivateStats') {
-            echo "performance analysis stuff for employee";
+            require('src/employeeView.class.php');
+            $employeeView = new employeeView($PDO);
+            if(isset($_GET['employeeId'])){
+                $result = $employeeView->fetchView($_GET['employeeId']);
+                print_r(json_encode($result));
+            }
         }
         if ($_GET['view'] == 'employeePage') {
 

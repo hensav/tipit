@@ -15,7 +15,8 @@ class employeeRating
         $this->conn = $PDO;
     }
 
-    function leaveRating($client_id, $employee_id, $main_score, $param2_score, $param3_score){
+    function leaveRating($client_id, $employee_id, $main_score, $param2_score, $param3_score)
+    {
         $stmt = $this->conn->prepare(
             "INSERT INTO ratings(client_id, employee_id, main_score, param2_score, param3_score, submitted)
             VALUES(:client_id, :employee_id, :main_score, :param2_score, :param3_score, CURRENT_TIMESTAMP)"
@@ -34,6 +35,5 @@ class employeeRating
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
-
-}
+    }
 }
