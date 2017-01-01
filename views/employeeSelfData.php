@@ -36,7 +36,7 @@ ini_set('display_errors', 1);
     ?>
 <html>
 <head>
-    <link rel="stylesheet" href="main.css" type="text/css"/>
+    <link rel="stylesheet" href="css/main.css" type="text/css"/>
     <link rel="stylesheet" href="css/sliderBar.css" type="text/css">
 </head>
 <body>

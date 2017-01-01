@@ -1,0 +1,372 @@
+
+
+
+*{
+	box-sizing: border-box;
+}
+
+
+body{
+	margin: auto;
+	font-family: 'Lato', sans-serif;
+	background: rgba(255, 255, 121, 0.1);
+    min-width: 320px;
+}
+
+.wrapper{
+	max-width: 420px;
+	margin: auto;
+	background-color: white;
+	display: block;
+	text-align: center;
+	background: rgba(255, 255, 121, 0.01);
+	
+}
+
+h1{
+	font-size: 74px;
+	margin-bottom: 10vh;
+	margin-top: 1vh;
+	font-weight: 900;
+	text-align: left;
+	color: rgba(92, 48, 255, 0.7);
+}
+
+h2{
+	font-size: 44px;
+	margin-bottom: 10vh;
+	margin-top: 1vh;
+	font-weight: 300;
+	color: rgba(92, 48, 255, 0.7);
+}
+
+
+h3{
+	font-size: 21px;
+	font-weight: 900;
+	text-align: left;
+}
+
+
+h6{
+	font-size: 21px;
+	font-weight: 900;
+	color: lightgrey;
+
+}
+
+p{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.2em;
+	padding-bottom: 5vh;
+	text-align: left;
+	line-height: 1.5em;
+	color: dimgrey;
+}
+
+p.error {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.6em;
+	margin: auto;
+	text-align: center;
+	line-height: 1.2em;
+	padding-bottom: 0vh;
+	color: red;
+}
+
+a{
+	text-decoration: none;
+	border-bottom: 2px solid;
+	border-bottom-color: rgba(92, 48, 255, 0.7);
+}
+
+
+a:hover{
+	color: rgba(92, 48, 255, 0.7);
+	text-decoration: none;
+
+}
+
+
+.logo h6{
+	margin-top: 1vh;
+	margin-bottom: 9vh;
+	margin-left: 1vw;
+	text-align: left;
+}
+
+.txt-center{
+	text-align: center;
+
+}
+
+.welcome {
+	padding-top: 0px;
+	display: block;
+	width: 90%;
+	margin: auto;
+
+}
+
+.header {
+	padding-top: 1px;
+	display: block;
+	width: 100%;
+	margin-bottom: 10vh;
+	
+
+}
+
+.employee {
+	padding-top: 0px;
+	display: block;
+	width: 90%;
+	margin: auto;
+
+}
+
+.employee__auth{
+	padding-top: 0px;
+	display: block;
+	width: 90%;
+	margin: auto;
+	text-align: center;
+
+
+}
+
+.signup__form{
+	padding-top: 5vh;
+	display: block;
+	width: 90%;
+	margin: auto;
+	text-align: center;
+
+}
+
+.login__form{
+	padding-top: 5vh;
+	display: block;
+	width: 90%;
+	margin: auto;
+	text-align: center;
+
+
+}
+
+
+.form__field{
+	width: 100%;
+	margin: auto;
+	height: 10vh;
+	min-height: 80px;
+	border: 0;
+	border-bottom: 2px solid;
+	border-bottom-color: rgba(92, 48, 255, 0.7);
+	border-radius: 0;
+	font-size: 24px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-weight: 300;
+	font-family: 'Source Sans Pro', sans-serif;
+
+	
+}
+
+.progress-bar{
+	margin-top: 20px;
+
+}
+
+.w3-progress-container{
+	margin: auto;
+	width:90%;
+	height:6px;
+	position:relative;
+	background-color:#f1f1f1
+}
+
+
+.w3-progressbar{
+	background-color: green;
+	height:100%;
+	position:absolute;
+	line-height:inherit
+}
+
+
+.w3-green,.w3-hover-green:hover{
+	color:#fff!important;
+	background-color:#4CAF50!important
+}
+
+
+select {
+  -webkit-appearance: none;
+}
+
+input[type="submit"].form__button{
+	display: block;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 100%;
+	background-color: white;
+    border: solid 2px;
+    border-color: rgba(92, 48, 255, 0.7);
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	font-family: 'Lato', sans-serif;
+	color: rgba(92, 48, 255, 0.7);
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+input[type="submit"].form__button:hover {
+	background-color: rgba(55, 0, 255, 0.81);
+	color: white;
+
+}
+
+
+.href__button{
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	width: 100%;
+	background-color: white;
+	border: solid 2px;
+	border-color: rgba(92, 48, 255, 0.7);
+	padding: 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	color: rgba(92, 48, 255, 0.7);
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.href__button:hover {
+	background-color: rgba(55, 0, 255, 0.81);
+	color: white;
+}
+
+.inactive--button.href__button:hover {
+	background-color: rgba(55, 0, 255, 0.81);
+	color: white;
+
+}
+
+input[type="submit"].inactive--button.form__button{
+	margin-top: 5px;
+}
+
+input[type="submit"].inactive--button.form__button:hover {
+	margin-top: 5px;
+	background-color: rgba(55, 0, 255, 0.81);
+	color: white;
+
+}
+
+
+
+
+
+
+@media(max-width: 600px){
+	body{
+	}
+
+}
+
+.input-error{
+	border-bottom-color: #ff0a2b;
+	background: rgba(255, 10, 43, 0.1) ;
+
+}
+:focus {
+	outline-color: transparent;
+	outline-style: none;
+}
+
+
+/* FEEDBACK */
+
+.rating {
+    width: 100%;
+	margin: auto;
+	/*text-align: center;*/
+    padding-left: -10px;
+
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    margin:auto;
+    text-align:left;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    text-align: left;
+    width: 20%;
+    padding:0.05em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size: 300%;
+    line-height:1.1;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+   
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+   
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+/* image */
+.employee > h2{
+    margin-bottom: 20px;
+}
+.employee-image{
+    width:200px;
+    height: 200px;
+
+    border-radius: 50%;
+}
