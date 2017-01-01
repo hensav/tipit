@@ -1,21 +1,34 @@
-<?php require("header.php"); ?>
+<?php
+    if(isset($_POST['mainRating']) or (isset($_POST['quickRating'])&&isset($_POST['punctualRating'])&&isset($_POST['helpfulRating']))){
+
+        //require rating class, make DB entry based on 1 or 3 parameters above, employee id from $_POST
+        header('location: thankyou.php');
+                exit();
+    }
 
 
+
+    //get employee id, name and image url from db based on goodcode passed from prev. page. Dummy data:
+    $employeeName = "Mariann";
+    $employeeImgUrl = "http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg";
+    $employeeId = 4;
+
+     require("header.php"); ?>
 <div class="employee">
 
-    <h2>Mariann</h2>
+    <h2><?php echo $employeeName; ?></h2>
     <section class="mainRating">
-    <img src="http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg" class="employee-image">
+    <img src=<?=$employeeImgUrl ?> class="employee-image">
 
-
-<fieldset class="rating">
-    <legend></legend>
-    <input type="radio" id="star1" name="mainRating" value="1" /><label for="star1" title="Rocks!"><i class="fa fa-star" aria-hidden="true"></i></label>
-    <input type="radio" id="star2" name="mainRating" value="2" /><label for="star2" title="Pretty good"><i class="fa fa-star" aria-hidden="true"></i></label>
-    <input type="radio" id="star3" name="mainRating" value="3" /><label for="star3" title="Meh"><i class="fa fa-star" aria-hidden="true"></i></label>
-    <input type="radio" id="star4" name="mainRating" value="4" /><label for="star4" title="Kinda bad"><i class="fa fa-star" aria-hidden="true"></i></label>
-    <input type="radio" id="star5" name="mainRating " value="5" /><label for="star5" title="Socks big time"><i class="fa fa-star" aria-hidden="true"></i></label>
-</fieldset>
+    <form method="post">
+    <fieldset class="rating">
+        <legend></legend>
+        <input type="radio" id="star1" name="mainRating" value="1" /><label for="star1" title="Rocks!"><i class="fa fa-star" aria-hidden="true"></i></label>
+        <input type="radio" id="star2" name="mainRating" value="2" /><label for="star2" title="Pretty good"><i class="fa fa-star" aria-hidden="true"></i></label>
+        <input type="radio" id="star3" name="mainRating" value="3" /><label for="star3" title="Meh"><i class="fa fa-star" aria-hidden="true"></i></label>
+        <input type="radio" id="star4" name="mainRating" value="4" /><label for="star4" title="Kinda bad"><i class="fa fa-star" aria-hidden="true"></i></label>
+        <input type="radio" id="star5" name="mainRating " value="5" /><label for="star5" title="Socks big time"><i class="fa fa-star" aria-hidden="true"></i></label>
+    </fieldset>
     </section>
     <div class="granular-wrapper">
         <header class="granular-rating-title">More options <i class="fa fa-chevron-down" aria-hidden="true"> </i>
@@ -54,11 +67,9 @@
 
         </section>
     </div>
-  
-
-
-
-<a class="href__button" href="thankyou.php">Feedback</a>
+    <input type="hidden" name="employeeId" value=<?=$employeeId?>>
+    <input type="submit" class="href__button" value="Feedback"/>
+    </form>
     <div class="w3-container">
         <div class="w3-progress-container">
             <div class="w3-progressbar" style="width:50%"></div>
