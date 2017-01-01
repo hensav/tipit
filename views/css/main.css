@@ -367,6 +367,13 @@ input[type="submit"].inactive--button.form__button:hover {
 .employee-image{
     width:200px;
     height: 200px;
-
     border-radius: 50%;
+}
+.granular-rating-title{
+    font-size: 120%;
+}
+.fieldset-title{
+    font-style: italic;
+    font-size: 120%;
+    margin-bottom: -10px;
 }
