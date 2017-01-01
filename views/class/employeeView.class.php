@@ -8,5 +8,10 @@
  */
 class employeeView
 {
+    public static function fetchSliderData($employeeId, $apikey){
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeePrivateStats/employeeId/$employeeId";
 
+        $result = file_get_contents($url);
+        return $result;
+    }
 }

@@ -1,8 +1,9 @@
 .slider-wrapper{
-    width:50%;
+    width:100%;
     font-size: 2em;
     font-family: 'Lato', sans-serif;
-
+    text-align: left;
+    padding: 10px 0 10px 0;
 }
 .slider-bar {
     display: block;

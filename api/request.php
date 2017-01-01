@@ -27,7 +27,7 @@ if(isset($_GET['apikey'])) {
             require('src/employeeView.class.php');
             $employeeView = new employeeView($PDO);
             if(isset($_GET['employeeId'])){
-                $result = $employeeView->fetchView($_GET['employeeId']);
+                $result = $employeeView->getBarValues($_GET['employeeId']);
                 print_r(json_encode($result));
             }
         }
