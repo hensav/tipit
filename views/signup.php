@@ -57,8 +57,13 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
     if($name=='_'){
         $name = '';
     }
+
     $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],$regPhone,$name,$_POST['role_choice']);
-    var_dump($result);
+    $response = json_decode($result);
+    if ($response->status=="success"){
+    header("location: signup_success.php");
+
+    }
 }
 ?>
 
