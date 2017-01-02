@@ -8,15 +8,22 @@
                 exit();
     }
 
-
+    $apikey = 123;
 
     //get employee id, name and image url from db based on goodcode passed from prev. page. Dummy data:
-   if (true){
+   if (isset($_GET['employeeId'])){
+
         require ('class/clientView.class.php');
+
+        $raw = clientView::fetchEmployeeData(htmlspecialchars(stripslashes($_GET['employeeId'])),$apikey);
+        $results = json_decode($raw);
+        $employeeName = (explode("_",$results->name))[0];
+        $employeeImgUrl = $results->photo_url;
+
+   } else {
+       header("location: tiping.php");
    }
-    var_dump(json_decode(clientView::fetchEmployeeData(10,123)));
-    $employeeName = "";
-    $employeeImgUrl = "";
+
      require("header.php"); ?>
 <div class="employee">
 
