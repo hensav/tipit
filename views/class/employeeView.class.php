@@ -8,9 +8,23 @@
  */
 class employeeView
 {
-    public static function fetchSliderData($employeeId, $apikey){
+    public static function fetchSliderData($employeeId, $apikey)
+    {
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeePrivateStats/employeeId/$employeeId";
+        $result = file_get_contents($url);
+        return $result;
+    }
 
+    public static function updateDetails($description,$fileName,$employeeId,$apikey)
+    {
+
+        $package = array(
+            "description"=>$description,
+            "filename"=>$fileName,
+            "employeeId"=>$employeeId
+        );
+        $passPackage = http_build_query($package);
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/employeeDetails/package/$passPackage";
         $result = file_get_contents($url);
         return $result;
     }
