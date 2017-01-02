@@ -72,14 +72,44 @@ class Auth
             $stmt->bindParam(':role', $role, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                return array(
+                $result =  array(
                     'status'=>'success',
                     'response'=>'Full details registered!'
                 );
+                if($role=="employee"){
+                    $gCode = $this->genGoodCode($name,$email);
+                    $result['goodcode'] = $gCode;
+                }
+                return $result;
             }
         }
     }
 
+    protected function genGoodCode($name,$email)
+    {
+        $nameArray = explode('_',$name);
+        if(isset($nameArray[1])){
+
+            $inits= substr($nameArray[0],0,1).substr($nameArray[1],0,1);
+            $goodCode = $inits.substr(hash("sha512",rand(0,1000)),0,4);
+
+            $stmt= $this->conn->prepare("SELECT id FROM user WHERE name=:name AND email=:email");
+            $stmt->bindParam(":name",$name,PDO::PARAM_STR);
+            $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id = intval($result['id']);
+
+            $stmt = $this->conn->prepare("INSERT INTO goodcode VALUES (DEFAULT,:uid,:gcode)");
+            $stmt->bindParam(":uid",$id,PDO::PARAM_INT);
+            $stmt->bindParam(":gcode",$goodCode,PDO::PARAM_STR);
+            if($stmt->execute()){
+                return $goodCode;
+            }
+        }
+    }
+
+    /**
     public function firstRegister($email,$pass,$role){
         $stmt = $this->conn->prepare("
         SELECT id, role
@@ -110,6 +140,7 @@ class Auth
             }
         }
     }
+    */
 
 
 }
