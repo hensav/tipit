@@ -1,4 +1,6 @@
 <?php
+
+
     if(isset($_POST['mainRating']) or (isset($_POST['quickRating'])&&isset($_POST['punctualRating'])&&isset($_POST['helpfulRating']))){
 
         //require rating class, make DB entry based on 1 or 3 parameters above, employee id from $_POST
@@ -9,10 +11,13 @@
 
 
     //get employee id, name and image url from db based on goodcode passed from prev. page. Dummy data:
+   if (true){
+        require ('class/clientView.class.php');
+   }
+    echo clientView::fetchEmployeeData(10,123);
     $employeeName = "Mariann";
     $employeeImgUrl = "http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg";
     $employeeId = 4;
-
      require("header.php"); ?>
 <div class="employee">
 
