@@ -14,10 +14,9 @@
    if (true){
         require ('class/clientView.class.php');
    }
-    echo clientView::fetchEmployeeData(10,123);
-    $employeeName = "Mariann";
-    $employeeImgUrl = "http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg";
-    $employeeId = 4;
+    var_dump(json_decode(clientView::fetchEmployeeData(10,123)));
+    $employeeName = "";
+    $employeeImgUrl = "";
      require("header.php"); ?>
 <div class="employee">
 
