@@ -14,9 +14,9 @@
    if (isset($_GET['employeeId'])){
 
         require ('class/clientView.class.php');
+
         $raw = clientView::fetchEmployeeData(htmlspecialchars(stripslashes($_GET['employeeId'])),$apikey);
         $results = json_decode($raw);
-        var_dump($results);
         $employeeName = (explode("_",$results->name))[0];
         $employeeImgUrl = $results->photo_url;
 
