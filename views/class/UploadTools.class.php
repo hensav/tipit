@@ -21,17 +21,18 @@ class UploadTools
         }
         return $output;
     }
-    public static function uploadImage(array $input){
+
+    public static function uploadImage(array $input)
+    {
         $standardizedFilename = UploadTools::standardizeName($input["fileToUpload"]["name"]);
         
         if($standardizedFilename==false){
             return(array(
                 "status"=>"failure",
                 "errorCode" => 001,
-                "message" => "Image type not supported"
-            ));
+                "message" => "Image type not supported")
+            );
         }
-        
         
         $target_dir = "../uploads/";
         $target_file = $target_dir . basename($standardizedFilename);
@@ -44,12 +45,12 @@ class UploadTools
                 return(array(
                     "status"=>"failure",
                     "errorCode" => 002,
-                    "message" => "File is not an image"
-                ));
+                    "message" => "File is not an image")
+                );
             }
         }
 
-        // Check if file already exists, generate new file name. Can't fail twice, right? ....Right?
+        // Check if file already exists, generate new file name. Can't fail twice in a row, right? ....Right?
         if (file_exists($target_file)) {
             $standardizedFilename=$standardizedFilename = UploadTools::standardizeName($input["fileToUpload"]["name"]);
         }
@@ -59,26 +60,24 @@ class UploadTools
             return(array(
                 "status"=>"failure",
                 "errorCode" => 003,
-                "message" => "Image size is too large!"
-            ));
+                "message" => "Image size is too large!")
+            );
         }
         
-        // if everything  above is ok, try to upload file
-        
-            if (move_uploaded_file($input["fileToUpload"]["tmp_name"], $target_file)) {
-                return(array(
-                    "status"=>"success",
-                    "errorCode" => false,
-                    "message" => "$standardizedFilename"
-                ));
-                
-            } else {
-                return(array(
-                    "status"=>"failure",
-                    "errorCode" => 004,
-                    "message" => "Something went wrong, please try again"
-                ));
-            }
+        // If everything above fails to break function, try to actually upload file
+        if (move_uploaded_file($input["fileToUpload"]["tmp_name"], $target_file)) {
+            return(array(
+                "status"=>"success",
+                "errorCode" => false,
+                "message" => "$standardizedFilename")
+            );
+
+        } else {
+            return(array(
+                "status"=>"failure",
+                "errorCode" => 004,
+                "message" => "Something went wrong, please try again")
+            );
         }
-    
+    }
 }
