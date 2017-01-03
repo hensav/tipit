@@ -55,7 +55,21 @@ if (isset($_POST["loginEmail"]) &&
 
     //$result = $clientAuth -> loginRequest($url,$user,$pass);
     $result = $clientAuth->loginRequest($url,$_POST['loginEmail'],$_POST['loginPassword'],$phone);
-    var_dump($result);
+    if($result->status == "success"){
+        session_start();
+        $_SESSION['userId'] = $result->response->id;
+        $_SESSION['userRole'] = $result->response->role;
+        $_SESSION['apiKey'] = $result->response->apikey;
+        if($result->response->role =="client"){
+            $location = "tiping.php";
+        } elseif ($result->response->role == "employer"){
+            $location = "comp_welcome.php";
+        } elseif ($result->response->role == "employee"){
+            $location = "emp_welcome.php";
+        }
+        header("location: $location");
+        exit();
+    }
 }
 
 ?>
