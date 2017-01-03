@@ -6,21 +6,29 @@
 
     if(isset($_POST['mainRating']) or (isset($_POST['quickRating'])&&isset($_POST['punctualRating'])&&isset($_POST['helpfulRating']))){
         require("class/clientView.class.php");
-            if(!isset($_POST['quickRating'])or !isset($_POST['punctualRating']) or !isset($_POST['helpfulRating'])){
-                if(isset($_POST['mainRating'])){
-                    $_POST['quickRating'] = $_POST['mainRating'];
-                    $_POST['punctualRating'] = $_POST['mainRating'];
-                    $_POST['helpfulRating'] = $_POST['mainRating'];
-                }
-            }
+
+        if(empty($_POST['quickRating'])){
+            $_POST['quickRating'] = $_POST['mainRating'];
+        }
+
+        if(empty($_POST['punctualRating'])){
+            $_POST['punctualRating'] = $_POST['mainRating'];
+        }
+
+        if(empty($_POST['helpfulRating'])){
+            $_POST['helpfulRating'] = $_POST['mainRating'];
+        }
 
         $leaveRating = clientView::rateEmployee($apikey,$_GET['employeeId'],$clientId,$_POST['quickRating'],$_POST['punctualRating'],$_POST['helpfulRating']);
+
         if($leaveRating->status != "success"){
             $ratingError = $leaveRating->msg;
         } else {
             header("location: thankyou.php");
             exit();
         }
+    } elseif(!empty($_POST)){
+            $ratingError = 'Rating not left - please either leave three separate grades or a main evaluation';
     }
 
     $apikey = 123;
@@ -103,6 +111,7 @@
         </section>
     </div>
     <input type="hidden" name="employeeId" value=<?=$employeeId?>>
+    <span class="error"><?php echo $ratingError; ?></span>
     <input type="submit" class="href__button" value="Feedback"/>
     </form>
     <div class="w3-container">

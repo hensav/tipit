@@ -3,10 +3,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
     require ('class/employeeView.class.php');
     require ('class/sliderBar.class.php');
-    //session checks and stuff instead of true.
+
+    //session checks and stuff instead of true. Dummy data:
+    $employeeId = 126;
+    $apikey = 123;
+
     if(true){
-        $employeeId = 10;
-        $apikey = 123;
+
         /** Count and profit **/
 
         $shortStats = json_decode(employeeView::fetchStats($employeeId,$apikey));
@@ -29,23 +32,23 @@ ini_set('display_errors', 1);
         $previous = array();
         $totalBar = new sliderBar(array(
             "name"=>"Total",
-            "current" => ($rawSliderData[0]->total)*100/5,
-            "previous" => ($rawSliderData[1]->total)*100/5
+            "current" => round(($rawSliderData[0]->total)*20,0),
+            "previous" => round(($rawSliderData[1]->total)*20,0)
         ));
         $quickBar = new sliderBar(array(
             "name"=>"Super-quick",
-            "current" => ($rawSliderData[0]->P1)*100/5,
-            "previous" => ($rawSliderData[1]->P1)*100/5
+            "current" => round(($rawSliderData[0]->P1)*20,0),
+            "previous" => round(($rawSliderData[1]->P1)*20,0)
         ));
         $punctualBar = new sliderBar(array(
             "name"=>"Punctual",
-            "current" => ($rawSliderData[0]->P2)*100/5,
-            "previous" => ($rawSliderData[1]->P2)*100/5
+            "current" => round(($rawSliderData[0]->P2)*20,0),
+            "previous" => round(($rawSliderData[1]->P2)*20,0)
         ));
         $helpfulBar = new sliderBar(array(
             "name"=>"Helpful",
-            "current" => ($rawSliderData[0]->P3)*100/5,
-            "previous" => ($rawSliderData[1]->P3)*100/5
+            "current" => round(($rawSliderData[0]->P3)*20,0),
+            "previous" => round(($rawSliderData[1]->P3)*20,0)
         ));
     }
 
