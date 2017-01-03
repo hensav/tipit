@@ -47,15 +47,14 @@ require("class/employeeView.class.php");
 
         <form method="POST" class="signup__form" enctype="multipart/form-data">
             <label class="upload__btn">
- 		    <img src=<?=$employeeImgUrl ?> class="employee-image">
-  		    <input type="file"name="fileToUpload" id="fileToUpload"/>
+ 		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
+  		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
-
  			<textarea name="empDescription" placeholder=<?=$employeeDescription ?>></textarea>
  			 <input type="submit" value="save" class="form__button" name="submit">
- 		</form>
-       
-
+  		</form>
+       <p class="employee--good-code txt-center">This is My Good Code:</p>
+       <p class="good-code txt-center">Ma54r8</p>
     </div>
 </div>
 
