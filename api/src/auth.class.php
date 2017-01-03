@@ -15,9 +15,10 @@ class Auth
 
     public function login($email,$pass){
         $stmt = $this->conn->prepare("
-            SELECT id, role, name
+            SELECT user.id, user.role, user.name, api_key.apikey
             FROM user
-            WHERE email=:email AND 
+            LEFT JOIN api_key ON user.id = api_key.user_id
+            WHERE user.email=:email AND 
             auth=:authKey
         ");
         $stmt->bindParam(':email',$email,PDO::PARAM_STR);
@@ -74,7 +75,8 @@ class Auth
             if ($stmt->execute()) {
                 $result =  array(
                     'status'=>'success',
-                    'response'=>'Full details registered!'
+                    'response'=>'Full details registered!',
+                    'apikey' => $this->genApiKey($email)
                 );
                 if($role=="employee"){
                     $gCode = $this->genGoodCode($name,$email);
@@ -84,6 +86,30 @@ class Auth
             }
         }
     }
+
+    protected function genApiKey($email)
+    {
+        $key = substr(hash("sha512",$email.rand(1,1337)),rand(1,42),32);
+        $stmt = $this->conn->prepare("
+            INSERT INTO api_key(user_id,apikey) 
+            VALUES((SELECT id FROM user WHERE email = :email LIMIT 1),:apikey);
+        ");
+        $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+        $stmt->bindParam(":apikey",$key,PDO::PARAM_STR);
+        if($stmt->execute()){
+            return $key;
+        }
+    }
+
+    protected function genDescriptionEntry($id)
+    {
+        $stmt = $this->conn->prepare("
+          INSERT INTO emp_description(employee_id,photo_url)
+          VALUES (:id, 'default.png')");
+        $stmt->bindParam(":id", $id,PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
     protected function genGoodCode($name,$email)
     {
@@ -99,6 +125,8 @@ class Auth
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $id = intval($result['id']);
+
+            $this->genDescriptionEntry($id);
 
             $stmt = $this->conn->prepare("INSERT INTO goodcode VALUES (DEFAULT,:uid,:gcode)");
             $stmt->bindParam(":uid",$id,PDO::PARAM_INT);

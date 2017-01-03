@@ -1,11 +1,16 @@
 <?php
 
+session_start();
+if($_SESSION['userRole'] != "client"){
+    header("location: index.php");
+    exit();
+}
+
 require("class/clientView.class.php");
 
-$goodCode = "";
-$goodCodeError = ""; 
-$class = "";
-$apikey = 123;
+$goodCodeError = "";
+
+$apikey = $_SESSION['apikey'];
 
 if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
     $result = clientView::fetchEmployeeByGoodcode($_POST['goodCode'],$apikey);

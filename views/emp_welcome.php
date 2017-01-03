@@ -1,12 +1,16 @@
 <?php
+    session_start();
+    if($_SESSION['userRole'] != "employee"){
+        header("location: index.php");
+        exit();
+    }
 
 require("class/UploadTools.class.php");
 require("class/employeeView.class.php");
 
-    //start of test data
-    $employeeId = 10;
-    $apikey = 123;
-    //End of test data. The above will be replaced with employee id and apikey from session once login is properly implemented.
+
+    $employeeId = $_SESSION['userId'];
+    $apikey = $_SESSION['apiKey'];
 
     $defaultDescr = "";
 
@@ -29,7 +33,12 @@ require("class/employeeView.class.php");
     $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
  	$employeeName = explode("_",$rawData->name)[0];
-    $employeeImgUrl = $imgRoot.$rawData->photo_url;
+ 	$goodcode = $rawData->goodcode;
+ 	if(strlen($rawData->photo_url)>3) {
+        $employeeImgUrl = $imgRoot . $rawData->photo_url;
+    } else {
+ 	    $employeeImgUrl = $imgRoot . "emp_placehold.jpg";
+    }
 	if(strlen($rawData->description)>3){
 	    $employeeDescription = $rawData->description;
     } else {
@@ -50,13 +59,12 @@ require("class/employeeView.class.php");
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
- 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours.">
-                <?php if(!empty($employeeId)){echo $employeeDescription;} ?>
+ 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours."><?php if(!empty($employeeId)){echo trim($employeeDescription);} ?>
             </textarea>
  			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
        <p class="employee--good-code txt-center">This is My Good Code:</p>
-       <p class="good-code txt-center">Ma54r8</p>
+       <p class="good-code txt-center"><?=$goodcode?></p>
     </div>
 </div>
 <script>
