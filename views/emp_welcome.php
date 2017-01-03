@@ -33,6 +33,7 @@ require("class/employeeView.class.php");
     $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
  	$employeeName = explode("_",$rawData->name)[0];
+ 	$goodcode = $rawData->goodcode;
  	if(strlen($rawData->photo_url)>3) {
         $employeeImgUrl = $imgRoot . $rawData->photo_url;
     } else {
@@ -63,7 +64,7 @@ require("class/employeeView.class.php");
  			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
        <p class="employee--good-code txt-center">This is My Good Code:</p>
-       <p class="good-code txt-center">Ma54r8</p>
+       <p class="good-code txt-center"><?=$goodcode?></p>
     </div>
 </div>
 <script>
