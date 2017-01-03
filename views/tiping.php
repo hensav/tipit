@@ -37,7 +37,7 @@ if (isset ($_POST["goodCode"])) {
     <div class="employee">
         <form method="POST" class="employee__auth">
             <input type="text" placeholder="The good code" name="goodCode" value="<?=$goodCode;?>" class="form__field txt-center<?php echo $class; ?>">
-            <h2>Mariann</h2>
+           
             <p class="error"><?php echo $goodCodeError; ?></p>
             <!--<a class="href__button" href="tiping_2.php">Let's go!</a>--> 
             <input type="submit" value="Let's go!" class="form__button"> 
