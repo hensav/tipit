@@ -51,7 +51,7 @@ require("class/employeeView.class.php");
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
  			<textarea name="empDescription" placeholder=<?=$employeeDescription ?>></textarea>
- 			 <input type="submit" value="save" class="form__button" name="submit">
+ 			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
        <p class="employee--good-code txt-center">This is My Good Code:</p>
        <p class="good-code txt-center">Ma54r8</p>

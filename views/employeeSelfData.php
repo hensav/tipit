@@ -41,8 +41,9 @@ ini_set('display_errors', 1);
 </head>
 <body>
     <?php include ("header.php") ?>
-
-    Some text here. Go you!
+    <div class="employee">
+    <h2>Weekly overview</h2>
+    <p class="feedback">Feedback: 16<br>Compliments: 24 €</p>
     <?php
         $totalBar->displaySlider();
         $quickBar->displaySlider();
@@ -51,7 +52,7 @@ ini_set('display_errors', 1);
 
 
     ?>
+    </div>
+
     <?php require("footer.php"); ?>
 
-</body>
-</html>

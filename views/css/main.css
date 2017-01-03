@@ -351,6 +351,9 @@ input[type="submit"].inactive--button.form__button:hover {
 
 /* FEEDBACK */
 
+.feedback {
+	padding: 20px;
+}
 .rating {
     width: 100%;
 	margin: auto;

@@ -21,14 +21,14 @@ class sliderBar
             $orangeWidth = $this->previous;
             $greenWidth = $this->current-$this->previous;
             $redWidth = 0;
-            $amountColor = "#12cd57";
+            $amountColor = "#22f36f";
             $amtChange = 5*$greenWidth/100;
             $description = $this->name." (+ $amtChange)";
         } else {
             $orangeWidth = $this->current;
             $greenWidth = 0;
             $redWidth = $this->previous-$this->current;
-            $amountColor = "#cd453d";
+            $amountColor = "#ff0000";
             $amtChange = round(5*$redWidth/100,1);
             $description = $this->name." (- $amtChange)";
         }
