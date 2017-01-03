@@ -9,11 +9,11 @@ $apikey = 123;
 
 if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
     $result = clientView::fetchEmployeeByGoodcode($_POST['goodCode'],$apikey);
-
     if($result->status=="success"){
         $id = $result->msg;
-
         header("location: tiping_2.php?employeeId=$id");
+    } else {
+        //error stuff
     }
 }
 
