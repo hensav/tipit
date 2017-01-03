@@ -5,7 +5,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require('../../../dbdata.php');
+require('../../dbdata.php');
 $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass,
 
     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
@@ -71,6 +71,16 @@ if(isset($_GET['apikey'])) {
         }
         if ($_GET['view'] == 'submitRating') {
             echo "leaves rating";
+        }
+
+
+        if ($_GET['view'] == 'companyView') {
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['userId'])){
+                $result = $companyView->fetchView($_GET["userId"]);
+                print_r(json_encode($result));
+            }
         }
     }
 
