@@ -13,16 +13,11 @@ if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
         $id = $result->msg;
         header("location: tiping_2.php?employeeId=$id");
     } else {
-        //error stuff
+        $goodCodeError = $result->msg;
     }
 }
 
-
-
-?>
-
-
-<?php require("header.php"); ?>
+require("header.php"); ?>
 
 
     <div class="employee">
