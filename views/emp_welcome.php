@@ -50,8 +50,7 @@ require("class/employeeView.class.php");
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
- 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours.">
-                <?php if(!empty($employeeId)){echo $employeeDescription;} ?>
+ 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours."><?php if(!empty($employeeId)){echo trim($employeeDescription);} ?>
             </textarea>
  			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
