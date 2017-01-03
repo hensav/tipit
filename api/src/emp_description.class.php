@@ -17,13 +17,13 @@ class emp_description
 
     function fetchView($employeeId){
         $stmt = $this->conn->prepare(
-
             "SELECT emp_description.employee_id, emp_description.description, emp_description.photo_url, user.name
-            FROM emp_description
-            LEFT JOIN user
+            FROM user
+            LEFT JOIN emp_description
             ON user.id=emp_description.employee_id
-            WHERE emp_description.employee_id=:employeeId;
+            WHERE user.id=:employeeId;
         ");
+
         $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
 
         $stmt->execute();

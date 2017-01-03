@@ -54,8 +54,6 @@ if(isset($_GET['apikey'])) {
 
 
         if ($_GET['view'] == 'employeePage') {
-
-
             //emp_description
             require('./src/emp_description.class.php');
             $emp_description = new emp_description($PDO);
@@ -107,7 +105,12 @@ if(isset($_GET['apikey'])) {
         }
 
         if ($_GET['submit'] == 'rateEmployee') {
-            echo "hindamise script";
+            require("src/employeeRating.class.php");
+            $queryString = $_GET['package'];
+            parse_str($queryString,$output);
+            $rate = new employeeRating($PDO);
+            $response = $rate->leaveRating($output);
+            print_r(json_encode($response));
         }
         //Adding and changing employee details
         if ($_GET['submit'] == 'employeeDetails') {
