@@ -33,6 +33,8 @@ class employeeView{
         AVG(param3_score) as P3
 		FROM ratings
 		WHERE employee_id=:employeeId 
+        AND submitted >= DATE(NOW()) - INTERVAL 14 DAY
+        AND submitted < DATE(NOW()) - INTERVAL 7 DAY
         ");
         $stmt->bindParam(':employeeId',$employeeId,PDO::PARAM_INT);
         $stmt->execute();
