@@ -15,4 +15,10 @@ class clientView
         $result = file_get_contents($url);
         return $result;
     }
+
+    public static function fetchEmployeeByGoodcode($gCode, $apikey){
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeeByGoodcode/goodCode/$gCode";
+        $result = json_decode(file_get_contents($url));
+        return $result;
+    }
 }
