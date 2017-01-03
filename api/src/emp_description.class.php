@@ -31,23 +31,37 @@ class emp_description
         return $result;
 
     }
-    function updateDetails(array $input){
-        $stmt = $this->conn->prepare("
-        UPDATE emp_description SET photo_url=:url, description=:description WHERE employee_id=:id;
-        ");
-        $stmt->bindParam(":url",$input['filename'],PDO::PARAM_STR);
-        $stmt->bindParam(":description",$input['description'],PDO::PARAM_STR);
-        $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
-        if($stmt->execute()){
-            return array(
-                "status" => "success",
-                "message" => "Profile successfully updated!"
-            );
-        } else {
-            return array(
-                "status" => "failure",
-                "message" => "Something went awry."
-            );
+    function updateDetails(array $input)
+    {
+        $updated = array();
+        //if photo is updated..
+        if(isset($input['filename']) && $input['filename'] != null){
+            $stmt = $this->conn->prepare("
+            UPDATE emp_description SET photo_url=:url WHERE employee_id=:id;
+            ");
+            $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
+            $stmt->bindParam(":url",$input['filename'],PDO::PARAM_STR);
+            if($stmt->execute()){
+                $updated['picture']=true;
+            }
         }
+
+        //if description is updated
+        if(isset($input['description']) && $input['description'] != null){
+            $stmt = $this->conn->prepare("
+            UPDATE emp_description SET description=:description WHERE employee_id=:id;
+            ");
+            $stmt->bindParam(":description",$input['description'],PDO::PARAM_STR);
+            $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
+            if($stmt->execute()){
+                $updated['description']=true;
+            }
+        }
+        return array(
+            "status" => "success",
+            "updated"=>$updated
+        );
+
     }
+
 }

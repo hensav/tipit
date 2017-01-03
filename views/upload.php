@@ -1,10 +1,11 @@
 <?php
 require("class/UploadTools.class.php");
+require("class/employeeView.class.php");
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//{ ["status"]=> string(7) "success" ["errorCode"]=> bool(false) ["message"]=> string(12) "2d92b8ec.jpg" }
+$apikey = 123;
+$employeeId = 10;
 
-$uploadAttempt = UploadTools::uploadImage($_FILES);
-var_dump($uploadAttempt);
+//
+
 ?>

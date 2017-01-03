@@ -15,6 +15,13 @@ class employeeView
         return $result;
     }
 
+    public static function getDetails($employeeId,$apikey)
+    {
+       $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeePage/employeeId/$employeeId";
+       $result = file_get_contents($url);
+       return json_decode($result);
+    }
+
     public static function updateDetails($description,$fileName,$employeeId,$apikey)
     {
 
