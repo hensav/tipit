@@ -7,6 +7,28 @@ ini_set('display_errors', 1);
     if(true){
         $employeeId = 10;
         $apikey = 123;
+        /** Count and profit **/
+
+        $shortStats = json_decode(employeeView::fetchStats($employeeId,$apikey));
+
+        if(isset($shortStats[0]->ratingCount)){
+            $ratingCount = $shortStats[0]->ratingCount;
+        } else {
+            $ratingCount = 0;
+        }
+
+        if(isset($shortStats[0]->earnings) && $shortStats[0]->earnings != NULL){
+            $earnings = $shortStats[0]->earnings;
+        } else {
+            $earnings = 0;
+        }
+
+
+
+
+
+
+        /** Sliders **/
         $rawSliderData = json_decode(employeeView::fetchSliderData($employeeId,$apikey));
         $current = array();
         $previous = array();
@@ -32,7 +54,6 @@ ini_set('display_errors', 1);
         ));
     }
 
-
     ?>
 <html>
 <head>
@@ -43,14 +64,12 @@ ini_set('display_errors', 1);
     <?php include ("header.php") ?>
     <div class="employee">
     <h2>Weekly overview</h2>
-    <p class="feedback">Feedback: 16<br>Compliments: 24 €</p>
+    <p class="feedback">Feedback: <?php echo $ratingCount;?><br>Compliments: <?php echo $earnings;?> €</p>
     <?php
         $totalBar->displaySlider();
         $quickBar->displaySlider();
         $punctualBar->displaySlider();
         $helpfulBar->displaySlider();
-
-
     ?>
     </div>
 

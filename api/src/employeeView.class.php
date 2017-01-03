@@ -15,7 +15,8 @@ class employeeView{
         $this->conn = $PDO;
     }
 
-    function getBarValues($employeeId){
+    function getBarValues($employeeId)
+    {
         $stmt = $this->conn->prepare(
         "SELECT
         AVG((main_score+param2_score+param3_score)/3) as total,
@@ -38,5 +39,21 @@ class employeeView{
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    function getStatValues($employeeId)
+    {
+        $stmt = $this->conn->prepare("
+        SELECT COUNT(ratings.id) as ratingCount,SUM(transactions.amount) as earnings
+        FROM ratings
+        LEFT JOIN transactions on ratings.employee_id = transactions.employee_id
+        WHERE ratings.employee_id = :id 
+        AND ratings.submitted >= DATE(NOW()) - INTERVAL 7 DAY
+        ");
+
+        $stmt->bindParam(":id",$employeeId,PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 
 }

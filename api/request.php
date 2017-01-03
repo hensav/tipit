@@ -25,7 +25,7 @@ if(isset($_GET['apikey'])) {
 
     if (isset($_GET['view'])) {
 
-        if ($_GET['view'] == 'employeePrivateStats') {
+        if ($_GET['view'] == 'employeePrivateSliders') {
             require('src/employeeView.class.php');
             $employeeView = new employeeView($PDO);
             if(isset($_GET['employeeId'])){
@@ -33,6 +33,17 @@ if(isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+
+        if ($_GET['view'] == 'employeePrivateStats') {
+            require('src/employeeView.class.php');
+            $employeeView = new employeeView($PDO);
+            if(isset($_GET['employeeId'])){
+                $result = $employeeView->getStatValues($_GET['employeeId']);
+                print_r(json_encode($result));
+            }
+        }
+
+
         if ($_GET['view'] == 'employeePage') {
 
 
