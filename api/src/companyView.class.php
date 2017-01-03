@@ -17,12 +17,9 @@ class companyView
 
     function fetchView($userID){
         $stmt = $this->conn->prepare(
-            "SELECT company.trading_name, company.description, company.photo_url, company.coord_lat, company.coord_long, company.related_user, company.opening_hours,company.id, user.id
-            FROM user
-            LEFT JOIN company
-            ON user.id=company.related_user
-            WHERE user.id=:userId;
-        ");
+            "SELECT id, related_user, email, trading_name, aadress, coord_lat, coord_long, created, closed, description, opening_hours, photo_url
+            FROM company
+         ");
 
         $stmt->bindParam(':userId',$userID,PDO::PARAM_INT);
 
