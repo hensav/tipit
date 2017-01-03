@@ -1,7 +1,13 @@
 <?php
-    //dummy data:
-    $clientId = 11;
-    $apikey = 123;
+
+    session_start();
+    if($_SESSION['userRole'] != "client"){
+        header("location: index.php");
+        exit();
+    }
+
+    $clientId = $_SESSION['userId'];
+    $apikey = $_SESSION['apiKey'];
     $ratingError = "";
 
     if(isset($_POST['mainRating']) or (isset($_POST['quickRating'])&&isset($_POST['punctualRating'])&&isset($_POST['helpfulRating']))){
