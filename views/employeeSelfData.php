@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
     require ('class/employeeView.class.php');
     require ('class/sliderBar.class.php');
-    //session checks and stuff instead of true. Currently hardcoding employee id and apikey
+    //session checks and stuff instead of true.
     if(true){
         $employeeId = 10;
         $apikey = 123;
@@ -22,11 +22,6 @@ ini_set('display_errors', 1);
         } else {
             $earnings = 0;
         }
-
-
-
-
-
 
         /** Sliders **/
         $rawSliderData = json_decode(employeeView::fetchSliderData($employeeId,$apikey));

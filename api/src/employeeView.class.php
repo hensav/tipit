@@ -39,6 +39,7 @@ class employeeView{
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
     function getStatValues($employeeId)
     {
         $stmt = $this->conn->prepare("
@@ -53,6 +54,32 @@ class employeeView{
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    function getEmployeeByGoodcode($gCode)
+    {
+        $stmt = $this->conn->prepare("
+        SELECT user_id as id
+        FROM goodcode
+        WHERE goodcode = :goodcode
+        LIMIT 1
+        ");
+        $stmt->bindParam(":goodcode",$gCode,PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(is_int($result["id"])){
+            return(array(
+                "status"=>"failure",
+                "msg"=>"Unable to find employee by $gCode!"
+            ));
+        } else {
+            return(array(
+                "status"=>"success",
+                "msg"=>$result['id']
+            ));
+        }
     }
 
 

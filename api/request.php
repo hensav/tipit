@@ -43,6 +43,15 @@ if(isset($_GET['apikey'])) {
             }
         }
 
+        if ($_GET['view'] == 'employeeByGoodcode') {
+            require('src/employeeView.class.php');
+            $employeeView = new employeeView($PDO);
+            if(isset($_GET['goodCode'])){
+                $result = $employeeView->getEmployeeByGoodcode($_GET['goodCode']);
+                print_r(json_encode($result));
+            }
+        }
+
 
         if ($_GET['view'] == 'employeePage') {
 

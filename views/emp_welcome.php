@@ -8,7 +8,7 @@ require("class/employeeView.class.php");
     $apikey = 123;
     //End of test data. The above will be replaced with employee id and apikey from session once login is properly implemented.
 
-    $defaultDescr = "Hello! This is my good thought of a day. Read it and replace it with yours.";
+    $defaultDescr = "";
 
     if(isset($_POST['submit'])){
         $description = null;
@@ -50,13 +50,22 @@ require("class/employeeView.class.php");
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
- 			<textarea name="empDescription" placeholder=<?=$employeeDescription ?>></textarea>
+ 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours.">
+                <?php if(!empty($employeeId)){echo $employeeDescription;} ?>
+            </textarea>
  			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
        <p class="employee--good-code txt-center">This is My Good Code:</p>
        <p class="good-code txt-center">Ma54r8</p>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+       $("#descriptionArea").click(function(){
+           $("#descriptionArea").val('');
+       })
+    });
+</script>
 
 <?php require("footer.php"); ?>
 
