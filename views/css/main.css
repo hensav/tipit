@@ -42,11 +42,16 @@ h2{
 
 
 h3{
-	font-size: 21px;
-	font-weight: 900;
+	font-size: 28px;
+	font-weight: 300;
 	text-align: left;
 }
 
+h4{
+	font-size: 18px;
+	font-weight: 500;
+	text-align: left;
+}
 
 h6{
 	font-size: 21px;
@@ -144,6 +149,72 @@ a:hover{
 	max-width: 100%;
 
 }
+.companyKind{
+	margin: auto;
+	text-align: left;
+	padding: 0;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.companyName{
+	width: 100%;
+	margin: auto;
+	text-align: left;
+
+	font-size: 32px;
+	font-weight: 300;
+
+}
+.employeeList{
+	font-size: 44px;
+	text-align: left;
+	margin-bottom: 10vh;
+	margin-top: 1vh;
+	font-weight: 300;
+	color: rgba(92, 48, 255, 0.7);
+}
+
+.container__company {
+  display:flex;
+  justify-content:center;
+  border-bottom: solid 2px blue;
+}
+
+.container__company > div {
+	margin:10px;
+}
+
+
+.companyRating{
+	width: 60px;
+	font-size: 32px;
+}
+
+.container__employee {
+  display:flex;
+  justify-content:center;
+  margin-top: 10px;
+}
+.container__employee > div {
+  margin:10px;
+  
+}
+.employeeThumbnail, .employeeRating {
+  width: 60px;
+  height: 60px;
+}
+.employeeName {
+  width:200px;
+  font-size: 28px;
+  padding-top: 14px;
+  font-weight: 300;
+  text-align: left;
+}
+.employeeRating{
+	padding-top: 12px;
+	font-size: 32px;
+}
 
 textarea{
 	margin: auto;
@@ -203,10 +274,7 @@ textarea{
 	width: 90%;
 	margin: auto;
 	text-align: center;
-
-
 }
-
 
 .form__field{
 	width: 100%;
@@ -222,13 +290,10 @@ textarea{
 	padding-right: 20px;
 	font-weight: 300;
 	font-family: 'Source Sans Pro', sans-serif;
-
-	
 }
 
 .progress-bar{
 	margin-top: 20px;
-
 }
 
 .w3-progress-container{
