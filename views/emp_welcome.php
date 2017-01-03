@@ -33,7 +33,11 @@ require("class/employeeView.class.php");
     $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
  	$employeeName = explode("_",$rawData->name)[0];
-    $employeeImgUrl = $imgRoot.$rawData->photo_url;
+ 	if(strlen($rawData->photo_url)>3) {
+        $employeeImgUrl = $imgRoot . $rawData->photo_url;
+    } else {
+ 	    $employeeImgUrl = $imgRoot . "emp_placehold.jpg";
+    }
 	if(strlen($rawData->description)>3){
 	    $employeeDescription = $rawData->description;
     } else {

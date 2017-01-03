@@ -101,6 +101,15 @@ class Auth
         }
     }
 
+    protected function genDescriptionEntry($id)
+    {
+        $stmt = $this->conn->prepare("
+          INSERT INTO emp_description(employee_id,photo_url)
+          VALUES (:id, 'default.png')");
+        $stmt->bindParam(":id", $id,PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
     protected function genGoodCode($name,$email)
     {
@@ -116,6 +125,8 @@ class Auth
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $id = intval($result['id']);
+
+            $this->genDescriptionEntry($id);
 
             $stmt = $this->conn->prepare("INSERT INTO goodcode VALUES (DEFAULT,:uid,:gcode)");
             $stmt->bindParam(":uid",$id,PDO::PARAM_INT);
