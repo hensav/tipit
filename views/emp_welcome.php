@@ -1,12 +1,16 @@
 <?php
+    session_start();
+    if($_SESSION['userRole'] != "employee"){
+        header("location: index.php");
+        exit();
+    }
 
 require("class/UploadTools.class.php");
 require("class/employeeView.class.php");
 
-    //start of test data
-    $employeeId = 10;
-    $apikey = 123;
-    //End of test data. The above will be replaced with employee id and apikey from session once login is properly implemented.
+
+    $employeeId = $_SESSION['userId'];
+    $apikey = $_SESSION['apiKey'];
 
     $defaultDescr = "";
 

@@ -1,12 +1,16 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    session_start();
+    if($_SESSION['userRole'] != "employee"){
+        header("location: index.php");
+        exit();
+    }
+
     require ('class/employeeView.class.php');
     require ('class/sliderBar.class.php');
 
     //session checks and stuff instead of true. Dummy data:
-    $employeeId = 126;
-    $apikey = 123;
+    $employeeId = $_SESSION['userId'];
+    $apikey = $_SESSION['apiKey'];
 
     if(true){
 
