@@ -44,7 +44,8 @@ if (isset($_POST["loginPassword"])) {
 }
 
 //checking if loginEmail and loginPassword have been posted
-if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])){
+if (isset($_POST["loginEmail"]) &&
+    isset($_POST["loginPassword"])){
 //replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
     if(empty($_POST['phone'])){
         $phone='';
