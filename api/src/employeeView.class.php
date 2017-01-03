@@ -59,7 +59,7 @@ class employeeView{
     function getEmployeeByGoodcode($gCode)
     {
         $stmt = $this->conn->prepare("
-        SELECT user_id as id
+        SELECT user_id as id, godcode
         FROM goodcode
         WHERE goodcode = :goodcode
         LIMIT 1
@@ -69,15 +69,15 @@ class employeeView{
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if(is_int($result["id"])){
+        if(is_int($result["id"] && strlen($result['goodcode']==6))){
             return(array(
-                "status"=>"failure",
-                "msg"=>"Unable to find employee by $gCode!"
+                "status"=>"success",
+                "msg"=>$result['id'],
             ));
         } else {
             return(array(
-                "status"=>"success",
-                "msg"=>$result['id']
+                "status"=>"failure",
+                "msg"=>"Unable to find employee by $gCode!"
             ));
         }
     }

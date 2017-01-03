@@ -5,6 +5,7 @@ require("class/clientView.class.php");
 $goodCode = "";
 $goodCodeError = ""; 
 $class = "";
+$apikey = 123;
 
 if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
     $result = clientView::fetchEmployeeByGoodcode($_POST['goodCode'],$apikey);
