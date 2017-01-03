@@ -31,4 +31,14 @@ class companyView
         return $result;
 
     }
+
+    public function fetchEmployeesByCompany($companyId)
+    {
+        $stmt = $this->prepare("SELECT employee_id FROM rel_employee_company WHERE company_id = :id");
+        $stmt->bindParam(":id",$companyId,PDO::PARAM_INT);
+        if($stmt->execute()){
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        }
+    }
 }
