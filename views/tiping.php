@@ -34,6 +34,19 @@ require("header.php"); ?>
             <input type="submit" value="Let's go!" class="form__button"> 
         </form>
 
+        <br><br>
+
+
+
+        <form method="post" class="company_search">
+            <input type="text" placeholder="Or start typing company name..." name="company" value="" class="form__field txt-center">
+
+            <p class="error"><?php echo $companyError; ?></p>
+            <!--<a class="href__button" href="tiping_2.php">Let's go!</a>-->
+        </form>
+
+
+
         <div class="w3-container">
             <div class="w3-progress-container">
                 <div class="w3-progressbar" style="width:25%"></div>
