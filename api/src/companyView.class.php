@@ -47,4 +47,16 @@ class companyView
             return "Failed to find employees";
         }
     }
+
+    public function fetchCompanyByEmployee($employeeId)
+    {
+        $stmt = $this->prepare("SELECT company_id FROM rel_employee_company WHERE empolyee_id = :id");
+        $stmt->bindParam(":id",$employeeId,PDO::PARAM_INT);
+        if($stmt->execute()){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return "Failed to find company";
+        }
+    }
 }
