@@ -8,7 +8,7 @@
  */
 class companyView
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {
@@ -38,7 +38,7 @@ class companyView
 
     public function fetchEmployeesByCompany($companyId)
     {
-        $stmt = $this->prepare("SELECT employee_id FROM rel_employee_company WHERE company_id = :id");
+        $stmt = $this->conn->prepare("SELECT employee_id FROM rel_employee_company WHERE company_id = :id");
         $stmt->bindParam(":id",$companyId,PDO::PARAM_INT);
         if($stmt->execute()){
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@ class companyView
 
     public function fetchCompanyByEmployee($employeeId)
     {
-        $stmt = $this->prepare("SELECT company_id FROM rel_employee_company WHERE empolyee_id = :id");
+        $stmt = $this->conn->prepare("SELECT company_id FROM rel_employee_company WHERE employee_id = :id");
         $stmt->bindParam(":id",$employeeId,PDO::PARAM_INT);
         if($stmt->execute()){
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -96,8 +96,8 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'fetchCompanyByEmployee') {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['employeeID'])){
-                $result = $companyView->fetchCompanyByEmployee($_GET["employeeID"]);
+            if(isset($_GET['employeeId'])){
+                $result = $companyView->fetchCompanyByEmployee($_GET["employeeId"]);
                 print_r(json_encode($result));
             }
         }
