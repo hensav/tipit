@@ -7,6 +7,8 @@
         </p>
 
         <a class="href__button" href="signup.php">Don't mind if I do</a>
+        <a class="href__button" href="index.php">Go back</a>
+
 
     </div>
 </div>
