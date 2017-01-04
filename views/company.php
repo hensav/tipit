@@ -6,12 +6,14 @@ $companyDescription="Me ei ole tüüpiline Aasia restoran. Tule ja vaata, milles
 ?>
 
 <?php require("header.php"); ?>
-    <div class="employee">
-        <h2><?php echo $companyName; ?></h2>
-    </div>
-    <img src=<?=$companyImgUrl?> class="employee-image">
-    <?php echo $companyDescription; ?>
+<div class="employee">
 
+    <h2><?php echo $companyName; ?></h2>
+    
+    <img src=<?=$companyImgUrl?> class="employee-image">
+    <p><?php echo $companyDescription; ?></p>
+
+</div>
 
 
 

@@ -54,7 +54,7 @@ require("class/employeeView.class.php");
     <div class="employee">
         <h2>Hello <?php echo $employeeName; ?>!</h2>
 
-        <form method="POST" class="signup__form" enctype="multipart/form-data">
+        <form method="POST" class="employee__profile" enctype="multipart/form-data">
             <label class="upload__btn">
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
