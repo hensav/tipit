@@ -16,7 +16,7 @@ class compWelcome
 
 
 
-    public function compWelcome($related_user,$trading_name,$email,$address,$description,$opening_hours,$photo_url)
+    public function addCompWelcome($related_user,$trading_name,$email,$address,$description,$opening_hours,$photo_url)
     {
         $stmt = $this->conn->prepare("
             SELECT id, trading_name

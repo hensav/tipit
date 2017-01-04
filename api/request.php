@@ -149,6 +149,21 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
+        //adding details on compWelcome
+        if ($_GET['submit'] == 'submit') {
+            require("src/compWelcome.class.php");
+            if (isset($_GET['related_user']) && isset($_GET['trading_name']) && isset($_GET['email']&& isset($_GET['address']&& isset($_GET['description']&& isset($_GET['opening_hours']&& isset($_GET['photo_url'])
+            ) {
+                $adding = new compWelcome($PDO);
+
+                $response = $adding->addCompWelcome($_GET['related_user'], $_GET['trading_name'], $_GET['email'], $_GET['address'], $_GET['description'], $_GET['opening_hours'], $_GET['photo_url']);
+                print_r(json_encode($response));
+            } else {
+                echo "these are not the droids you're looking for!";
+            }
+        }
+
+
     } elseif(isset($_GET['search'])) {
 
         if ($_GET['search'] == 'byGoodcode') {
