@@ -15,17 +15,36 @@ class companyView
         $this->conn = $PDO;
     }
 
-    function fetchView($userID){
+    function fetchView($companyId)
+    {
         $stmt = $this->conn->prepare(
-            "SELECT id, related_user, email, trading_name, aadress, coord_lat, coord_long, created, closed, description, opening_hours, photo_url
+            "SELECT id, related_user, email, trading_name, address, coord_lat, coord_long, created, closed, description, opening_hours, photo_url
             FROM company
+            WHERE id = :companyId
+            LIMIT 1
          ");
 
-        $stmt->bindParam(':userId',$userID,PDO::PARAM_INT);
+        $stmt->bindParam(':companyId',$companyId,PDO::PARAM_INT);
 
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        if($stmt->execute()){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return "Failed to find company";
+        }
 
+
+    }
+
+    public function fetchEmployeesByCompany($companyId)
+    {
+        $stmt = $this->prepare("SELECT employee_id FROM rel_employee_company WHERE company_id = :id");
+        $stmt->bindParam(":id",$companyId,PDO::PARAM_INT);
+        if($stmt->execute()){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return "Failed to find employees";
+        }
     }
 }
