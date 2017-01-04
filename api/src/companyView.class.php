@@ -44,7 +44,7 @@ class companyView
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } else {
-            return "Failed to find employees";
+            return "failed to find employees";
         }
     }
 

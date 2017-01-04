@@ -77,8 +77,27 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'companyView') {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['userId'])){
-                $result = $companyView->fetchView($_GET["userId"]);
+            if(isset($_GET['companyId'])){
+                $result = $companyView->fetchView($_GET["companyId"]);
+                print_r(json_encode($result));
+            }
+        }
+
+
+        if ($_GET['view'] == 'fetchEmployeesByCompany') {
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['companyId'])){
+                $result = $companyView->fetchEmployeesByCompany($_GET["companyId"]);
+                print_r(json_encode($result));
+            }
+        }
+
+        if ($_GET['view'] == 'fetchCompanyByEmployee') {
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['employeeID'])){
+                $result = $companyView->fetchCompanyByEmployee($_GET["employeeID"]);
                 print_r(json_encode($result));
             }
         }
