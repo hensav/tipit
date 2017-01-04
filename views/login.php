@@ -84,7 +84,7 @@ if (isset($_POST["loginEmail"]) &&
     </form>
 
 </div>
-    </div>
+</div>
 
 <?php require("footer.php"); ?>
 
