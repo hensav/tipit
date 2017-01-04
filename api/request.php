@@ -130,7 +130,26 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
-    } else {
+    } elseif(isset($_GET['search'])) {
+
+        if ($_GET['search'] == 'byGoodcode') {
+            require("src/search.class.php");
+            $search = new search($PDO);
+            $response = $search->byGoodcode(stripslashes(htmlspecialchars($_GET['goodcode'])));
+            print_r($response);
+        }
+
+        if ($_GET['search'] == 'byCompany') {
+            require("src/search.class.php");
+            $search = new search($PDO);
+            $response = $search->byCompany(stripslashes(htmlspecialchars($_GET['company'])));
+            print_r($response);
+        }
+
+    }
+
+
+    else {
         echo 'You have no power here';
     }
 }
