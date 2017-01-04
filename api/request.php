@@ -6,6 +6,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require('../../../dbdata.php');
+
+header('Access-Control-Allow-Origin: *');
+
 $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass,
 
     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")

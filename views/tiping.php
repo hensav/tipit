@@ -27,11 +27,10 @@ require("header.php"); ?>
 
 <div class="employee">
     <form method="post" class="employee__auth">
-        <input type="text" placeholder="The good code" name="goodCode" value="<?=$goodCode;?>" class="form__field txt-center<?php echo $class; ?>">
+        <input type="text" placeholder="The good code" name="goodCode" id="goodcode" value="<?=$goodCode;?>" class="form__field txt-center<?php echo $class; ?>">
         <p class="error"><?php echo $goodCodeError; ?></p>
-        <input type="text" placeholder="Or start typing company name..." name="company" value="" class="form__field txt-center">
-        <p class="error"><?php echo $companyError; ?></p>
-        <input type="submit" value="Let's go!" class="form__button"> 
+        <div id="suggest"></div>
+        <input type="submit" value="Let's go!" class="form__button">
     </form>
 
     <div class="w3-container">
@@ -43,6 +42,6 @@ require("header.php"); ?>
     </div>
 
 </div>
-
+    <script src="js/searchAjax.js" type="text/javascript"></script>
 
 <?php require("footer.php"); ?>

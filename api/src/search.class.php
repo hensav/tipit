@@ -20,10 +20,15 @@ class search
         $searchTerm = "%".$entry."%";
 
         $stmt = $this->PDO->prepare("
-            SELECT user_id AS id, goodcode, user.name
+            SELECT user_id AS id, user.name, emp_description.photo_url
             FROM goodcode
             LEFT JOIN user ON goodcode.user_id = user.id
-            WHERE goodcode LIKE :term
+            LEFT JOIN emp_description on goodcode.user_id = emp_description.employee_id
+            WHERE goodcode.goodcode LIKE :term
+            UNION ALL
+            SELECT id, trading_name as name, 'company'
+            FROM company
+            WHERE company.trading_name LIKE :term
         ");
 
         $stmt->bindParam(":term",$searchTerm,PDO::PARAM_STR);
@@ -33,7 +38,12 @@ class search
         if(count($result)>0){
             return json_encode($result);
         } else {
-            return json_encode("No result");
+            return json_encode(array(
+                "id" => null,
+                "goodcode" => null,
+                "name" => "Not found",
+                "photo_url"=>"default.jpg"
+            ));
         }
     }
 
