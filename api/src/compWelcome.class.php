@@ -14,6 +14,8 @@ class compWelcome
         $this->conn = $PDO;
     }
 
+
+
     public function compWelcome($related_user,$trading_name,$email,$address,$description,$opening_hours,$photo_url)
     {
         $stmt = $this->conn->prepare("
