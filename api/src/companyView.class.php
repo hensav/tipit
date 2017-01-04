@@ -56,7 +56,7 @@ class companyView
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } else {
-            return "Failed to find company";
+            return "failed to find company";
         }
     }
 }
