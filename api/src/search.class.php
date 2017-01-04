@@ -20,8 +20,9 @@ class search
         $searchTerm = "%".$entry."%";
 
         $stmt = $this->PDO->prepare("
-            SELECT user_id AS id, goodcode
+            SELECT user_id AS id, goodcode, user.name
             FROM goodcode
+            LEFT JOIN user ON goodcode.user_id = user.id
             WHERE goodcode LIKE :term
         ");
 
