@@ -47,7 +47,6 @@ class company_page
             <div class='container__employee'>
                 <div class='employeeThumbnail'><img src=$imgPath class='employeeThumbnail'></div>
                 <div class='employeeName'>$name</div>
-                <div class='employeeRating'>$rating</div>
             </div>");
     }
 

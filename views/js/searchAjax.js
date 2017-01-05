@@ -25,8 +25,8 @@ $(document).ready(function(){
                                     } else {
                                         result +=
                                             "<div id='search__result'>" +
-                                            "<span class='search__img-wrapper'><img class='search__img' src='" + imgRoot + val.photo_url+"'></span> " +
-                                            "<span class='search__link'><a href='tiping_2.php?employeeId="+ id +"'>"+firstname[0]+"</a></span> " +
+                                            "<span class='employeeThumbnail'><img class='search__img' src='" + imgRoot + val.photo_url+"'></span> " +
+                                            "<span class='employeeName'><a href='tiping_2.php?employeeId="+ id +"'>"+firstname[0]+"</a></span> " +
                                             "</div>";
                                     }
                                 }
