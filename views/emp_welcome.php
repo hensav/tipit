@@ -32,6 +32,37 @@ require("class/employeeView.class.php");
     $rawData = employeeView::getDetails($employeeId,$apikey);
     $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
+    $requestHtml = "";
+    $requests = employeeView::getPendingRequests($employeeId,$apikey);
+
+    if($requests->status == 'success'){
+        if(isset($_POST['response'])){
+            if($_POST['response'] =="Accept"){
+                $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],$_POST['response'],$apikey);
+                $requestHtml = "<div class='request__wrapper'><span class='request__alert'>Request accepted!</span></div>";
+            } elseif ($_POST['response'] =="Reject"){
+                $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],$_POST['response'],$apikey);
+                $requestHtml = "<div class='request__wrapper'><span class='request__alert'>Request rejected!</span></div>";
+            }
+        } else {
+
+            foreach ($requests->content as $content){
+                $requestHtml .= "
+                <div class='request__wrapper'>
+                <span class='request__alert'> $content->trading_name has marked you as an employee.</span>
+                <form method='post'>
+                <input type='submit' name='response' value='Accept'>
+                <input type='submit' name='response' value='Reject'>
+                <input type='hidden' name='requestId' value='$content->requestId'>
+                </form>
+                </div>
+                
+                ";
+            }
+        }
+    }
+
+
  	$employeeName = explode("_",$rawData->name)[0];
  	$goodcode = $rawData->goodcode;
  	if(strlen($rawData->photo_url)>3) {
@@ -53,6 +84,7 @@ require("class/employeeView.class.php");
 
     <div class="employee">
         <h2>Hello <?php echo $employeeName; ?>!</h2>
+        <?php echo $requestHtml; ?>
 
         <form method="POST" class="employee__profile" enctype="multipart/form-data">
             <label class="upload__btn">

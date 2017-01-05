@@ -21,6 +21,7 @@ class emp_description
             FROM user
             LEFT JOIN emp_description ON user.id=emp_description.employee_id
             LEFT JOIN goodcode ON user.id = goodcode.user_id
+            LEFT JOIN rel_employee_company on rel_employee_company.employee_id
             WHERE user.id=:employeeId;
         ");
 

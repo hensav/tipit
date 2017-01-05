@@ -37,6 +37,24 @@ if(isset($_GET['apikey'])) {
             }
         }
 
+        if ($_GET['view'] == 'getPendingRequests') {
+            require('src/employeeView.class.php');
+            $employeeView = new employeeView($PDO);
+            if(isset($_GET['employeeId'])){
+                $result = $employeeView->getPendingRequests($_GET['employeeId']);
+                print_r(json_encode($result));
+            }
+        }
+
+        if ($_GET['view'] == 'respondToRequest') {
+            require('src/employeeView.class.php');
+            $employeeView = new employeeView($PDO);
+            if(isset($_GET['employeeId']) && isset($_GET['response']) && isset($_GET['requestId'])){
+                $result = $employeeView->respondToRequest($_GET['employeeId'],$_GET['requestId'],$_GET['response']);
+                print_r(json_encode($result));
+            }
+        }
+
         if ($_GET['view'] == 'employeePrivateStats') {
             require('src/employeeView.class.php');
             $employeeView = new employeeView($PDO);
@@ -66,15 +84,12 @@ if(isset($_GET['apikey'])) {
             }
 
         }
-        if ($_GET['view'] == 'employeesByCompany') {
-            echo "returns names, photo-urls and ratings of employees in company";
-        }
+
+
         if ($_GET['view'] == 'getNearbyCompanies') {
             echo "nearby restaurants view based on coordinates";
         }
-        if ($_GET['view'] == 'submitRating') {
-            echo "leaves rating";
-        }
+
 
 
         if ($_GET['view'] == 'companyView') {

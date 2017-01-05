@@ -84,5 +84,56 @@ class employeeView{
         }
     }
 
+    public function getPendingRequests($employeeId)
+    {
+        $stmt = $this->conn->prepare("
+            SELECT rel.id as requestId, company.trading_name, company.id as companyId
+            FROM rel_employee_company as rel
+            LEFT JOIN company on rel.company_id = company.id
+            WHERE rel.employee_id = :employeeId AND rel.status = 'pending'
+        ");
+        $stmt->bindParam(":employeeId",$employeeId,PDO::PARAM_INT);
+        $stmt->execute();
+        $raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($raw)){
+            return array(
+                "status" => "success",
+                "content" => $raw
+            );
+        } else {
+            return array(
+                "status" => "failure",
+                "msg" => "No requests found"
+            );
+        }
+    }
+
+    public function respondToRequest($employeeId,$requestId,$response){
+        if($response == 'Accept'){
+            $status = 'active';
+        } else {
+            $status = 'declined';
+        }
+        $stmt = $this->conn->prepare("
+            UPDATE rel_employee_company 
+            SET status = :status 
+            WHERE id = :requestId AND employee_id = :employeeId 
+        ");
+        $stmt->bindParam(":status",$status,PDO::PARAM_STR);
+        $stmt->bindParam(":requestId",$requestId,PDO::PARAM_INT);
+        $stmt->bindParam(":employeeId",$employeeId,PDO::PARAM_STR);
+        if($stmt->execute()){
+            return array(
+                'status' => 'success',
+                'response' => $status
+            );
+        } else {
+            return array(
+                'status' => 'failure',
+                'msg' => 'Something went wrong!'
+            );
+        }
+    }
+
 
 }
