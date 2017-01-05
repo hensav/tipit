@@ -20,12 +20,12 @@ $companyRating = "0.6";
 	    <img src=<?=$companyImgUrl?> class="employee-image">
 	    <div class="container__companyAddress">
 	    	<div class="addressPin"><img src="../uploads/emp_thumbnail.png" class="employeeThumbnail"></div>
-	    	<div class="address"><p class="companyAddress"><?php echo $companyAddress."<br><br>";  echo $companyOpen;?></p></div>
+	    	<div class="address"><p class="companyAddress"><?php echo $companyAddress;?></p></div>
 	    </div>
-	   <!--  <div class="container__companyAddress">
+	    <div class="container__companyAddress">
 	    	<div class="addressPin"></div>
 	    	<div class="address"><p><?php echo $companyOpen; ?></p></div>
-	    </div> -->
+	    </div>
     </div>
 	    <p class="companyDescription"><?php echo $companyDescription; ?></p>
 	</div>
