@@ -76,7 +76,7 @@ if(isset($_GET['apikey'])) {
 
         if ($_GET['view'] == 'employeePage') {
             //emp_description
-            require('./src/emp_description.class.php');
+            require('./src/employeeDescription.class.php');
             $emp_description = new emp_description($PDO);
             if (isset($_GET["employeeId"]) && !empty($_GET["employeeId"])) {
                 $result = $emp_description->fetchView($_GET["employeeId"]);
@@ -176,7 +176,7 @@ if(isset($_GET['apikey'])) {
         }
         //Adding and changing employee details
         if ($_GET['submit'] == 'employeeDetails') {
-            require("src/emp_description.class.php");
+            require("src/employeeDescription.class.php");
             $queryString = $_GET['package'];
             parse_str($queryString,$output);
             $editing = new emp_description($PDO);

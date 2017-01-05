@@ -30,7 +30,7 @@
         if($leaveRating->status != "success"){
             $ratingError = $leaveRating->msg;
         } else {
-            require('class/company_page.class.php');
+            require('class/companyPage.class.php');
             $result = company_page::fetchCompanyByEmployee($_GET['employeeId'],$apikey);
             if(isset($result[0]->company_id)){
                 $cId = $result[0]->company_id;

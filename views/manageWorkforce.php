@@ -10,7 +10,7 @@ if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
     exit();
 }
-require('class/company_page.class.php');
+require('class/companyPage.class.php');
 $company = company_page::fetchCompanyByOwner($_SESSION['apiKey'],$_SESSION['userId']);
 $companyId = $company[0]->id;
 
