@@ -104,6 +104,25 @@ if(isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+
+        if ($_GET['view'] == 'employeeManagement') {
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['companyId'])){
+                print_r('derp');
+                $result = $companyView->employeeManagement($_GET['companyId']);
+                print_r(json_encode($result));
+            }
+        }
+
+        if ($_GET['view'] == 'addEmployee'){
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['companyId']) && isset($_GET['goodCode'])){
+                $result = $companyView->addEmployee($_GET['companyId'],$_GET['goodCode']);
+                print_r(json_encode($result));
+            }
+        }
     }
 
     elseif (isset($_GET['submit'])) {
@@ -152,6 +171,7 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
+
         //adding details on compWelcome
         if ($_GET['submit'] == 'submit') {
             require("src/compWelcome.class.php");

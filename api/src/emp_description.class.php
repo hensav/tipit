@@ -31,6 +31,7 @@ class emp_description
         return $result;
 
     }
+
     function updateDetails(array $input)
     {
         $updated = array();
