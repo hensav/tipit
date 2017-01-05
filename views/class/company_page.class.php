@@ -45,7 +45,7 @@ class company_page
         $rating = 5;
         echo("
             <div class='container__employee'>
-                <div class='employeeThumbnail'><img src=$imgPath class='employeeThumbnail'></div>
+                <div class='employeeThumbnail'><img class ='employeeThumbnail' src=$imgPath class='employeeThumbnail'></div>
                 <div class='employeeName'>$name</div>
             </div>");
     }

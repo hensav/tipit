@@ -20,13 +20,13 @@ class search
         $searchTerm = "%".$entry."%";
 
         $stmt = $this->PDO->prepare("
-            SELECT user_id AS id, user.name, emp_description.photo_url
+            SELECT user_id AS id, user.name, emp_description.photo_url, goodcode
             FROM goodcode
             LEFT JOIN user ON goodcode.user_id = user.id
             LEFT JOIN emp_description on goodcode.user_id = emp_description.employee_id
             WHERE goodcode.goodcode LIKE :term
             UNION ALL
-            SELECT id, trading_name as name, 'company'
+            SELECT id, trading_name as name, 'company','n/a'
             FROM company
             WHERE company.trading_name LIKE :term
         ");
