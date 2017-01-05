@@ -21,6 +21,12 @@ class company_page
         $result = file_get_contents($url);
         return json_decode($result);
     }
+    public static function fetchCompanyByOwner($apikey, $ownerId)
+    {
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/companyByOwner/ownerId/$ownerId";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
 
     public static function employeeManagementView($apikey,$companyId)
     {

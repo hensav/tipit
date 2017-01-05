@@ -122,6 +122,15 @@ if(isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+
+        if ($_GET['view'] == 'companyByOwner'){
+            require('src/companyView.class.php');
+            $companyView = new companyView($PDO);
+            if(isset($_GET['ownerId'])){
+                $result = $companyView->fetchCompanyByOwner($_GET['ownerId']);
+                print_r(json_encode($result));
+            }
+        }
     }
 
     elseif (isset($_GET['submit'])) {

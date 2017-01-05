@@ -6,13 +6,14 @@
  * Time: 19:57
  */
 session_start();
-if($_SESSION['userRole'] != "employer" or !isset($_GET['companyId'])){
+if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
     exit();
 }
-
 require('class/company_page.class.php');
-$managementView = company_page::employeeManagementView($_SESSION['apiKey'],$_GET['companyId']);
+$company = company_page::fetchCompanyByOwner($_SESSION['apiKey'],$_SESSION['userId']);
+$companyId = $company[0]->id;
+$managementView = company_page::employeeManagementView($_SESSION['apiKey'],$companyId);
 
 require('header.php');
 ?>
@@ -27,7 +28,7 @@ require('header.php');
         }
     }
     if($none==true){
-        echo('<span>You have no linked employees. Why not add a few?.</span> ');
+        echo('<span>You have no linked employees. Why not add a few?</span> ');
     }
 ?>
     <h3>Pending requests:</h3><br/>

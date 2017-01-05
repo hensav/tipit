@@ -68,6 +68,22 @@ class companyView
         }
     }
 
+    public function fetchCompanyByOwner($ownerId)
+    {
+        $stmt = $this->conn->prepare("
+          SELECT id
+          FROM company
+          WHERE related_user = :id
+          ");
+        $stmt->bindParam(":id",$ownerId,PDO::PARAM_INT);
+        if($stmt->execute()){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return "Failed to find company";
+        }
+    }
+
     public function employeeManagement($companyId)
     {
         $stmt = $this->conn->prepare("
@@ -85,6 +101,7 @@ class companyView
             return "None found";
         }
     }
+
     public function addEmployee($companyId,$goodCode)
     {
         $stmt = $this->conn->prepare("
