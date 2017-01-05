@@ -30,7 +30,14 @@
         if($leaveRating->status != "success"){
             $ratingError = $leaveRating->msg;
         } else {
-            header("location: thankyou.php");
+            require('class/company_page.class.php');
+            $result = company_page::fetchCompanyByEmployee($_GET['employeeId'],$apikey);
+            if(isset($result[0]->company_id)){
+                $cId = $result[0]->company_id;
+                header("location: thankyou.php?C=$cId");
+            } else {
+                header("location: thankyou.php");
+            }
             exit();
         }
     } elseif(!empty($_POST)){

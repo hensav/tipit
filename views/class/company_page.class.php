@@ -15,10 +15,10 @@ class company_page
         return $result;
     }
 
-    public static function fetchcompanyByEmployeeData($employeeId, $apikey){
+    public static function fetchCompanyByEmployee($employeeId, $apikey){
 
-        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/companyView/employeeID/$employeeId";
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/fetchCompanyByEmployee/employeeId/$employeeId";
         $result = file_get_contents($url);
-        return $result;
+        return json_decode($result);
     }
 }

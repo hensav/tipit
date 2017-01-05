@@ -19,8 +19,8 @@ $(document).ready(function(){
                                     if(val.photo_url == 'company'){
                                         result +=
                                             "<div id='search__result'>" +
-                                            "<span class='search__link company--link'><a href='company.php?company="+ id +"'>"+val.name+"</a></span> " +
-                                            "<i class='fa fa-external-link-square' aria-hidden='true'></i>" +
+                                            "<span class='search__link company--link'><a href='company.php?company="+ id +"'>"+val.name+"</span> " +
+                                            "<i class='fa fa-external-link-square' aria-hidden='true'></i></a>" +
                                             "</div>";
                                     } else {
                                         result +=
