@@ -24,6 +24,11 @@ if(isset($_GET['C'])){
         </script>
     <? } else {?>
             <p class="txt-center"><a href="tiping.php">View another company or customer</a></p>
+            <script>
+                setTimeout(function () {
+                    window.location.href= 'tiping.php'
+                },5000);//5sec
+            </script>
         <?php }?>
     </div>
 
