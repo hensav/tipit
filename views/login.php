@@ -1,9 +1,24 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
+if(isset($_SESSION['userRole'])){
+    $role = $_SESSION['userRole'];
+    if($role=='client'){
+        header('location: tiping.php');
+        exit();
+    } elseif($role=='employee'){
+        header('location: emp_welcome.php');
+        exit();
+    }elseif($role=='employer'){
+        header('location: comp_welcome.php');
+        exit();
+    }
+    //..And to make sure noone's f^cking around with their session data:
+    exit();
+}
 
 $url = "http://naturaalmajand.us/tipit/api/request.php/";
+
 
 require("./class/clientAuth.class.php");
 
@@ -56,6 +71,7 @@ if (isset($_POST["loginEmail"]) &&
     //$result = $clientAuth -> loginRequest($url,$user,$pass);
     $result = $clientAuth->loginRequest($url,$_POST['loginEmail'],$_POST['loginPassword'],$phone);
     if($result->status == "success"){
+        session_destroy();
         session_start();
         $_SESSION['userId'] = $result->response->id;
         $_SESSION['userRole'] = $result->response->role;
