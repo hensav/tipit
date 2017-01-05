@@ -22,11 +22,27 @@ class company_page
         return json_decode($result);
     }
 
-    public static function employeeManagementView($apikey,$companyID)
+    public static function employeeManagementView($apikey,$companyId)
     {
-        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeeManagement/companyId/$companyID";
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeeManagement/companyId/$companyId";
         $result = file_get_contents($url);
         return json_decode($result);
+    }
+
+    public static function printEmployeeStatus($input)
+    {
+        //["employee_id"]=> string(2) "10" ["photo_url"]=> string(12) "4bf0d840.jpg"
+        // ["name"]=> string(18) "Töökas_Töötaja" ["status"]=> string(6) "active"
+        $name = explode("_",$input->name)[0];
+        $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
+        $imgPath = $imgRoot.$input->photo_url;
+        $rating = 5;
+        echo("
+            <div class='container__employee'>
+                <div class='employeeThumbnail'><img src=$imgPath class='employeeThumbnail'></div>
+                <div class='employeeName'>$name</div>
+                <div class='employeeRating'>$rating</div>
+            </div>");
     }
 
     public static function addEmployee($apikey,$companyID,$goodCode)
