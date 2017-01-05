@@ -34,7 +34,7 @@ h1{
 
 h2{
 	font-size: 44px;
-	margin-bottom: 10vh;
+	/*margin-bottom: 10vh;*/
 	margin-top: 1vh;
 	font-weight: 300;
 	color: rgba(92, 48, 255, 0.7);
@@ -153,6 +153,16 @@ a:hover{
 
 }
 
+
+.company__profile {
+	padding-top: 5vh;
+	display: block;
+
+	margin: auto;
+	text-align: center;
+	max-width: 100%;
+}
+
 .employee__profile {
 	padding-top: 5vh;
 	display: block;
@@ -161,6 +171,7 @@ a:hover{
 	text-align: center;
 	max-width: 100%;
 }
+
 .companyKind{
 	margin: auto;
 	text-align: left;
@@ -187,16 +198,44 @@ a:hover{
 	color: rgba(92, 48, 255, 0.7);
 }
 
-.container__company {
-  display:flex;
-  justify-content:center;
-  border-bottom: solid 2px blue;
+.container__companyAddress{
+	display:flex;
+  	justify-content:center;
+  	height: 60px;
+  	margin: 10px 0px 10px 0px;
 }
+
+.container__companyAddress > div {
+	margin:10px;
+}
+
+.addressPin{
+	width: 60px;
+}
+
+.address{
+	width: 280px;
+}
+
+.companyAddress {
+	width: 280px;
+}
+
+.companyDescription {
+	margin-top: 40px;
+
+}
+
+.container__company {
+	display:flex;
+	justify-content:center;
+	border-bottom: solid 2px blue;
+}
+
 
 .container__company > div {
 	margin:10px;
 }
-
 
 .companyRating{
 	width: 60px;
