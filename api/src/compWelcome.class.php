@@ -21,13 +21,13 @@ class compWelcome
           WHERE id = :id
           ");
         $stmt->bindParam(":id",$employerId,PDO::PARAM_INT);
-        if($stmt->execute()){
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        } else {
-            return "Failed to find employer";
-        }
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
+
+
+
 
 
 

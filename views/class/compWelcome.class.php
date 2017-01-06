@@ -8,7 +8,7 @@
  */
 class compWelcome
 {
-    public static function getEmployer($employerId,$apikey)
+    public static function getEmployer($apikey,$employerId)
     {
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/compWelcome/employerId/$employerId";
         $result = file_get_contents($url);

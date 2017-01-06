@@ -1,19 +1,35 @@
 <?php
-$employeeName = "Obossum";
-$compImgUrl = "http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg";
-$employeeId = 4;
-$companyDesciption = "";
-$companyOpen = "";
+session_start();
+if($_SESSION['userRole'] != "employer"){
+    header("location: index.php");
+    exit();
+
+}
+require('class/compWelcome.class.php');
+
+$employerId = $_SESSION['userId'];
+$apikey = $_SESSION['apiKey'];
+$rawData = compWelcome::getEmployer($apikey,$employerId);
+
+$employerName = explode("_",$rawData->name)[0];
+
+//$employeeName = "Obossum";
+//$compImgUrl = "http://i4.mirror.co.uk/incoming/article6221356.ece/ALTERNATES/s615b/MAIN-Angry-Seagull.jpg";
+//$companyDesciption = "";
+//$companyOpen = "";
+
+
 
 
 ?>
+
 
 
 <?php require("header.php"); ?>
 
 
 <div class="employee">
-    <h2>Hello <?php echo $employeeName; ?>!</h2>
+    <h2>Hello <?php echo $employerName; ?>!</h2>
 
     <!-- <form method="POST" class="signup__form"> -->
     <form method="POST" class="employee__profile" enctype="multipart/form-data">
