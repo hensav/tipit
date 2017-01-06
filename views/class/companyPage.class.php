@@ -37,16 +37,15 @@ class company_page
 
     public static function printEmployeeStatus($input)
     {
-        //["employee_id"]=> string(2) "10" ["photo_url"]=> string(12) "4bf0d840.jpg"
-        // ["name"]=> string(18) "Töökas_Töötaja" ["status"]=> string(6) "active"
         $name = explode("_",$input->name)[0];
         $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
         $imgPath = $imgRoot.$input->photo_url;
-        $rating = 5;
+        $rating = round($input->avgRating,2);
         echo("
             <div class='container__employee'>
                 <div class='employeeThumbnail'><img class ='employeeThumbnail' src=$imgPath class='employeeThumbnail'></div>
                 <div class='employeeName'>$name</div>
+                <div class='employeeRating'>$rating</div>
             </div>");
     }
 

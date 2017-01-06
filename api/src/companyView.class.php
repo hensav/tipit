@@ -87,11 +87,18 @@ class companyView
     public function employeeManagement($companyId)
     {
         $stmt = $this->conn->prepare("
-            SELECT rel.`employee_id`, `emp_description`.`photo_url`, user.`name`, rel.`status`
+            SELECT 	rel.`employee_id`, 
+                `emp_description`.`photo_url`, 
+                user.`name`, 
+                rel.`status`,
+                (SELECT (AVG(`param2_score`) + AVG(param3_score) + AVG(`main_score`))/3 
+                    WHERE submitted >= DATE(NOW()) - INTERVAL 7 DAY) as avgRating
             FROM rel_employee_company as rel
             LEFT JOIN user ON rel.`employee_id` = user.`id`
             LEFT JOIN `emp_description` ON rel.`employee_id` = `emp_description`.`employee_id`
+            LEFT JOIN ratings ON ratings.`employee_id` = rel.`employee_id`
             WHERE rel.company_id = :companyId AND rel.status IN('active','pending')
+            GROUP BY rel.`employee_id`
         ");
         $stmt->bindParam(":companyId",$companyId,PDO::PARAM_INT);
         if($stmt->execute()){
