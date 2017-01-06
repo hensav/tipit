@@ -14,15 +14,15 @@ $errorClass = "input-error";
 
 //Default role & post-error select retention
 $rolesel = 'client';
-if(isset($_POST['role_choice'])){
+if (isset($_POST['role_choice'])) {
     $rolesel = $_POST['role_choice'];
 }
 $sel_client = '';
 $sel_employee = '';
 $sel_employer = '';
-if($rolesel == 'employee'){
+if($rolesel == 'employee') {
     $sel_employee = "selected = 'selected'";
-} elseif($rolesel == 'employer'){
+} elseif ($rolesel == 'employer') {
     $sel_employer = "selected = 'selected'";
 } else {
     $sel_client = "selected = 'selected'";
@@ -45,25 +45,50 @@ if (isset($_POST["signupPassword"])) {
     }
 }
 //checking if signupEmail and signupPassword have been posted
-if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
-    //replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
-    if(empty($_POST['phone'])){
-        $regPhone='';
+if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])
+        && !empty($_POST['signupEmail']) && !empty($_POST['signupPassword'])
+        //&& strlen($_POST['signupPassword']>=5)
+    ) {
+
+    //client registration - only e-mail and passhash are registered.
+    if($_POST['role_choice']=='client'){
+
+        $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],"0","0",$_POST['role_choice']);
+        $response = json_decode($result);
+        if ($response->status=="success") {
+            header("location: signup_success.php");
+            exit();
+        } else {
+            var_dump($_POST);
+            //client registration error handling here
+            if($response->status == 'error'){
+                // client already exists? Message accessible as string in $response->response
+            }
+        }
+
+    //employe* registration
+    } elseif ($_POST['role_choice'] == 'employee' or $_POST['role_choice'] == 'employer') {
+
+
+        $name = $_POST['firstname'].'_'.$_POST['lastname'];
+        if($name == '_'){
+            ///throw error here - name missing
+        } else {
+
+            $result = $clientAuth->registerRequest($url, $_POST['signupEmail'], $_POST['signupPassword'], $_POST['phone'], $name, $_POST['role_choice']);
+            $response = json_decode($result);
+            if ($response->status == "success") {
+                header("location: signup_success.php");
+                exit();
+            } if($response->status == 'error'){
+                // employe* already exists? Message accessible as string in $response->response
+            }
+        }
+
+    }
+
     } else {
-        $regPhone=$_POST['phone'];
-    }
-    //Same as above + concatenating first- and last name as URL doesn't tolerate whitespace
-    $name = $_POST['firstname'].'_'.$_POST['lastname'];
-    if($name=='_'){
-        $name = '';
-    }
-
-    $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],$regPhone,$name,$_POST['role_choice']);
-    $response = json_decode($result);
-    if ($response->status=="success"){
-    header("location: signup_success.php");
-
-    }
+    //e-mail and password haven't been posted
 }
 ?>
 
