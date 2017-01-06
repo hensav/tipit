@@ -10,6 +10,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="5ee46f44-695e-4379-a8c7-7c41ff575a1b" name="KLASTERFAKK TIPIT" url="http://ftp.clstrfvck.xyz">
+        <fileTransfer host="ftp.clstrfvck.xyz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
