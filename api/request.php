@@ -146,6 +146,7 @@ if(isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+        //fetch employer by id
         if ($_GET['view'] == 'compWelcome') {
             require('src/compWelcome.class.php');
             $compWelcome = new compWelcome($PDO);
@@ -211,21 +212,19 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
-
-        //adding details on compWelcome
+        //comp
         if ($_GET['submit'] == 'submit') {
             require("src/compWelcome.class.php");
-            if (isset($_GET['related_user']) && isset($_GET['trading_name']) && isset($_GET['email'])&&
-                isset($_GET['address'])&& isset($_GET['description'])&& isset($_GET['opening_hours'])&& isset($_GET['photo_url'])
-            ) {
-                $adding = new compWelcome($PDO);
 
-                $response = $adding->addCompWelcome($_GET['related_user'], $_GET['trading_name'], $_GET['email'], $_GET['address'], $_GET['description'], $_GET['opening_hours'], $_GET['photo_url']);
+            if (isset($_GET['related_user']) && isset($_GET['trading_name']) && isset($_GET['email']) && isset($_GET['address']) && isset($_GET['description']) && isset($_GET['opening_hours'])
+            ) {
+                $response = $compWelcome->addDetails($_GET['related_user'], $_GET['trading_name'], $_GET['email'], $_GET['address'], $_GET['description'], $_GET['opening_hours']);
                 print_r(json_encode($response));
             } else {
                 echo "these are not the droids you're looking for!";
             }
         }
+
 
 
     } elseif(isset($_GET['search'])) {

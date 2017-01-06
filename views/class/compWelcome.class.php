@@ -21,4 +21,11 @@ class compWelcome
         $result = file_get_contents($url);
         return json_decode($result);
     }
+
+    public function addDetails($apikey,$related_user,$trading_name,$email,$address,$description,$opening_hours){
+
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/submit/related_user/$related_user/trading_name/$trading_name/email/$email/address/$address/description/$description/opening_hours/$opening_hours";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
 }
