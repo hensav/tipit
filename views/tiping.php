@@ -18,7 +18,7 @@ if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
         $id = $result->msg;
         header("location: tiping_2.php?employeeId=$id");
     } else {
-        $goodCodeError = $result->msg;
+        $goodCodeError = "<p>".$result->msg."</p>";
     }
 }
 
@@ -27,9 +27,9 @@ require("header.php"); ?>
 
 <div class="employee">
     <form method="post" class="employee__auth">
-        <input type="text" placeholder="The good code" name="goodCode" id="goodcode" value="<?=$goodCode;?>" class="form__field txt-center<?php echo $class; ?>">
-        <p class="error"><?php echo $goodCodeError; ?></p>
-        <div id="suggest"></div>
+        <input type="text" placeholder="Start typing to search.." name="goodCode" id="goodcode" value="<?=$goodCode;?>" class="form__field txt-center<?php echo $class; ?>">
+        <?php echo $goodCodeError; ?>
+        <div id="suggest"> <p>Please type goodcode or establishment name above</p></div>
         <input type="submit" value="Let's go!" class="form__button">
     </form>
 

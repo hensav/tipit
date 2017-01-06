@@ -24,9 +24,13 @@ $(document).ready(function(){
                                             "</div>";
                                     } else {
                                         result +=
-                                            "<div id='search__result'>" +
-                                            "<span class='search__img-wrapper'><img class='employeeThumbnail' src='" + imgRoot + val.photo_url+"'></span> " +
-                                            "<span class='search__link'><a href='tiping_2.php?employeeId="+ id +"'>"+firstname[0]+"</a></span> " +
+                                           /* "<div id='search__result'>" +
+                                            "<span class='search__link'></span> " +
+                                            "</div>";*/
+
+                                            "<div class='container__employee'>"+
+                                            "<span class='employeeThumbnail'><img class='employeeThumbnail' src='" + imgRoot + val.photo_url+"'></span> " +
+                                            "<div class='employeeName'><a href='tiping_2.php?employeeId="+ id +"'>"+firstname[0]+"</a></div>" +
                                             "</div>";
                                     }
                                 }
