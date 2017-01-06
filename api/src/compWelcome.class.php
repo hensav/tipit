@@ -8,15 +8,30 @@
  */
 class compWelcome
 {
-
     public function __construct($PDO)
     {
         $this->conn = $PDO;
     }
 
+    public function fetchEmployerById($employerId)
+    {
+        $stmt = $this->conn->prepare("
+          SELECT id,name
+          FROM user 
+          WHERE id = :id
+          ");
+        $stmt->bindParam(":id",$employerId,PDO::PARAM_INT);
+        if($stmt->execute()){
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return "Failed to find employer";
+        }
+    }
 
 
-    public function addCompWelcome($related_user,$trading_name,$email,$address,$description,$opening_hours,$photo_url)
+
+    public function addDetails($related_user,$trading_name,$email,$address,$description,$opening_hours,$photo_url)
     {
         $stmt = $this->conn->prepare("
             SELECT id, trading_name

@@ -146,6 +146,14 @@ if(isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+        if ($_GET['view'] == 'compWelcome') {
+            require('src/compWelcome.class.php');
+            $compWelcome = new compWelcome($PDO);
+            if(isset($_GET['employerId'])){
+                $result = $compWelcome->fetchEmployerById($_GET["employerId"]);
+                print_r(json_encode($result));
+            }
+        }
     }
 
     elseif (isset($_GET['submit'])) {
