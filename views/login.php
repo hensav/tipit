@@ -91,7 +91,7 @@ if (isset($_POST["loginEmail"]) &&
             $location = "tiping.php";
         } elseif ($result->response->role == "employer"){
             require('class/compWelcome.class.php');
-            $new = compWelcome::isEmployerNew($_SESSION['apiKey'],$_SESSION['employerId']);
+            $new = compWelcome::isEmployerNew($_SESSION['apiKey'],$_SESSION['userId']);
             if(!!$new){
                 $location = "comp_welcome.php";
             } else {
