@@ -28,6 +28,19 @@ class compWelcome
         return $result;
     }
 
+    public function fetchCompanyView($employerId)
+    {
+        $stmt = $this->conn->prepare("
+          SELECT id,related_user email, trading_name, address, description, opening_hours, photo_url
+          FROM company 
+          WHERE related_user = :id
+          ");
+        $stmt->bindParam(":id",$employerId,PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function isEmployerNew($employerId){
         $stmt = $this->conn->prepare('
             SELECT id, trading_name
@@ -46,30 +59,36 @@ class compWelcome
     }
 
 
-    public function addDetails($related_user,$trading_name,$email,$address,$description,$opening_hours)
+    function addDetails(array $input)
     {
-
-
+        $updated = array();
+        //if photo is updated..
+        if(isset($input['filename']) && $input['filename'] != null){
             $stmt = $this->conn->prepare("
-                INSERT INTO company VALUES(DEFAULT,:related_user,:email,:trading_name,:address,NULL,NULL,CURRENT_TIMESTAMP,NULL,:description,:opening_hours,NULL)
+            UPDATE emp_description SET photo_url=:url WHERE employee_id=:id;
             ");
-
-            $stmt->bindParam(':related_user', $related_user, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':trading_name', $trading_name, PDO::PARAM_INT);
-            $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-            $stmt->bindParam(':opening_hours', $opening_hours, PDO::PARAM_STR);
-            if ($stmt->execute()) {
-                $result =  array(
-                    'status'=>'success',
-                    'response'=>'Company details saved',
-                );
-                return $result;
+            $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
+            $stmt->bindParam(":url",$input['filename'],PDO::PARAM_STR);
+            if($stmt->execute()){
+                $updated['picture']=true;
             }
+        }
 
-    }
-}
+        //if description is updated
+        if(isset($input['description']) && $input['description'] != null){
+            $stmt = $this->conn->prepare("
+            UPDATE emp_description SET description=:description WHERE employee_id=:id;
+            ");
+            $stmt->bindParam(":description",$input['description'],PDO::PARAM_STR);
+            $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
+            if($stmt->execute()){
+                $updated['description']=true;
+            }
+        }
+        return array(
+            "status" => "success",
+            "updated"=>$updated
+        );
 
 
 

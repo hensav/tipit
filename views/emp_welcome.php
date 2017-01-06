@@ -12,6 +12,7 @@ require("class/employeeView.class.php");
     $employeeId = $_SESSION['userId'];
     $apikey = $_SESSION['apiKey'];
 
+
     $defaultDescr = "";
 
     if(isset($_POST['submit'])){

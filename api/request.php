@@ -156,6 +156,18 @@ if(isset($_GET['apikey'])) {
             }
         }
 
+
+        if ($_GET['view'] == 'fetchCompanyView') {
+            require('src/compWelcome.class.php');
+            $compWelcome = new compWelcome($PDO);
+            if (isset($_GET['employerId'])) {
+                $result = $compWelcome->fetchView($_GET["employerId"]);
+                print_r(json_encode($result));
+            }
+        }
+
+
+
         if ($_GET['view'] == 'isEmployerNew') {
             require('src/compWelcome.class.php');
             $compWelcome = new compWelcome($PDO);
@@ -199,6 +211,16 @@ if(isset($_GET['apikey'])) {
             parse_str($queryString,$output);
             $editing = new emp_description($PDO);
             $response = $editing->updateDetails($output);
+            print_r(json_encode($response));
+        }
+        //Adding and changing company details
+
+        if ($_GET['submit'] == 'companyDetails') {
+            require("src/compWelcome.class.php");
+            $queryString = $_GET['package'];
+            parse_str($queryString,$output);
+            $editing = new compWelcome($PDO);
+            $response = $editing->addDetails($output);
             print_r(json_encode($response));
         }
 

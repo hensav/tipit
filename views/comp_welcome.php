@@ -6,14 +6,52 @@ if($_SESSION['userRole'] != "employer"){
 
 }
 require('class/compWelcome.class.php');
+require("class/UploadTools.class.php");
 
 
-$employerId = $_SESSION['userId'];
-$apikey = $_SESSION['apiKey'];
-$rawData = compWelcome::getEmployer($apikey,$employerId);
+    $employerId = $_SESSION['userId'];
+    $apikey = $_SESSION['apiKey'];
+
+    $defaultDescr = "";
+
+if(isset($_POST['submit'])){
+    $description = null;
+    $fileName = null;
+    $trading_name = null;
+    $email = null;
+    $address = null;
+    $description = null;
+    $opening_hours = null;
+    if(isset($_FILES)){
+        $uploadAttempt = UploadTools::uploadImage($_FILES);
+        if($uploadAttempt['errorCode']==false){
+            $fileName = $uploadAttempt["message"];
+        }
+    }
+    if(isset($_POST['description'])){
+        $description = $_POST['description'];
+    }
+    if(isset($_POST['trading_name'])){
+        $trading_name = $_POST['trading_name'];
+    }
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+    }
+    if(isset($_POST['address'])){
+        $address = $_POST['address'];
+    }
+    if(isset($_POST['opening_hours'])){
+        $opening_hours = $_POST['opening_hours'];
+    }
+    $response = compWelcome::updateDetails($description,$fileName,$employerId,$apikey,$trading_name,$email,$address,$opening_hours);
+}
+
+$rawData1 = compWelcome::getEmployer($apikey,$employerId);
+$rawData = compWelcome::fetchCompanyView($apikey,$employerId);
+
 $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
-$employerName = explode("_",$rawData->name)[0];
+$employerName = explode("_",$rawData1->name)[0];
 
 
 
@@ -26,15 +64,22 @@ $opening_hours = "";
 $photo_url = "";
 
 
-if (isset($_POST["trading_name"]) && isset($_POST["email"]) && isset($_POST["address"]) && isset($_POST["description"])
-    && isset($_POST["opening_hours"])){
 
-    //kliendi class->f.nimi
-    $result = $compWelcome->addDetails($apikey,$related_user,$_POST['trading_name'],$_POST['email'],$_POST['address'],$_POST['description'],$_POST['opening_hours']);
-    $response = json_decode($result);
 
+
+
+
+
+if(strlen($rawData->photo_url)>3) {
+    $compImgUrl = $imgRoot . $rawData->photo_url;
+} else {
+    $compImgUrl = $imgRoot . "emp_placehold.jpg";
 }
-echo($apikey)
+if(strlen($rawData->description)>3){
+    $employeeDescription = $rawData->description;
+} else {
+    $employeeDescription = $defaultDescr;
+}
 ?>
 
 
@@ -47,6 +92,11 @@ echo($apikey)
 
     <!-- <form method="POST" class="signup__form"> -->
     <form method="POST" class="employee__profile" enctype="multipart/form-data">
+
+        <label class="upload__btn">
+            <img src=<?=$compImgUrl ?> class="employee-image">
+            <input type="file"name="fileToUpload" id="fileToUpload"/>
+        </label>
 
         <input class="form__field "type="text" name="company-name" placeholder="What is your comany name?" value="<?=$trading_name?>">
         <input class="form__field "type="text" name="company-address" placeholder="What is your comany address?" value="<?=$address?>">
