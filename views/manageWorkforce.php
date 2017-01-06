@@ -5,6 +5,10 @@
  * Date: 05/01/2017
  * Time: 19:57
  */
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 session_start();
 if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
@@ -13,15 +17,26 @@ if($_SESSION['userRole'] != "employer"){
 require('class/companyPage.class.php');
 $company = company_page::fetchCompanyByOwner($_SESSION['apiKey'],$_SESSION['userId']);
 $companyId = $company[0]->id;
+$companyName = $company[0]->trading_name;
+$addAlert = "";
 
 if(isset($_GET['addId'])){
     company_page::addEmployee($_SESSION['apiKey'],$companyId,$_GET['addId']);
+    $addAlert = "Sent request to employee #".$_GET['addId'];
 }
 
 $managementView = company_page::employeeManagementView($_SESSION['apiKey'],$companyId);
 
 require('header.php');
 ?>
+    <div class="employee">
+        <?=$addAlert?>
+        <div class="companyKind">Restoran</div>
+        <div class="container__company">
+            <div class="companyName"><?php echo $companyName;?></div>
+            <div class="companyRating"></div>
+        </div>
+
     <h3>Your confirmed employees:</h3>
 <?php
     //active workers
@@ -50,12 +65,13 @@ require('header.php');
         echo('<span>You have no pending requests.</span> ');
     }
 ?>
-    <h3>Add employees</h3>
-    <form>
-        <input type="text" id="goodcode">
-    </form>
-    <div id="suggest"></div>
 
+    <h3>Add employees</h3>
+    <div id="suggest"></div>
+    <form>
+        <input class="form__field txt-center" type="text" id="goodcode" placeholder="Start by typing goodcode">
+    </form>
+    </div>
 
 <script src="js/managementAjax.js"></script>
 <?php

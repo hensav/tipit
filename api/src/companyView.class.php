@@ -71,7 +71,7 @@ class companyView
     public function fetchCompanyByOwner($ownerId)
     {
         $stmt = $this->conn->prepare("
-          SELECT id
+          SELECT id, trading_name
           FROM company
           WHERE related_user = :id
           ");

@@ -20,10 +20,17 @@ $(document).ready(function(){
                                 var imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
                                 if(val.photo_url !== 'company'){
-                                    result +=
+                                    result +=/*
                                         "<div id='search__result'>" +
+                                        "<a class='employeeName' href='manageWorkforce.php?addId="+ val.goodcode +"'>" +
                                         "<span class='search__img-wrapper'><img class='employeeThumbnail' src='" + imgRoot + val.photo_url+"'></span> " +
                                         "<span class='search__link'><a class='employeeName' href='manageWorkforce.php?addId="+ val.goodcode +"'>"+firstname[0]+"</a></span> " +
+                                        "</div>";*/
+                                        "<div class='container__employee'>"+
+                                            "<div class='employeeThumbnail'><img class='employeeThumbnail' src='" + imgRoot + val.photo_url+"'></div>" +
+                                            "<div class='employeeName'>"+firstname[0]+"</div>" +
+                                            "<a href='manageWorkforce.php?addId="+ val.goodcode +"'>" +
+                                            "<div class='employeeRating'>Add</a></div>" +
                                         "</div>";
                                 }
                             }
