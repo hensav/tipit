@@ -17,12 +17,7 @@ $PDO = new PDO("mysql:dbname=$dbname;host=$location",$user,$pass,
 
 );
 
-$User = new Employee($PDO,140);
-$User2 = new Employee($PDO,139);
-$clientside = $User->fetch(array(
-   "description","name","id","apikey"
-));
-
-$clientside2 = $User2->fetch("name");
-var_dump($clientside);
-var_dump($clientside2);
+$return = $_GET['requested'];
+$User = new Employee($PDO,$_GET['id']);
+$output = $User->fetch($return);
+print_r(json_encode($output));

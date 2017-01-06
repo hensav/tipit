@@ -5,9 +5,36 @@
  * Date: 06/01/2017
  * Time: 01:10
  */
+class Common {
+    public function __construct($PDO,$id)
+    {
+        $this->conn=$PDO;
+        $this->build($id);
+    }
 
+    public function fetch($input)
+    {
+        if (is_array($input)) {
+            $output = array();
+            foreach ($input as $key){
+                if (isset($this->$key)) {
+                    $output[$key] = $this->$key;
+                } else {
+                    $output[$key] = false;
+                }
+            }
 
-class Employee
+            return $output;
+        } elseif (is_string($input)) {
+            $output = $this->$input;
+            return $output;
+        } else {
+            return false;
+        }
+    }
+}
+
+class Employee extends Common
 {
 
     protected $id,$name,$goodcode,$apikey,$photoUrl,$description,$employer,$employmentStatus,$employmentId,
@@ -47,24 +74,31 @@ class Employee
         }
     }
 
-    public function fetch($input)
-    {
-        if(is_array($input)){
-        $output = array();
-        foreach($input as $key){
-            if(isset($this->$key)) {
-                $output[$key] = $this->$key;
-            } else {
-                $output[$key] = false;
-            }
-        }
+}
 
-        return $output;
-        } elseif(is_string($input)){
-            $output = $this->$input;
-            return $output;
-        } else {
-            return false;
+class Company extends Common
+{
+    protected $id,$name,$address,$openinghours,$photo_url,$employees;
+
+    public function __construct($PDO,$id)
+    {
+        $this->conn=$PDO;
+        $this->build($id);
+    }
+
+    private function build($id)
+    {
+        $stmt = $this->conn->prepare("
+        
+            Lots of stuff
+        
+        ");
+        $stmt->bindParam(":id",$id);
+        $stmt->execute();
+        $rawData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($rawData[0] as $key=>$value){
+            $this->$key = $value;
         }
     }
 }
