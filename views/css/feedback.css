@@ -54,3 +54,36 @@
 .slider-change-amount{
     float: right;
 }
+
+.feedback__nav {
+    width: 100%;
+    box-sizing: border-box;
+}
+.feedback__nav-btn{
+    width: 50%;
+    float: left;
+    background-color: white;
+    border: solid rgba(92, 48, 255, 0.7) 2px;
+    padding: 10px 10px;
+
+    font-family: 'Lato', sans-serif;
+    color: rgba(92, 48, 255, 0.7);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.feedback__nav-btn:hover {
+    background-color: rgba(55, 0, 255, 0.81);
+    color: white;
+}
+
+.inactive--button.feedback__nav-btn:hover {
+    background-color: rgba(55, 0, 255, 0.81);
+    color: white;
+}
+
+.feedback__popdown {
+    font-size: 20px;
+}

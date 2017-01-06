@@ -85,7 +85,7 @@ require("class/employeeView.class.php");
     <div class="employee">
         <h2>Hello <?php echo $employeeName; ?>!</h2>
         <?php echo $requestHtml; ?>
-
+        <a href="employeeSelfData.php">View your weekly statistics</a>
         <form method="POST" class="employee__profile" enctype="multipart/form-data">
             <label class="upload__btn">
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">

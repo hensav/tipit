@@ -18,7 +18,7 @@
             "name"=>"Helpful"
         );
     ?>
-    <link rel="stylesheet" href='css/sliderBar.css'>
+    <link rel="stylesheet" href='css/feedback.css'>
 
 </head>
 <body>

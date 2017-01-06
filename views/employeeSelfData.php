@@ -61,10 +61,11 @@ if(true){
 
 
 <?php include ("header.php") ?>
-<link rel="stylesheet" href="css/sliderBar.css" type="text/css">
+<link rel="stylesheet" href="css/feedback.css" type="text/css">
 
 <div class="employee">
     <h2>Weekly overview</h2>
+
     <p class="feedback">Feedback: <?php echo $ratingCount;?><br>Compliments: <?php echo $earnings;?> €</p>
     <?php
     $totalBar->displaySlider();
@@ -72,7 +73,15 @@ if(true){
     $punctualBar->displaySlider();
     $helpfulBar->displaySlider();
     ?>
+    <nav class="feedback__nav">
+        <div class="feedback__popdown" id="popdown">
+            Here you can see how you've performed this week, compared to how well you did last week.
+            More granular feedback will be implemented in the future.
+        </div>
+        <a href="emp_welcome.php" class="feedback__nav-btn">Go back</a>
+        <button class="feedback__nav-btn" id="info" value="What's this?"> What's this?</button>
+    </nav>
 </div>
-
+<script src="js/employeeAnalysis.js"></script>
 <?php require("footer.php"); ?>
 
