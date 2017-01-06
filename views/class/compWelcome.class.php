@@ -10,7 +10,14 @@ class compWelcome
 {
     public static function getEmployer($apikey,$employerId)
     {
-        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/compWelcome/employerId/$employerId";
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/compWelcome/employerId/$employerId";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
+
+    public static function isEmployerNew($apikey,$employerId)
+    {
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/isEmployerNew/employerId/$employerId";
         $result = file_get_contents($url);
         return json_decode($result);
     }

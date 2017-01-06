@@ -26,6 +26,22 @@ class compWelcome
         return $result;
     }
 
+    public function isEmployerNew($employerId){
+        $stmt = $this->conn->prepare('
+            SELECT id, trading_name
+            FROM company
+            WHERE related_user=:employerId
+        ');
+        $stmt->bindParam(":employerId", $employerId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!!$result) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 
 
 

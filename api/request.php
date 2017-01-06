@@ -114,7 +114,7 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'fetchCompanyByEmployee') {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['employeeId'])){
+            if (isset($_GET['employeeId'])) {
                 $result = $companyView->fetchCompanyByEmployee($_GET["employeeId"]);
                 print_r(json_encode($result));
             }
@@ -123,7 +123,7 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'employeeManagement') {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['companyId'])){
+            if (isset($_GET['companyId'])) {
                 $result = $companyView->employeeManagement($_GET['companyId']);
                 print_r(json_encode($result));
             }
@@ -132,7 +132,7 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'addEmployee'){
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['companyId']) && isset($_GET['goodCode'])){
+            if (isset($_GET['companyId']) && isset($_GET['goodCode'])) {
                 $result = $companyView->addEmployee($_GET['companyId'],$_GET['goodCode']);
                 print_r(json_encode($result));
             }
@@ -141,7 +141,7 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'companyByOwner'){
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
-            if(isset($_GET['ownerId'])){
+            if (isset($_GET['ownerId'])) {
                 $result = $companyView->fetchCompanyByOwner($_GET['ownerId']);
                 print_r(json_encode($result));
             }
@@ -149,8 +149,17 @@ if(isset($_GET['apikey'])) {
         if ($_GET['view'] == 'compWelcome') {
             require('src/compWelcome.class.php');
             $compWelcome = new compWelcome($PDO);
-            if(isset($_GET['employerId'])){
+            if (isset($_GET['employerId'])) {
                 $result = $compWelcome->fetchEmployerById($_GET["employerId"]);
+                print_r(json_encode($result));
+            }
+        }
+
+        if ($_GET['view'] == 'isEmployerNew') {
+            require('src/compWelcome.class.php');
+            $compWelcome = new compWelcome($PDO);
+            if (isset($_GET['employerId'])) {
+                $result = $compWelcome->isEmployerNew($_GET['employerId']);
                 print_r(json_encode($result));
             }
         }

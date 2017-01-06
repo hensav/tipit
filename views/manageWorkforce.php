@@ -6,9 +6,6 @@
  * Time: 19:57
  */
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 session_start();
 if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
@@ -34,7 +31,8 @@ require('header.php');
         <div class="companyKind">Restoran</div>
         <div class="container__company">
             <div class="companyName"><?php echo $companyName;?></div>
-            <div class="companyRating"></div>
+            <div class="companyRating"><a href="comp_welcome.php"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
         </div>
 
     <h3>Your confirmed employees:</h3>

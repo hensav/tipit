@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 if(isset($_SESSION['userRole'])){
     $role = $_SESSION['userRole'];
@@ -10,9 +13,16 @@ if(isset($_SESSION['userRole'])){
         header('location: emp_welcome.php');
         exit();
     }elseif($role=='employer'){
-        header('location: comp_welcome.php');
+        require('class/compWelcome.class.php');
+        $new = compWelcome::isEmployerNew($_SESSION['apiKey'],$_SESSION['userId']);
+        if(!!$new){
+            header('location: comp_welcome.php');
+        } else {
+            header('location: manageWorkforce.php');
+        }
         exit();
     }
+
     //..And to make sure noone's f^cking around with their session data:
     exit();
 }
@@ -79,7 +89,16 @@ if (isset($_POST["loginEmail"]) &&
         if($result->response->role =="client"){
             $location = "tiping.php";
         } elseif ($result->response->role == "employer"){
-            $location = "comp_welcome.php";
+
+            $new = compWelcome::isEmployerNew($_SESSION['apiKey'],$_SESSION['employerId']);
+            if(!!$new){
+                $location = "comp_welcome.php";
+            } else {
+                $location =  "manageWorkforce.php";
+            }
+
+
+
         } elseif ($result->response->role == "employee"){
             $location = "emp_welcome.php";
         }
