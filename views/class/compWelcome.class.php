@@ -15,6 +15,13 @@ class compWelcome
         return json_decode($result);
     }
 
+    public static function fetchCompanyView($apikey,$employerId)
+    {
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/fetchCompanyView/employerId/$employerId";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
+
     public static function isEmployerNew($apikey,$employerId)
     {
         $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/isEmployerNew/employerId/$employerId";
@@ -22,10 +29,25 @@ class compWelcome
         return json_decode($result);
     }
 
-    public function addDetails($apikey,$related_user,$trading_name,$email,$address,$description,$opening_hours){
+    public static function addDetails($fileName,$apikey,$related_user,$trading_name,$email,$address,$description,$opening_hours)
+    {
 
-        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/submit/related_user/$related_user/trading_name/$trading_name/email/$email/address/$address/description/$description/opening_hours/$opening_hours";
+        $package = array(
+            "description"=>$description,
+            "photo_url"=>$fileName,
+            "related_user"=>$related_user,
+            "trading_name"=>$trading_name,
+            "email"=>$email,
+            "address"=>$address,
+            "opening_hours"=>$opening_hours
+        );
+        $passPackage = http_build_query($package);
+        $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/employeeDetails/package/$passPackage";
         $result = file_get_contents($url);
-        return json_decode($result);
+        return $result;
     }
+
 }
+
+
+

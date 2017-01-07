@@ -172,16 +172,16 @@ if(isset($_GET['apikey'])) {
             }
         }
 
-
+//////////testitud
         if ($_GET['view'] == 'fetchCompanyView') {
             require('src/compWelcome.class.php');
             $compWelcome = new compWelcome($PDO);
             if (isset($_GET['employerId'])) {
-                $result = $compWelcome->fetchView($_GET["employerId"]);
+                $result = $compWelcome->fetchCompanyView($_GET["employerId"]);
                 print_r(json_encode($result));
             }
         }
-
+//////////
 
 
         if ($_GET['view'] == 'isEmployerNew') {
@@ -229,7 +229,7 @@ if(isset($_GET['apikey'])) {
             print_r(json_encode($response));
         }
         //Adding and changing company details
-
+/////////////
         if ($_GET['submit'] == 'companyDetails') {
             require("src/compWelcome.class.php");
             $queryString = $_GET['package'];
@@ -238,7 +238,7 @@ if(isset($_GET['apikey'])) {
             $response = $editing->addDetails($output);
             print_r(json_encode($response));
         }
-
+///////////
         //main registration script
         if ($_GET['submit'] == 'register') {
             if (isset($_GET['email']) && isset($_GET['pass']) && isset($_GET['role'])
@@ -249,7 +249,7 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
-        //comp
+        /*
         if ($_GET['submit'] == 'submit') {
             require("src/compWelcome.class.php");
 
@@ -260,8 +260,9 @@ if(isset($_GET['apikey'])) {
             } else {
                 echo "these are not the droids you're looking for!";
             }
-        }
 
+        }
+    */
 
 
     } elseif(isset($_GET['search'])) {
@@ -286,5 +287,7 @@ if(isset($_GET['apikey'])) {
     else {
         echo 'You have no power here';
     }
+
 }
+
 

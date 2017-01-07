@@ -5,8 +5,8 @@ if($_SESSION['userRole'] != "employer"){
     exit();
 
 }
-require('class/compWelcome.class.php');
 require("class/UploadTools.class.php");
+require('class/compWelcome.class.php');
 
 
     $employerId = $_SESSION['userId'];
@@ -43,25 +43,20 @@ if(isset($_POST['submit'])){
     if(isset($_POST['opening_hours'])){
         $opening_hours = $_POST['opening_hours'];
     }
-    $response = compWelcome::updateDetails($description,$fileName,$employerId,$apikey,$trading_name,$email,$address,$opening_hours);
+    $response = compWelcome::addDetails($description,$fileName,$employerId,$apikey,$trading_name,$email,$address,$opening_hours);
 }
 
-$rawData1 = compWelcome::getEmployer($apikey,$employerId);
+$employerRawData = compWelcome::getEmployer($apikey,$employerId);
 $rawData = compWelcome::fetchCompanyView($apikey,$employerId);
 
 $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
-$employerName = explode("_",$rawData1->name)[0];
+$employerName = explode("_",$employerRawData->name)[0];
 
 
 
 $related_user = $_SESSION['userId'];
-$trading_name = "";
-$email = "";
-$address = "";
-$description = "";
-$opening_hours = "";
-$photo_url = "";
+
 
 
 
@@ -77,9 +72,9 @@ if(strlen($rawData->photo_url)>3) {
 }
 if(strlen($rawData->description)>3){
     $employeeDescription = $rawData->description;
-} else {
-    $employeeDescription = $defaultDescr;
+
 }
+echo($apikey)
 ?>
 
 
