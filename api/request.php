@@ -229,7 +229,7 @@ if(isset($_GET['apikey'])) {
             print_r(json_encode($response));
         }
         //Adding and changing company details
-/////////////
+//////////////
         if ($_GET['submit'] == 'companyDetails') {
             require("src/compWelcome.class.php");
             $queryString = $_GET['package'];
@@ -249,6 +249,7 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
+
         /*
         if ($_GET['submit'] == 'submit') {
             require("src/compWelcome.class.php");

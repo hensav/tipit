@@ -28,6 +28,10 @@ class compWelcome
         return $result;
     }
 
+
+
+
+
     public function fetchCompanyView($employerId) //testitud
     {
         $stmt = $this->conn->prepare("

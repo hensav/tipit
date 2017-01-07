@@ -65,6 +65,8 @@ $related_user = $_SESSION['userId'];
 
 
 
+
+
 if(strlen($rawData->photo_url)>3) {
     $compImgUrl = $imgRoot . $rawData->photo_url;
 } else {
@@ -76,6 +78,7 @@ if(strlen($rawData->description)>3){
 }
 echo($apikey)
 ?>
+
 
 
 
