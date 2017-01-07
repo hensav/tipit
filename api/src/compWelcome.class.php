@@ -67,14 +67,14 @@ class compWelcome
     {
         $updated = array();
         //if photo is updated..
-        if(isset($input['filename']) && $input['filename'] != null){
+        if(isset($input['photo_url']) && $input['photo_url'] != null){
             $stmt = $this->conn->prepare("
             UPDATE company SET photo_url=:url WHERE related_user=:id;
             ");
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            $stmt->bindParam(":url",$input['filename'],PDO::PARAM_STR);
+            $stmt->bindParam(":url",$input['photo_url'],PDO::PARAM_STR);
             if($stmt->execute()){
-                $updated['picture']=true;
+                $updated['photo_url']=true;
             }
         }
 
