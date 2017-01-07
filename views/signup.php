@@ -69,7 +69,6 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])
     //employe* registration
     } elseif ($_POST['role_choice'] == 'employee' or $_POST['role_choice'] == 'employer') {
 
-
         $name = $_POST['firstname'].'_'.$_POST['lastname'];
         if($name == '_'){
             ///throw error here - name missing

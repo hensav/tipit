@@ -24,7 +24,8 @@ for($i = 0; $i < count($parts); $i = $i + 2) {
 $_GET = $params;
 if(isset($_GET['apikey'])) {
 
-    //do autenthication thing with API key
+    require_once "src/auth.class.php";
+    $validation = new Auth($PDO);
 
     if (isset($_GET['view'])) {
 
@@ -168,7 +169,6 @@ if(isset($_GET['apikey'])) {
 
     elseif (isset($_GET['submit'])) {
         //initialize auth src and class
-        require('./src/auth.class.php');
         $Auth = new Auth($PDO);
 
 
