@@ -67,7 +67,7 @@ require('header.php');
     <h3>Add employees</h3>
     <div id="suggest"></div>
     <form>
-        <input class="form__field txt-center" type="text" id="goodcode" placeholder="Start by typing goodcode">
+        <input class="form__field txt-center suggest" type="text" id="goodcode" placeholder="Start by typing goodcode">
     </form>
     </div>
 

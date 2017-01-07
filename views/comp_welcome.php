@@ -105,6 +105,13 @@ if(strlen($rawData->description)>3){
     <!-- <form method="POST" class="signup__form"> -->
     <form method="POST" class="employee__profile" enctype="multipart/form-data">
 
+<<<<<<< HEAD
+        <input class="form__field "type="text" name="company-name" placeholder="What is your comany name?" value="<?=$trading_name?>">
+        <input class="form__field "type="text" name="company-address" placeholder="What is your comany address?" value="<?=$address?>">
+        <input class="form__field "type="text" name="company-email" placeholder="What's your company's email?" value="<?=$email?>">
+        <input class="form__field "type="text" name="company-opening" placeholder="What time are you open?" value="<?=$opening_hours?>">
+         <textarea name="empDesciption" placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value="<?=$description?>"></textarea>
+=======
         <label class="upload__btn">
             <img src=<?=$compImgUrl ?> class="employee-image">
             <input type="file"name="fileToUpload" id="fileToUpload"/>
@@ -115,6 +122,7 @@ if(strlen($rawData->description)>3){
         <textarea name="description " placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value=""></textarea>
         <input class="form__field "type="text" name="email" placeholder="What's your company's email?" value="">
         <input class="form__field "type="text" name="opening_hours" placeholder="What time are you open?" value="">
+>>>>>>> 00a5603723b6be6a2e8da5f5f980037554a4a308
         <!--
         <label class="upload__btn">
             <img src=<?//=$compImgUrl ?> class="employee-image">
