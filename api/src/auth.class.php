@@ -137,38 +137,47 @@ class Auth
         }
     }
 
-    /**
-    public function firstRegister($email,$pass,$role){
+    public function validateRequest($role, $id, $apikey)
+    {
+
         $stmt = $this->conn->prepare("
-        SELECT id, role
-        FROM user
-        WHERE email=:email
+            select user.role
+            FROM user
+            LEFT JOIN api_key as api on user.id = api.`user_id`
+            WHERE user.id = :id AND api.apikey = :apikey
+            LIMIT 1
         ");
-        $stmt->bindParam(':email',$email,PDO::PARAM_STR);
-        $stmt->execute();
-        $checking=$stmt->fetch(PDO::FETCH_ASSOC);
-        if($checking['id']>1){
-            return array(
-                'status'=>'error',
-                'response'=>'Details already in use, please try again');
-        } else {
-            $stmt = $this->conn->prepare("
-                INSERT INTO user(id,email,auth,role,created,closed) VALUES(DEFAULT,:email,:auth,:role,CURRENT_TIMESTAMP,NULL)
-            ");
 
-            $stmt->bindParam(':email',$email,PDO::PARAM_STR);
-            $stmt->bindParam(':auth', $pass, PDO::PARAM_STR);
-            $stmt->bindParam(':role', $role, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":apikey", $apikey, PDO::PARAM_STR);
 
-            if ($stmt->execute()) {
+        if ($stmt->execute()) {
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!!$result) {
+                if ($result['role'] == $role) {
+                    return array(
+                        "status" => "success"
+                    );
+                } else {
+                    return array(
+                        "status" => "failure",
+                        "msg" => "User is of the wrong type"
+                    );
+                }
+            } else {
                 return array(
-                    'status'=>'success',
-                    'response'=>'E-mail address and password registered!'
+                    "status" => "failure",
+                    "msg" => "API key mismatch"
                 );
             }
+        } else {
+            return array(
+                "status" => "failure",
+                "msg" => "Issue with database"
+            );
         }
     }
-    */
 
 
 }
