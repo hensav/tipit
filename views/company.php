@@ -1,16 +1,22 @@
 <?php
-//dummydata
-$companyName = "Lendav Taldrik";
-$companyImgUrl = "http://www.northestonia.eu/sites/default/files/styles/large/public/visitestonia_pics/d0b4f1cdca0e3e3aadc1bf3eab9029ba.jpg?itok=4PnXFqtH";
-$companyDescription = "Me ei ole tüüpiline Aasia restoran. Tule ja vaata, milles kogu kära!";
-$companyOpen = "Mo—Fri 10—20; Sa—Su 10—00";
-$companyAddress = "Toomrüütli 666, Tallinn";
 
-$companyKind = "Restoran";
-$companyName = "Toompea Tina";
-$employeeName = "Jüri Vokiratas";
-$employeeRating = "3.6";
-$companyRating = "0.6";
+session_start();
+require("class/compWelcome.class.php");
+
+$employeeId = $_SESSION['userId'];
+$apikey = $_SESSION['apiKey'];
+
+
+
+
+
+//dummydata
+$trading_name = "";
+$photo_url = "";
+$description = "";
+$opening_hours = "";
+$address = "";
+
 ?>
 
 <?php require("header.php"); ?>
