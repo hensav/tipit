@@ -113,6 +113,7 @@ if (isset($_POST["loginEmail"]) &&
 
 <div class="login">
 
+
     <form method="POST" class="login__form">
         <input type ="email" placeholder="your e-mail" name="loginEmail" value="<?=$loginEmail;?>" class="form__field <?=$loginEmailError ?>">
         <input type="password" placeholder="password" name="loginPassword" class="form__field <?=$signupPasswordError ?>">
