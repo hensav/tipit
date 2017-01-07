@@ -41,7 +41,7 @@ require('header.php');
     $none = true;
     foreach($managementView as $item){
         if($item->status == 'active') {
-            company_page::printEmployeeStatus($item);
+            company_page::printEmployeeManagement($item);
             $none=false;
         }
     }
@@ -55,7 +55,7 @@ require('header.php');
     $none = true;
     foreach($managementView as $item){
         if($item->status == 'pending') {
-            company_page::printEmployeeStatus($item);
+            company_page::printEmployeeManagement($item);
             $none=false;
         }
     }

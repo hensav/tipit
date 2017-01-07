@@ -66,8 +66,16 @@ require("class/employeeView.class.php");
  		    	<img src=<?=$employeeImgUrl ?> class="employee-image">
   		    	<input type="file"name="fileToUpload" id="fileToUpload"/>
 			</label>
- 			<textarea id="descriptionArea" name="empDescription" placeholder="Hello! This is my good thought of a day. Read it and replace it with yours."><?php if(!empty($employeeId)){echo trim($employeeDescription);} ?>
+ 			<textarea id="descriptionArea" name="empDescription"><?php
+
+                if(empty($employeeDescription)){
+                    echo trim("Hello! This is my good thought of a day. Read it and replace it with yours.");
+                } else {
+                    echo trim($employeeDescription);
+                }
+                ?>
             </textarea>
+
  			 <input type="submit" value="submit" class="form__button" name="submit">
   		</form>
        <p class="employee--good-code txt-center">This is My Good Code:</p>
@@ -76,8 +84,12 @@ require("class/employeeView.class.php");
 </div>
 <script>
     $(document).ready(function(){
+        var emptied = 0;
        $("#descriptionArea").click(function(){
-           $("#descriptionArea").val('');
+           if(emptied != 1) {
+               $("#descriptionArea").val('');
+               emptied = 1;
+           }
        })
     });
 </script>

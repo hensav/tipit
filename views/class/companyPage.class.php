@@ -8,11 +8,11 @@
  */
 class company_page
 {
-    public static function fetchcompanyData($companyId, $apikey)
+    public static function fetchCompanyData($companyId, $apikey)
     {
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/companyView/companyId/$companyId";
         $result = file_get_contents($url);
-        return $result;
+        return json_decode($result);
     }
 
     public static function fetchCompanyByEmployee($employeeId, $apikey)
@@ -21,6 +21,14 @@ class company_page
         $result = file_get_contents($url);
         return json_decode($result);
     }
+
+    public static function fetchEmployeesByCompany($companyId,$apikey)
+    {
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/fetchEmployeesByCompany/companyId/$companyId";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
+
     public static function fetchCompanyByOwner($apikey, $ownerId)
     {
         $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/companyByOwner/ownerId/$ownerId";
@@ -35,7 +43,7 @@ class company_page
         return json_decode($result);
     }
 
-    public static function printEmployeeStatus($input)
+    public static function printEmployeeManagement($input)
     {
         $name = explode("_",$input->name)[0];
         $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
@@ -48,6 +56,22 @@ class company_page
                 <div class='employeeRating'>$rating</div>
             </div>");
     }
+
+    public static function printEmployeeStatus($input)
+    {
+        $name = explode("_",$input->name)[0];
+        $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
+        $imgPath = $imgRoot.$input->photo_url;
+        $rating = round($input->avgRating,2);
+        echo("
+            <div class='container__employee'>
+                <div class='employeeThumbnail'><img class ='employeeThumbnail' src=$imgPath class='employeeThumbnail'></div>
+                <div class='employeeName'><a href='tiping_2.php?employeeId=$input->id'>$name</a></div>
+                <div class='employeeRating'>$rating</div>
+            </div>");
+    }
+
+
 
     public static function addEmployee($apikey,$companyID,$goodCode)
     {
