@@ -62,6 +62,8 @@ if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]))
     {
 
 
+
+
         //client registration - only e-mail and passhash are registered.
         if($_POST['role_choice']=='client'){
 
