@@ -41,7 +41,7 @@ require('header.php');
     $none = true;
     foreach($managementView as $item){
         if($item->status == 'active') {
-            company_page::printEmployeeStatus($item);
+            company_page::printEmployeeManagement($item);
             $none=false;
         }
     }
@@ -55,7 +55,7 @@ require('header.php');
     $none = true;
     foreach($managementView as $item){
         if($item->status == 'pending') {
-            company_page::printEmployeeStatus($item);
+            company_page::printEmployeeManagement($item);
             $none=false;
         }
     }
@@ -67,7 +67,7 @@ require('header.php');
     <h3>Add employees</h3>
     <div id="suggest"></div>
     <form>
-        <input class="form__field txt-center" type="text" id="goodcode" placeholder="Start by typing goodcode">
+        <input class="form__field txt-center suggest" type="text" id="goodcode" placeholder="Start by typing goodcode">
     </form>
     </div>
 

@@ -16,11 +16,11 @@
 <body>
 <div class="wrapper logo">
     <div class="header-bar">
-        <h6><span class="logo-text"><a href="index.php">Tip!it </a></span>
+        <a class="logo-text" href="index.php">Tip!it</a>
 <?php
     if(isset($_SESSION['userRole'])){
         echo("
-            <span class='logout'><a href='logout.php'>Log out</a></span>
+            <a class='logout' href='logout.php'>Log out</a>
         ");
     }
 

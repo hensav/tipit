@@ -122,7 +122,7 @@ if(isset($_GET['apikey'])) {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
             if(isset($_GET['companyId'])){
-                $result = $companyView->fetchEmployeesByCompany($_GET["companyId"]);
+                $result = $companyView->employeeManagement($_GET["companyId"]);
                 print_r(json_encode($result));
             }
         }
