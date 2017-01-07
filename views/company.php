@@ -23,7 +23,7 @@ $companyRating = "0.6";
 	    	<div class="address"><p class="companyAddress"><?php echo $companyAddress;?></p></div>
 	    </div>
 	    <div class="container__companyAddress">
-	    	<div class="addressPin"></div>
+	    	<div class="addressPin"><img src="../uploads/emp_thumbnail.png" class="employeeThumbnail"></div>
 	    	<div class="address"><p><?php echo $companyOpen; ?></p></div>
 	    </div>
     </div>
