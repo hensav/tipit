@@ -1,10 +1,16 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
-if($_SESSION['userRole'] != "employer"){
+/*if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
     exit();
 
 }
+
+*/
 require("class/UploadTools.class.php");
 require('class/compWelcome.class.php');
 
@@ -22,11 +28,15 @@ if(isset($_POST['submit'])){
     $address = null;
     $description = null;
     $opening_hours = null;
+
     if(isset($_FILES)){
         $uploadAttempt = UploadTools::uploadImage($_FILES);
         if($uploadAttempt['errorCode']==false){
             $fileName = $uploadAttempt["message"];
         }
+    }
+    if(!empty($fileName)){
+        $photo_url = $fileName;
     }
     if(isset($_POST['description'])){
         $description = $_POST['description'];
@@ -43,8 +53,12 @@ if(isset($_POST['submit'])){
     if(isset($_POST['opening_hours'])){
         $opening_hours = $_POST['opening_hours'];
     }
-    $response = compWelcome::addDetails($description,$fileName,$employerId,$apikey,$trading_name,$email,$address,$opening_hours);
+    $response = compWelcome::addDetails($fileName,$_SESSION['apiKey'],$_SESSION['userId'],$trading_name,$email,$address,$description,$opening_hours);
+    //var_dump($response);
+
 }
+
+
 
 $employerRawData = compWelcome::getEmployer($apikey,$employerId);
 $rawData = compWelcome::fetchCompanyView($apikey,$employerId);
@@ -76,7 +90,7 @@ if(strlen($rawData->description)>3){
     $employeeDescription = $rawData->description;
 
 }
-echo($apikey)
+
 ?>
 
 
@@ -96,11 +110,11 @@ echo($apikey)
             <input type="file"name="fileToUpload" id="fileToUpload"/>
         </label>
 
-        <input class="form__field "type="text" name="company-name" placeholder="What is your comany name?" value="<?=$trading_name?>">
-        <input class="form__field "type="text" name="company-address" placeholder="What is your comany address?" value="<?=$address?>">
-        <textarea name="empDesciption" placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value="<?=$description?>"></textarea>
-        <input class="form__field "type="text" name="company-email" placeholder="What's your company's email?" value="<?=$email?>">
-        <input class="form__field "type="text" name="company-opening" placeholder="What time are you open?" value="<?=$opening_hours?>">
+        <input class="form__field "type="text" name="trading_name" placeholder="What is your comany name?" value="">
+        <input class="form__field "type="text" name="address" placeholder="What is your comany address?" value="">
+        <textarea name="description " placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value=""></textarea>
+        <input class="form__field "type="text" name="email" placeholder="What's your company's email?" value="">
+        <input class="form__field "type="text" name="opening_hours" placeholder="What time are you open?" value="">
         <!--
         <label class="upload__btn">
             <img src=<?//=$compImgUrl ?> class="employee-image">
