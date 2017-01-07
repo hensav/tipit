@@ -23,6 +23,7 @@ for($i = 0; $i < count($parts); $i = $i + 2) {
 
 $_GET = $params;
 if(isset($_GET['apikey'])) {
+    $apikey = $_GET['apikey'];
 
     require_once "src/auth.class.php";
     $validation = new Auth($PDO);
@@ -39,12 +40,26 @@ if(isset($_GET['apikey'])) {
         }
 
         if ($_GET['view'] == 'getPendingRequests') {
-            require('src/employeeView.class.php');
-            $employeeView = new employeeView($PDO);
-            if(isset($_GET['employeeId'])){
-                $result = $employeeView->getPendingRequests($_GET['employeeId']);
-                print_r(json_encode($result));
+
+            $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
+            if ($check['status'] == 'success') {
+
+                require('src/employeeView.class.php');
+                $employeeView = new employeeView($PDO);
+
+                if(isset($_GET['employeeId'])){
+                    $result = $employeeView->getPendingRequests($_GET['employeeId']);
+                    print_r(json_encode($result));
+                }
+            } else {
+                print_r(json_encode(
+                    array("status" => "failure", "msg" => $check['msg'])
+
+                ));
+                exit();
             }
+
+
         }
 
         if ($_GET['view'] == 'respondToRequest') {
