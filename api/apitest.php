@@ -36,14 +36,14 @@ print_r($result3);
 /*
 Wrapper callidele mis tagastavad privaatseid andmeid:
 
-    $validate->validateRequest(role,userId,apikey);
-    if ($validate['status'] == 'success') {
+    $check = $validate->validateRequest(role,userId,apikey);
+    if ($check['status'] == 'success') {
 
             +++++ function call +++++
 
     } else {
         print_r(json_encode(
-            array("status" => "failure", "msg" => $validate['msg']);
+            array("status" => "failure", "msg" => $check['msg']);
             exit();
         ));
     }
