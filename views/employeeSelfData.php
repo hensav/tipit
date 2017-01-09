@@ -134,7 +134,7 @@ if(true){
 <link rel="stylesheet" href="css/feedback.css" type="text/css">
 
     <div class="employee">
-        <h2>Hello <?php echo $employeeName; ?>!</h2>
+        <h2><?php echo $employeeName; ?></h2>
         <?php echo $requestHtml; ?>
        
     <h2>Weekly overview</h2>
