@@ -29,10 +29,10 @@ class sliderBar
             $greenWidth = 0;
             $redWidth = $this->previous-$this->current;
             $amountColor = "#ff0000";
-            $amtChange = round(5*$redWidth/100,1);
+            $amtChange = round(5*$redWidth/100,2);
             $description = $this->name." (- $amtChange)";
         }
-        $currentResult = round(5*$this->current/100,1);
+        $currentResult = round(5*$this->current/100,2);
 
         echo ("
             <div class='slider-wrapper'>
