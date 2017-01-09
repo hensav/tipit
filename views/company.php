@@ -25,7 +25,7 @@ $address = "";
 <div class="employee">
 	<h2><?php echo $company->trading_name; ?></h2>
 	<div class="company__profile">   
-	    <img src=<?=$company->photo_url?> class="employee-image">
+	    <img src=<?="http://naturaalmajand.us/tipit/uploads/".$company->photo_url?> class="employee-image">
 	    <div class="container__companyAddress">
 	    	<div class="addressPin"><img src="../uploads/emp_thumbnail.png" class="employeeThumbnail"></div>
 	    	<div class="address"><p class="companyAddress"><?php echo $company->address;?></p></div>
