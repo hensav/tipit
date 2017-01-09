@@ -36,30 +36,30 @@ if(isset($_POST['submit'])){
     }
     if(!empty($fileName)){
         $photo_url = $fileName;
-         header('location: manageWorkforce.php');
+
     }
     if(isset($_POST['description'])){
         $description = $_POST['description'];
-         header('location: manageWorkforce.php');
     }
     if(isset($_POST['trading_name'])){
         $trading_name = $_POST['trading_name'];
-         header('location: manageWorkforce.php');
     }
     if(isset($_POST['email'])){
         $email = $_POST['email'];
-         header('location: manageWorkforce.php');
     }
     if(isset($_POST['address'])){
         $address = $_POST['address'];
-         header('location: manageWorkforce.php');
     }
     if(isset($_POST['opening_hours'])){
         $opening_hours = $_POST['opening_hours'];
-         header('location: manageWorkforce.php');
     }
     $response = compWelcome::addDetails($fileName,$_SESSION['apiKey'],$_SESSION['userId'],$trading_name,$email,$address,$description,$opening_hours);
     //var_dump($response);
+    if($response->status == "success"){
+        header('location: manageWorkforce.php');
+         exit();
+    }
+    
 
 }
 

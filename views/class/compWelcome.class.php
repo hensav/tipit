@@ -69,7 +69,7 @@ class compWelcome
         $passPackage = http_build_query($package);
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/companyDetails/package/$passPackage";
         $result = file_get_contents($url);
-        return $result;
+        return json_decode($result);
     }
 
 
