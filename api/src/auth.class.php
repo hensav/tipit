@@ -8,6 +8,8 @@
  */
 class Auth
 {
+    private $conn;
+
     public function __construct($PDO)
     {
         $this->conn = $PDO;

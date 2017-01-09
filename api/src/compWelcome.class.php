@@ -8,7 +8,7 @@
  */
 class compWelcome
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {

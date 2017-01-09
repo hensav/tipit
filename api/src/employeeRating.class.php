@@ -8,7 +8,7 @@
  */
 class employeeRating
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {

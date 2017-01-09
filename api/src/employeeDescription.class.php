@@ -8,7 +8,7 @@
  */
 class emp_description
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {

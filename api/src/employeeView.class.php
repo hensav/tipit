@@ -8,7 +8,7 @@
 
 class employeeView{
 
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {
