@@ -36,7 +36,7 @@ $loginEmail = "";
 $loginEmailError = "";
 $loginPasswordError = "";
 $phone = "";
-$errorClass = "input-error";
+$errorMessage = "";
 
 
 // e-mail error handling
@@ -82,8 +82,18 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])
         }
         header("location: $location");
         exit();
+
+
+
+    }else {
+
+        $errorMessage = "Wrong details";
+
     }
+
+
 }
+
 
 ?>
 <?php require("header.php"); ?> 
@@ -93,7 +103,9 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])
 
     <form method="POST" class="login__form">
         <input type ="email" placeholder="your e-mail" name="loginEmail" value="<?=$loginEmail;?>" class="form__field <?=$loginEmailError ?>">
-        <input type="password" placeholder="password" name="loginPassword" class="form__field <?=$signupPasswordError ?>">
+        <input type="password" placeholder="password" name="loginPassword" class="form__field <?=$loginPasswordError ?>">
+        <?php echo($errorMessage); ?>
+
         <input type="submit" value="login" class="form__button">
     </form>
 
