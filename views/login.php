@@ -1,8 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+//// Handling already logged in users
 session_start();
 if(isset($_SESSION['userRole'])){
     $role = $_SESSION['userRole'];
@@ -28,25 +26,14 @@ if(isset($_SESSION['userRole'])){
     exit();
 }
 
-$url = "http://naturaalmajand.us/tipit/api/request.php/";
-
-
 require("./class/clientAuth.class.php");
-
+$url = "http://naturaalmajand.us/tipit/api/request.php/";
 $clientAuth = new clientAuth;
 
-/*$user = "veljo@naturaalmajand.us";
-$pass = "parool";
-$result = $clientAuth -> loginRequest($url,$user,$pass);
-var_dump($result);
-*/
-
-
-// MUUTUJAD
+// Initializing
 
 $loginEmail = "";
 $loginEmailError = "";
-$loginPassword = "";
 $loginPasswordError = "";
 $phone = "";
 $errorClass = "input-error";
@@ -70,18 +57,11 @@ if (isset($_POST["loginPassword"])) {
 }
 
 //checking if loginEmail and loginPassword have been posted
-if (isset($_POST["loginEmail"]) &&
-    isset($_POST["loginPassword"])){
-//replacing empty (non-obligatory) fields with empty strings to avoid api url bugs
-    if(empty($_POST['phone'])){
-        $phone='';
-    } else {
-        $phone=$_POST['phone'];
-    }
+if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])
+    && !empty($_POST['loginEmail']) && !empty($_POST['loginPassword'])) {
 
-    //$result = $clientAuth -> loginRequest($url,$user,$pass);
     $result = $clientAuth->loginRequest($url,$_POST['loginEmail'],$_POST['loginPassword'],$phone);
-    if($result->status == "success"){
+    if ($result->status == "success") {
         session_destroy();
         session_start();
         $_SESSION['userId'] = $result->response->id;
@@ -89,7 +69,7 @@ if (isset($_POST["loginEmail"]) &&
         $_SESSION['apiKey'] = $result->response->apikey;
         if($result->response->role =="client"){
             $location = "tiping.php";
-        } elseif ($result->response->role == "employer"){
+        } elseif ($result->response->role == "employer") {
             require('class/compWelcome.class.php');
             $new = compWelcome::isEmployerNew($_SESSION['apiKey'],$_SESSION['userId']);
             if(!!$new){
@@ -97,9 +77,6 @@ if (isset($_POST["loginEmail"]) &&
             } else {
                 $location =  "manageWorkforce.php";
             }
-
-
-
         } elseif ($result->response->role == "employee"){
             $location = "emp_welcome.php";
         }
