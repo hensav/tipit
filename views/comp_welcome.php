@@ -4,13 +4,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-/*if($_SESSION['userRole'] != "employer"){
+if($_SESSION['userRole'] != "employer"){
     header("location: index.php");
     exit();
 
 }
 
-*/
 require("class/UploadTools.class.php");
 require('class/compWelcome.class.php');
 
@@ -69,7 +68,7 @@ $rawData = compWelcome::fetchCompanyView($apikey,$employerId);
 $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 $employerName = explode("_",$employerRawData->name)[0];
 $related_user = $_SESSION['userId'];
-
+//var_dump($rawData);
 
 if(strlen($rawData->photo_url)>3) {
     $compImgUrl = $imgRoot . $rawData->photo_url;
