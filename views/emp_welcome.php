@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     if($_SESSION['userRole'] != "employee"){
         header("location: index.php");
@@ -28,6 +29,10 @@ require("class/employeeView.class.php");
             $description = $_POST['empDescription'];
         }
         $response = employeeView::updateDetails($description,$fileName,$employeeId,$apikey);
+        if ($response->status == "success"){
+            header("location: employeeSelfData.php");
+        }
+   
     }
 
     $rawData = employeeView::getDetails($employeeId,$apikey);

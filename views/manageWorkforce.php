@@ -31,9 +31,9 @@ require('header.php');
         <div class="companyKind">Restoran</div>
         <div class="container__company">
             <div class="companyName"><?php echo $companyName;?></div>
-            <div class="companyRating"><a href="comp_welcome.php"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <!-- <div class="companyRating"><a href="comp_welcome.php"><i class="fa fa-pencil" aria-hidden="true"></i></a> -->
             </div>
-        </div>
+        
 
     <h3>Your confirmed employees:</h3>
 <?php
@@ -69,6 +69,9 @@ require('header.php');
     <form>
         <input class="form__field txt-center suggest" type="text" id="goodcode" placeholder="Start by typing goodcode">
     </form>
+    <br>
+    <a href="comp_welcome.php" class="href__button feedback__nav-btn">Edit Profile</a>
+    </div>
     </div>
 
 <script src="js/managementAjax.js"></script>

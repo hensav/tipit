@@ -1,5 +1,4 @@
 .slider-wrapper{
-    width:90%;
     margin: auto;
     font-size: 21px;
     font-family: 'Lato', sans-serif;
@@ -56,14 +55,13 @@
 }
 
 .feedback__nav {
-    width: 100%;
+    margin: auto;
     box-sizing: border-box;
 }
 
 .feedback__nav-btn{
     display: block;
     margin: auto;
-    width: 90%;
     background-color: white;
     border: solid rgba(92, 48, 255, 0.7) 2px;
     padding: 10px 10px;
@@ -88,4 +86,5 @@
 .feedback__popdown {
     font-size: 18px;
     line-height: 1.5;
+    text-align: left;
 }
