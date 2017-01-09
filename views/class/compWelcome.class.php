@@ -64,7 +64,7 @@ class compWelcome
         if(isset($opening_hours) && !empty($opening_hours)){
             $package['opening_hours'] = $opening_hours;
         }
-        var_dump($package);
+      
 
         $passPackage = http_build_query($package);
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/companyDetails/package/$passPackage";
