@@ -103,10 +103,8 @@ if(isset($_GET['apikey'])) {
 
 
         if ($_GET['view'] == 'getNearbyCompanies') {
-            echo "nearby restaurants view based on coordinates";
+            echo "nearby restaurants view based on coordinates - to be implemented";
         }
-
-
 
         if ($_GET['view'] == 'companyView') {
             require('src/companyView.class.php');
@@ -145,11 +143,20 @@ if(isset($_GET['apikey'])) {
             }
         }
 
-        if ($_GET['view'] == 'addEmployee'){
+        if ($_GET['view'] == 'addEmployee') {
             require('src/companyView.class.php');
             $companyView = new companyView($PDO);
             if (isset($_GET['companyId']) && isset($_GET['goodCode'])) {
                 $result = $companyView->addEmployee($_GET['companyId'],$_GET['goodCode']);
+                print_r(json_encode($result));
+            }
+        }
+
+        if ($_GET['view'] == 'removeEmployee') {
+            require "src/companyView.class.php";
+            $companyView = new companyView($PDO);
+            if (isset($_GET['companyId']) && isset($_GET['goodCode'])) {
+                $result = $companyView->removeEmployee($_GET['companyId'],$_GET['goodCode']);
                 print_r(json_encode($result));
             }
         }
@@ -249,22 +256,6 @@ if(isset($_GET['apikey'])) {
                 echo "these are not the droids you're looking for!";
             }
         }
-
-        /*
-        if ($_GET['submit'] == 'submit') {
-            require("src/compWelcome.class.php");
-
-            if (isset($_GET['related_user']) && isset($_GET['trading_name']) && isset($_GET['email']) && isset($_GET['address']) && isset($_GET['description']) && isset($_GET['opening_hours'])
-            ) {
-                $response = $compWelcome->addDetails($_GET['related_user'], $_GET['trading_name'], $_GET['email'], $_GET['address'], $_GET['description'], $_GET['opening_hours']);
-                print_r(json_encode($response));
-            } else {
-                echo "these are not the droids you're looking for!";
-            }
-
-        }
-    */
-
 
     } elseif(isset($_GET['search'])) {
 

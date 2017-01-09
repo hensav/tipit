@@ -73,9 +73,16 @@ class company_page
 
 
 
-    public static function addEmployee($apikey,$companyID,$goodCode)
+    public static function addEmployee($apikey,$companyId,$goodCode)
     {
-        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/addEmployee/companyId/$companyID/goodCode/$goodCode";
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/addEmployee/companyId/$companyId/goodCode/$goodCode";
+        $result = file_get_contents($url);
+        return json_decode($result);
+    }
+
+    public static function removeEmployee($apikey,$companyId,$goodCode)
+    {
+        $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/removeEmployee/companyId/$companyId/goodCode/$goodCode";
         $result = file_get_contents($url);
         return json_decode($result);
     }

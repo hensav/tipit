@@ -136,4 +136,27 @@ class companyView
             );
         }
     }
+
+    public function removeEmployee($companyId, $goodCode)
+    {
+        $stmt = $this->conn->prepare("
+            UPDATE rel_employee_company as rel
+            LEFT JOIN goodcode as gc on rel.employee_id = gc.user_id
+            SET status='declined'
+            WHERE gc.goodcode = :gc AND rel.company_id = :company;
+        ");
+        $stmt->bindParam(":gc",$goodCode,PDO::PARAM_STR);
+        $stmt->bindParam(":company",$companyId,PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return array(
+                "status" => "success",
+                "msg" => "Removed $goodCode"
+            );
+        } else {
+            return array(
+                "status" => "failure"
+            );
+        }
+    }
 }
