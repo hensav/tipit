@@ -87,7 +87,7 @@
         </fieldset>
     </section>
     <div class="granular-wrapper">
-        <header class="granular-rating-title">More options <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+        <header class="granular-rating-title">More options<i aria-hidden="true"> </i>
         </header>
         <section class="granular-rating-body">
 

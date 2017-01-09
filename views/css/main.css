@@ -502,7 +502,7 @@ input[type="submit"].inactive--button.form__button:hover {
 
 .rating {
     width: 100%;
-	margin: 0 0 20px 0;
+	margin: 0 0 20px 8px;
 	/*text-align: center;*/
     padding-left: -10px;
 
@@ -612,11 +612,13 @@ input[type="submit"].inactive--button.form__button:hover {
 }
 .granular-rating-title{
 	padding: 0px 0px 40px 0px;
-    font-size: 120%;
+    font-size: 24px;
+	font-weight: 500;
+	color: rgba(92, 48, 255, 0.7);
 }
 .fieldset-title{
-    font-style: italic;
-    font-size: 120%;
+    font-size: 24px;
+	font-weight: 300;
     margin-bottom: -10px;
 }
 
