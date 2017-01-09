@@ -40,7 +40,7 @@ class employeeView
         $passPackage = http_build_query($package);
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/submit/employeeDetails/package/$passPackage";
         $result = file_get_contents($url);
-        return $result;
+        return json_decode($result);
     }
 
     public static function getPendingRequests($employeeId, $apikey){
