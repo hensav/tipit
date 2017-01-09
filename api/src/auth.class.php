@@ -56,16 +56,18 @@ class Auth
                 'status'=>'error',
                 'response'=>'Details already in use, please try again');
         } else {
+
+            //User with that e-mail didn't exist. Let's create one!
             $stmt = $this->conn->prepare("
                 INSERT INTO user VALUES(DEFAULT,:name,:email,:phone,:auth,:role,CURRENT_TIMESTAMP,NULL)
             ");
 
             if(empty($phone)){
-                $phone=null;
+                $phone = null;
             }
 
             if(empty($name)){
-                $name=null;
+                $name = null;
             }
 
             $stmt->bindParam(':name', $name, PDO::PARAM_STR);
@@ -80,10 +82,15 @@ class Auth
                     'response'=>'Full details registered!',
                     'apikey' => $this->genApiKey($email)
                 );
-                if($role=="employee"){
+                if ($role == "employee"){
                     $gCode = $this->genGoodCode($name,$email);
                     $result['goodcode'] = $gCode;
                 }
+
+                if ($role == "employer") {
+                    $this->genCompanyEntry($email);
+                }
+
                 return $result;
             }
         }
@@ -112,7 +119,18 @@ class Auth
         $stmt->execute();
     }
 
+    //Generate an entry into the company table
+    protected function genCompanyEntry($email)
+    {
+        $stmt = $this->conn->prepare("
+          INSERT INTO company(related_user,created)
+        VALUES((SELECT id FROM user WHERE email = :email),CURRENT_TIMESTAMP)
+        ");
+        $stmt->bindParam(":email",$email,PDO::PARAM_STR);
+        $stmt->execute();
+    }
 
+    //Generate 6-digit semi-random identifier for employee
     protected function genGoodCode($name,$email)
     {
         $nameArray = explode('_',$name);
