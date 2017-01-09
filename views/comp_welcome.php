@@ -14,11 +14,9 @@ session_start();
 require("class/UploadTools.class.php");
 require('class/compWelcome.class.php');
 
-
-    $employerId = $_SESSION['userId'];
-    $apikey = $_SESSION['apiKey'];
-
-    $defaultDescr = "";
+$employerId = $_SESSION['userId'];
+$apikey = $_SESSION['apiKey'];
+$defaultDescr = "";
 
 if(isset($_POST['submit'])){
     $description = null;
@@ -59,35 +57,20 @@ if(isset($_POST['submit'])){
 }
 
 
-
 $employerRawData = compWelcome::getEmployer($apikey,$employerId);
 $rawData = compWelcome::fetchCompanyView($apikey,$employerId);
-
 $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
-
 $employerName = explode("_",$employerRawData->name)[0];
-
-
-
 $related_user = $_SESSION['userId'];
-
-
-
-
-
-
-
-
-
 
 
 if(strlen($rawData->photo_url)>3) {
     $compImgUrl = $imgRoot . $rawData->photo_url;
-} else {
-    $compImgUrl = $imgRoot . "emp_placehold.jpg";
-}
-if(strlen($rawData->description)>3){
-    $employeeDescription = $rawData->description;
+    } else {
+        $compImgUrl = $imgRoot . "emp_placehold.jpg";
+        }
+            if(strlen($rawData->description)>3){
+                $employeeDescription = $rawData->description;
 
 }
 
@@ -102,16 +85,8 @@ if(strlen($rawData->description)>3){
 <div class="employee">
     <h2>Hello <?php echo $employerName; ?>!</h2>
 
-    <!-- <form method="POST" class="signup__form"> -->
     <form method="POST" class="employee__profile" enctype="multipart/form-data">
 
-<<<<<<< HEAD
-        <input class="form__field "type="text" name="company-name" placeholder="What is your comany name?" value="<?=$trading_name?>">
-        <input class="form__field "type="text" name="company-address" placeholder="What is your comany address?" value="<?=$address?>">
-        <input class="form__field "type="text" name="company-email" placeholder="What's your company's email?" value="<?=$email?>">
-        <input class="form__field "type="text" name="company-opening" placeholder="What time are you open?" value="<?=$opening_hours?>">
-         <textarea name="empDesciption" placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value="<?=$description?>"></textarea>
-=======
         <label class="upload__btn">
             <img src=<?=$compImgUrl ?> class="employee-image">
             <input type="file"name="fileToUpload" id="fileToUpload"/>
@@ -122,15 +97,9 @@ if(strlen($rawData->description)>3){
         <textarea name="description " placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value=""></textarea>
         <input class="form__field "type="text" name="email" placeholder="What's your company's email?" value="">
         <input class="form__field "type="text" name="opening_hours" placeholder="What time are you open?" value="">
->>>>>>> 00a5603723b6be6a2e8da5f5f980037554a4a308
-        <!--
-        <label class="upload__btn">
-            <img src=<?//=$compImgUrl ?> class="employee-image">
-            <input type="file"name="fileToUpload" id="fileToUpload"/>
-        </label>
-         -->
-        <input type="submit" value="submit" class="form__button" name="submit">
-    </form>
+      
+    <input type="submit" value="submit" class="form__button" name="submit">
+</form>
 
 </div>
 
