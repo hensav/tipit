@@ -29,7 +29,7 @@ if (isset($_GET['apikey'])) {
     $validation = new Auth($PDO);
 
     if (isset($_GET['view'])) {
-
+        //endpoint for populating the slider view of employeeSelfData page.
         if ($_GET['view'] == 'employeePrivateSliders') {
             $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
             if ($check['status'] == 'success') {
@@ -47,6 +47,8 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+
+        //Endpoint for getting pending employer-employee link requests.
         if ($_GET['view'] == 'getPendingRequests') {
 
             $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
@@ -69,6 +71,7 @@ if (isset($_GET['apikey'])) {
 
         }
 
+        ///Endpoint for responding to the above requests.
         if ($_GET['view'] == 'respondToRequest') {
             $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
 
@@ -86,6 +89,8 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+
+        //Gets rating count and amount of tips earned in the last week
         if ($_GET['view'] == 'employeePrivateStats') {
 
             $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
@@ -103,6 +108,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+        //Looks up employee by goodcode - public.
         if ($_GET['view'] == 'employeeByGoodcode') {
             require('src/employeeView.class.php');
             $employeeView = new employeeView($PDO);
@@ -112,7 +118,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-
+        //Endpoint for getting employee data without stats
         if ($_GET['view'] == 'employeePage') {
             //emp_description
             require './src/employeeDescription.class.php';
@@ -129,7 +135,7 @@ if (isset($_GET['apikey'])) {
             echo "nearby restaurants view based on coordinates - to be implemented";
         }
 
-
+        //gets customer-facing company details
         if ($_GET['view'] == 'companyView') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -139,7 +145,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-
+        //Endpoint for displaying employees of a company with their ratings. Note - currently shared with an employer view
         if ($_GET['view'] == 'fetchEmployeesByCompany') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -149,6 +155,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+        //Returns company ID by employee ID
         if ($_GET['view'] == 'fetchCompanyByEmployee') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -158,7 +165,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-
+        // Returns ratings, names, statuses of 'pending' and 'active' employee links
         if ($_GET['view'] == 'employeeManagement') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -168,7 +175,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-
+        //Sends a new request to employee to set up company-employee link
         if ($_GET['view'] == 'addEmployee') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -178,6 +185,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+        //Deactivates company-employee link. Currently unused.
         if ($_GET['view'] == 'removeEmployee') {
             require "src/companyView.class.php";
             $companyView = new companyView($PDO);
@@ -187,6 +195,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+        //returns company id, trading name by related user ID
         if ($_GET['view'] == 'companyByOwner') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -197,7 +206,7 @@ if (isset($_GET['apikey'])) {
         }
 
 
-
+        //gets employer name for company management page. Should be refactored and joined with the rest of the view.
         if ($_GET['view'] == 'compWelcome') {
             require 'src/compWelcome.class.php';
             $compWelcome = new compWelcome($PDO);
@@ -207,7 +216,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-
+        //Gets employer-facing company view
         if ($_GET['view'] == 'fetchCompanyView') {
             require 'src/compWelcome.class.php';
             $compWelcome = new compWelcome($PDO);
@@ -216,9 +225,8 @@ if (isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
-//////////
 
-
+        //checks if employer is "new" (no quantifiable entry in company table)
         if ($_GET['view'] == 'isEmployerNew') {
             require 'src/compWelcome.class.php';
             $compWelcome = new compWelcome($PDO);
@@ -233,7 +241,7 @@ if (isset($_GET['apikey'])) {
         //initialize auth src and class
         $Auth = new Auth($PDO);
 
-
+        //best function EVER
         if ($_GET['submit'] == 'login') {
             if (isset($_GET['email']) && isset($_GET['pass'])) {
                 $response = $Auth->login($_GET['email'], $_GET['pass']);
@@ -244,7 +252,7 @@ if (isset($_GET['apikey'])) {
         }
 
 
-
+        //allows client to leave rating - will be made private
         if ($_GET['submit'] == 'rateEmployee') {
             require "src/employeeRating.class.php";
             $queryString = $_GET['package'];
@@ -255,7 +263,7 @@ if (isset($_GET['apikey'])) {
         }
 
 
-
+        //Allows employee to update their details - will be made private
         if ($_GET['submit'] == 'employeeDetails') {
             require "src/employeeDescription.class.php";
             $queryString = $_GET['package'];
@@ -291,12 +299,14 @@ if (isset($_GET['apikey'])) {
     } elseif (isset($_GET['search'])) {
         require"src/search.class.php";
 
+        //AJAX fodder for client-facing search
         if ($_GET['search'] == 'byGoodcode') {
             $search = new search($PDO);
             $response = $search->byGoodcode(stripslashes(htmlspecialchars($_GET['goodcode'])));
             print_r($response);
         }
 
+        //AJAX fodder for company-based search - To be removed as duplicate of half of byGoodcode method
         if ($_GET['search'] == 'byCompany') {
             $search = new search($PDO);
             $response = $search->byCompany(stripslashes(htmlspecialchars($_GET['company'])));
