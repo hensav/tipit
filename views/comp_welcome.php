@@ -98,8 +98,8 @@ if(strlen($rawData->photo_url)>3) {
             <input type="file"name="fileToUpload" id="fileToUpload"/>
         </label>
 
-        <input class="form__field "type="text" name="trading_name" placeholder="What is your comany name?" value="">
-        <input class="form__field "type="text" name="address" placeholder="What is your comany address?" value="">
+        <input class="form__field "type="text" name="trading_name" placeholder="What is your company name?" value="">
+        <input class="form__field "type="text" name="address" placeholder="What is your company address?" value="">
         <textarea name="description " placeholder="Hello! This is one sentence about us. Read it and replace it with another one." value=""></textarea>
         <input class="form__field "type="text" name="email" placeholder="What's your company's email?" value="">
         <input class="form__field "type="text" name="opening_hours" placeholder="What time are you open?" value="">

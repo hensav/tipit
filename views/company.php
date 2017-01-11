@@ -25,26 +25,27 @@ $address = "";
 <div class="employee">
 	<h2><?php echo $company->trading_name; ?></h2>
 	<div class="company__profile">   
-	    <img src=<?=$company->photo_url?> class="employee-image">
+	    <img src=<?="http://naturaalmajand.us/tipit/uploads/".$company->photo_url?> class="employee-image">
 	    <div class="container__companyAddress">
-	    	<div class="addressPin"><img src="../uploads/emp_thumbnail.png" class="employeeThumbnail"></div>
+	    	<div class="addressPin"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
 	    	<div class="address"><p class="companyAddress"><?php echo $company->address;?></p></div>
 	    </div>
 	    <div class="container__companyAddress">
-	    	<div class="addressPin"></div>
+	    	<div class="addressPin"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
 	    	<div class="address"><p><?php echo $company->opening_hours; ?></p></div>
 	    </div>
     </div>
 	    <p class="companyDescription"><?php echo $company->description; ?></p>
-	</div>
+
     <?=$employeeSection?>
     <? foreach($employees as $employee){
             if($employee->status == "active") {
                 company_page::printEmployeeStatus($employee);
             }
         }
-?>
-</div>
+    ?>
+    </div>
+    </div>
 
 
 <?php require("footer.php"); ?>

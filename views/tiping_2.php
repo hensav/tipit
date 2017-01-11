@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    if($_SESSION['userRole'] != "client"){
+    if ($_SESSION['userRole'] != "client") {
         header("location: index.php");
         exit();
     }
@@ -10,29 +10,30 @@
     $apikey = $_SESSION['apiKey'];
     $ratingError = "";
 
-    if(isset($_POST['mainRating']) or (isset($_POST['quickRating'])&&isset($_POST['punctualRating'])&&isset($_POST['helpfulRating']))){
+    if (isset($_POST['mainRating']) or (isset($_POST['quickRating'])
+            && isset($_POST['punctualRating']) && isset($_POST['helpfulRating']))) {
         require("class/clientView.class.php");
 
-        if(empty($_POST['quickRating'])){
+        if (empty($_POST['quickRating'])) {
             $_POST['quickRating'] = $_POST['mainRating'];
         }
 
-        if(empty($_POST['punctualRating'])){
+        if (empty($_POST['punctualRating'])) {
             $_POST['punctualRating'] = $_POST['mainRating'];
         }
 
-        if(empty($_POST['helpfulRating'])){
+        if (empty($_POST['helpfulRating'])) {
             $_POST['helpfulRating'] = $_POST['mainRating'];
         }
 
         $leaveRating = clientView::rateEmployee($apikey,$_GET['employeeId'],$clientId,$_POST['quickRating'],$_POST['punctualRating'],$_POST['helpfulRating']);
 
-        if($leaveRating->status != "success"){
+        if ($leaveRating->status != "success") {
             $ratingError = $leaveRating->msg;
         } else {
             require('class/companyPage.class.php');
             $result = company_page::fetchCompanyByEmployee($_GET['employeeId'],$apikey);
-            if(isset($result[0]->company_id)){
+            if (isset($result[0]->company_id)) {
                 $cId = $result[0]->company_id;
                 header("location: thankyou.php?C=$cId");
             } else {
@@ -40,7 +41,7 @@
             }
             exit();
         }
-    } elseif(!empty($_POST)){
+    } elseif (!empty($_POST)) {
             $ratingError = 'Rating not left - please either leave three separate grades or a main evaluation';
     }
 
@@ -48,19 +49,19 @@
     $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 
     //get employee id, name and image url from db based on goodcode passed from prev. page. Dummy data:
-   if (isset($_GET['employeeId'])){
+   if (isset($_GET['employeeId'])) {
 
         require ('class/clientView.class.php');
 
         $raw = clientView::fetchEmployeeData(htmlspecialchars(stripslashes($_GET['employeeId'])),$apikey);
-        if($raw == "false"){
+        if ($raw == "false") {
             header("location: tiping.php");
         }
 
         $results = json_decode($raw);
         $employeeName = (explode("_",$results->name))[0];
         $employeeImgFilename = $results->photo_url;
-        if(strlen($employeeImgFilename)<10){
+        if (strlen($employeeImgFilename)<10) {
             $employeeImgFilename = "default.png";
         }
         $employeeImgUrl = $imgRoot.$employeeImgFilename;
@@ -87,7 +88,7 @@
         </fieldset>
     </section>
     <div class="granular-wrapper">
-        <header class="granular-rating-title">More options <i class="fa fa-chevron-down" aria-hidden="true"> </i>
+        <header class="granular-rating-title">More options<i aria-hidden="true"> </i>
         </header>
         <section class="granular-rating-body">
 

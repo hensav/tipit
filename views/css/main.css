@@ -94,7 +94,6 @@ a{
 a:hover{
 	color: rgba(92, 48, 255, 0.7);
 	text-decoration: none;
-
 }
 
 
@@ -104,6 +103,11 @@ a:hover{
 	margin-left: 1vw;
 	text-align: left;
 }
+
+.txt-none{
+	border-bottom: none;
+}
+
 
 .txt-center{
 	text-align: center;
@@ -255,6 +259,7 @@ a:hover{
   display:flex;
   justify-content:center;
   margin-top: 10px;
+
 }
 .container__employee > div {
   margin:10px;
@@ -268,11 +273,12 @@ a:hover{
 }
 
 .employeeName {
-  width:200px;
+  width: 100%;
   font-size: 28px;
   padding-top: 14px;
   font-weight: 300;
   text-align: left;
+  border-bottom: none;
 
 }
 
@@ -493,9 +499,10 @@ input[type="submit"].inactive--button.form__button:hover {
 .feedback {
 	padding-top: 20px;
 }
+
 .rating {
     width: 100%;
-	margin: auto;
+	margin: 0 0 20px 8px;
 	/*text-align: center;*/
     padding-left: -10px;
 
@@ -594,8 +601,8 @@ input[type="submit"].inactive--button.form__button:hover {
 
 .suggest{
 	margin-top: 5vh;
-
 }
+
 .employee-image{
     width:200px;
     height: 200px;
@@ -604,12 +611,14 @@ input[type="submit"].inactive--button.form__button:hover {
     margin-bottom: 5vh;
 }
 .granular-rating-title{
-	padding: 20px 0px 40px 0px;
-    font-size: 120%;
+	padding: 0px 0px 40px 0px;
+    font-size: 24px;
+	font-weight: 500;
+	color: rgba(92, 48, 255, 0.7);
 }
 .fieldset-title{
-    font-style: italic;
-    font-size: 120%;
+    font-size: 24px;
+	font-weight: 300;
     margin-bottom: -10px;
 }
 

@@ -11,5 +11,10 @@
 
     </div>
     </div>
+    <script>
+        setTimeout(function () {
+            window.location.href= 'login.php'
+        },3000);//5sec
+    </script>
 
 <?php require("footer.php"); ?>

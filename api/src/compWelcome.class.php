@@ -8,7 +8,7 @@
  */
 class compWelcome
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {
@@ -28,11 +28,7 @@ class compWelcome
         return $result;
     }
 
-
-
-
-
-    public function fetchCompanyView($employerId) //testitud
+    public function fetchCompanyView($employerId)
     {
         $stmt = $this->conn->prepare("
           SELECT id,related_user email, trading_name, address, description, opening_hours, photo_url
@@ -45,7 +41,8 @@ class compWelcome
         return $result;
     }
 
-    public function isEmployerNew($employerId){
+    public function isEmployerNew($employerId)
+    {
         $stmt = $this->conn->prepare('
             SELECT id, trading_name
             FROM company
@@ -63,79 +60,78 @@ class compWelcome
     }
 
 
-    function addDetails(array $input)
+    function addDetails($input)
     {
         $updated = array();
         //if photo is updated..
-        if(isset($input['photo_url']) && $input['photo_url'] != null){
+        if (isset($input['photo_url']) && $input['photo_url'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET photo_url=:url WHERE related_user=:id;
             ");
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
             $stmt->bindParam(":url",$input['photo_url'],PDO::PARAM_STR);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['photo_url']=true;
             }
         }
 
         //if trading_name is updated
-        if(isset($input['trading_name']) && $input['trading_name'] != null){
+        if (isset($input['trading_name']) && $input['trading_name'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET trading_name=:trading_name WHERE related_user=:id;
             ");
             $stmt->bindParam(":trading_name",$input['trading_name'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['trading_name']=true;
             }
         }
 
         //if email is updated
-        if(isset($input['email']) && $input['email'] != null){
+        if (isset($input['email']) && $input['email'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET email=:email WHERE related_user=:id;
             ");
             $stmt->bindParam(":email",$input['email'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['email']=true;
             }
         }
 
         //if address is updated
-        if(isset($input['address']) && $input['address'] != null){
+        if (isset($input['address']) && $input['address'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET address=:address WHERE related_user=:id;
             ");
             $stmt->bindParam(":address",$input['address'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['address']=true;
             }
         }
 
         //if description is updated
-        if(isset($input['description']) && $input['description'] != null){
+        if (isset($input['description']) && $input['description'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET description=:description WHERE related_user=:id;
             ");
             $stmt->bindParam(":description",$input['description'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['description']=true;
             }
         }
 
-
         //if opening_hours is updated
 
-        if(isset($input['opening_hours']) && $input['opening_hours'] != null){
+        if (isset($input['opening_hours']) && $input['opening_hours'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE company SET opening_hours=:opening_hours WHERE related_user=:id;
             ");
             $stmt->bindParam(":opening_hours",$input['opening_hours'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['related_user'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['opening_hours']=true;
             }
         }
@@ -143,8 +139,5 @@ class compWelcome
             "status" => "success",
             "updated"=>$updated
         );
-
-
-
     }
 }

@@ -8,18 +8,18 @@
  */
 class search
 {
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {
-        $this->PDO = $PDO;
+        $this->conn = $PDO;
     }
 
     public function byGoodcode($entry)
     {
         $searchTerm = "%".$entry."%";
 
-        $stmt = $this->PDO->prepare("
+        $stmt = $this->conn->prepare("
             SELECT user_id AS id, user.name, emp_description.photo_url, goodcode
             FROM goodcode
             LEFT JOIN user ON goodcode.user_id = user.id
@@ -51,7 +51,7 @@ class search
     {
         $searchTerm = "%".$entry."%";
 
-        $stmt = $this->PDO->prepare("
+        $stmt = $this->conn->prepare("
             SELECT id, trading_name AS name
             FROM company
             WHERE trading_name LIKE :term

@@ -6,9 +6,10 @@
  *
  */
 
-class employeeView{
+class employeeView
+{
 
-    private $PDO;
+    private $conn;
 
     public function __construct($PDO)
     {
@@ -71,7 +72,7 @@ class employeeView{
 
         $result = $stmt->fetch();
 
-        if(intval($result['id'])>0){
+        if (intval($result['id'])>0) {
             return(array(
                 "status"=>"success",
                 "msg"=>$result['id'],
@@ -95,7 +96,7 @@ class employeeView{
         $stmt->bindParam(":employeeId",$employeeId,PDO::PARAM_INT);
         $stmt->execute();
         $raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($raw)){
+        if (!empty($raw)) {
             return array(
                 "status" => "success",
                 "content" => $raw
@@ -108,8 +109,9 @@ class employeeView{
         }
     }
 
-    public function respondToRequest($employeeId,$requestId,$response){
-        if($response == 'Accept'){
+    public function respondToRequest($employeeId,$requestId,$response)
+    {
+        if ($response == 'Accept') {
             $status = 'active';
         } else {
             $status = 'declined';
@@ -122,7 +124,7 @@ class employeeView{
         $stmt->bindParam(":status",$status,PDO::PARAM_STR);
         $stmt->bindParam(":requestId",$requestId,PDO::PARAM_INT);
         $stmt->bindParam(":employeeId",$employeeId,PDO::PARAM_STR);
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return array(
                 'status' => 'success',
                 'response' => $status
@@ -134,6 +136,4 @@ class employeeView{
             );
         }
     }
-
-
 }

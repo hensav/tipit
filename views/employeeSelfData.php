@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
 if($requests->status == 'success'){
         if(isset($_POST['response'])){
             if($_POST['response'] =="Confirm"){
-                $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],$_POST['response'],$apikey);
+                $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],"Accept",$apikey);
                 $requestHtml = "<div class='request__wrapper'><span class='request__alert'>Request accepted!</span></div>";
             } elseif ($_POST['response'] =="Reject"){
                 $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],$_POST['response'],$apikey);
@@ -134,7 +134,7 @@ if(true){
 <link rel="stylesheet" href="css/feedback.css" type="text/css">
 
     <div class="employee">
-        <h2>Hello <?php echo $employeeName; ?>!</h2>
+        <h2><?php echo $employeeName; ?></h2>
         <?php echo $requestHtml; ?>
        
     <h2>Weekly overview</h2>

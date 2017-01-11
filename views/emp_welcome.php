@@ -63,7 +63,7 @@ require("class/employeeView.class.php");
 
 
     <div class="employee">
-        <h2>Hello <?php echo $employeeName; ?>!</h2>
+        <h2><?php echo $employeeName; ?></h2>
         <?php echo $requestHtml; ?>
     
         <form method="POST" class="employee__profile" enctype="multipart/form-data">
