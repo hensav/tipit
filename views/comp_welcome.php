@@ -72,11 +72,11 @@ $related_user = $_SESSION['userId'];
 
 if(strlen($rawData->photo_url)>3) {
     $compImgUrl = $imgRoot . $rawData->photo_url;
-    } else {
-        $compImgUrl = $imgRoot . "emp_placehold.jpg";
-        }
-            if(strlen($rawData->description)>3){
-                $employeeDescription = $rawData->description;
+} else {
+    $compImgUrl = $imgRoot . "emp_placehold.jpg";
+}
+if(strlen($rawData->description)>3){
+    $employeeDescription = $rawData->description;
 
 }
 
