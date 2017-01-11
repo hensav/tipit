@@ -34,6 +34,11 @@ class sliderBar
         }
         $currentResult = round(5*$this->current/100,2);
 
+        //Temporary fix to stop purple dot from going on new line
+        if ($greenWidth + $orangeWidth >97) {
+            $greenWidth = 98;
+        }
+
         echo ("
             <div class='slider-wrapper'>
                 <span class='slider-description''>$description</span>
