@@ -35,7 +35,7 @@ $address = "";
 	    	<div class="address"><p><?php echo $company->opening_hours; ?></p></div>
 	    </div>
     </div>
-	    <p class="companyDescription"><?php echo $company->description; ?></p>
+    <p class="companyDescription"><?php echo $company->description; ?></p>
 
     <?=$employeeSection?>
     <? foreach($employees as $employee){
@@ -44,8 +44,7 @@ $address = "";
             }
         }
     ?>
-    </div>
-    </div>
+</div>
 
 
 <?php require("footer.php"); ?>
