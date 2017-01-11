@@ -15,7 +15,7 @@ class emp_description
         $this->conn = $PDO;
     }
 
-    function fetchView($employeeId){
+    function fetchView($employeeId) {
         $stmt = $this->conn->prepare(
             "SELECT emp_description.employee_id, emp_description.description, emp_description.photo_url, user.name,goodcode.goodcode
             FROM user
@@ -37,25 +37,25 @@ class emp_description
     {
         $updated = array();
         //if photo is updated..
-        if(isset($input['filename']) && $input['filename'] != null){
+        if (isset($input['filename']) && $input['filename'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE emp_description SET photo_url=:url WHERE employee_id=:id;
             ");
             $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
             $stmt->bindParam(":url",$input['filename'],PDO::PARAM_STR);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['picture']=true;
             }
         }
 
         //if description is updated
-        if(isset($input['description']) && $input['description'] != null){
+        if (isset($input['description']) && $input['description'] != null) {
             $stmt = $this->conn->prepare("
             UPDATE emp_description SET description=:description WHERE employee_id=:id;
             ");
             $stmt->bindParam(":description",$input['description'],PDO::PARAM_STR);
             $stmt->bindParam(":id",$input['employeeId'],PDO::PARAM_INT);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $updated['description']=true;
             }
         }
