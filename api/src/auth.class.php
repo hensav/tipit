@@ -15,7 +15,8 @@ class Auth
         $this->conn = $PDO;
     }
 
-    public function login($email,$pass) {
+    public function login($email,$pass)
+    {
         $stmt = $this->conn->prepare("
             SELECT user.id, user.role, user.name, api_key.apikey
             FROM user
@@ -198,6 +199,4 @@ class Auth
             );
         }
     }
-
-
 }

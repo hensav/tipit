@@ -6,7 +6,8 @@
  *
  */
 
-class employeeView{
+class employeeView
+{
 
     private $conn;
 
@@ -108,7 +109,8 @@ class employeeView{
         }
     }
 
-    public function respondToRequest($employeeId,$requestId,$response) {
+    public function respondToRequest($employeeId,$requestId,$response)
+    {
         if ($response == 'Accept') {
             $status = 'active';
         } else {
@@ -134,6 +136,4 @@ class employeeView{
             );
         }
     }
-
-
 }

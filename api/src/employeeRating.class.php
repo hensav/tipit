@@ -47,6 +47,5 @@ class employeeRating
                 "msg" => "Uh-oh, something went horribly awry! Please try again."
             );
         }
-
     }
 }

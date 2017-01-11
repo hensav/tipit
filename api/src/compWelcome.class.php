@@ -28,11 +28,7 @@ class compWelcome
         return $result;
     }
 
-
-
-
-
-    public function fetchCompanyView($employerId) //testitud
+    public function fetchCompanyView($employerId)
     {
         $stmt = $this->conn->prepare("
           SELECT id,related_user email, trading_name, address, description, opening_hours, photo_url
@@ -45,7 +41,8 @@ class compWelcome
         return $result;
     }
 
-    public function isEmployerNew($employerId) {
+    public function isEmployerNew($employerId)
+    {
         $stmt = $this->conn->prepare('
             SELECT id, trading_name
             FROM company
@@ -63,7 +60,7 @@ class compWelcome
     }
 
 
-    function addDetails(array $input)
+    function addDetails($input)
     {
         $updated = array();
         //if photo is updated..
@@ -126,7 +123,6 @@ class compWelcome
             }
         }
 
-
         //if opening_hours is updated
 
         if (isset($input['opening_hours']) && $input['opening_hours'] != null) {
@@ -143,8 +139,5 @@ class compWelcome
             "status" => "success",
             "updated"=>$updated
         );
-
-
-
     }
 }

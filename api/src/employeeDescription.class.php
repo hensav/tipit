@@ -15,9 +15,11 @@ class emp_description
         $this->conn = $PDO;
     }
 
-    function fetchView($employeeId) {
+    function fetchView($employeeId)
+    {
         $stmt = $this->conn->prepare(
-            "SELECT emp_description.employee_id, emp_description.description, emp_description.photo_url, user.name,goodcode.goodcode
+            "SELECT emp_description.employee_id, emp_description.description, 
+              emp_description.photo_url, user.name,goodcode.goodcode
             FROM user
             LEFT JOIN emp_description ON user.id=emp_description.employee_id
             LEFT JOIN goodcode ON user.id = goodcode.user_id
