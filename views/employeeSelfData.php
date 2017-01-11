@@ -1,7 +1,7 @@
 <?php  
 
 session_start();
-if($_SESSION['userRole'] != "employee"){
+if ($_SESSION['userRole'] != "employee") {
     header("location: index.php");
     exit();
 }
@@ -14,16 +14,16 @@ $employeeId = $_SESSION['userId'];
 $apikey = $_SESSION['apiKey'];
 $defaultDescr = "";
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $description = null;
     $fileName = null;
-    if(isset($_FILES)){
+    if (isset($_FILES)) {
         $uploadAttempt = UploadTools::uploadImage($_FILES);
-        if($uploadAttempt['errorCode']==false){
+        if ($uploadAttempt['errorCode']==false) {
             $fileName = $uploadAttempt["message"];
         }
     }
-    if(isset($_POST['empDescription'])){
+    if (isset($_POST['empDescription'])) {
         $description = $_POST['empDescription'];
     }
     $response = employeeView::updateDetails($description,$fileName,$employeeId,$apikey);
@@ -34,18 +34,18 @@ $imgRoot = "http://naturaalmajand.us/tipit/uploads/";
 $requestHtml = "";
 $requests = employeeView::getPendingRequests($employeeId,$apikey);
 
-if($requests->status == 'success'){
-    if(isset($_POST['response'])){
-        if($_POST['response'] =="Confirm"){
+if ($requests->status == 'success') {
+    if (isset($_POST['response'])) {
+        if ($_POST['response'] =="Confirm") {
             $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],"Accept",$apikey);
             $requestHtml = "<div class='request__wrapper'><span class='request__alert'>Request accepted!</span></div>";
-        } elseif ($_POST['response'] =="Reject"){
+        } elseif ($_POST['response'] =="Reject") {
             $responseSent = employeeView::respondToRequest($employeeId,$_POST['requestId'],$_POST['response'],$apikey);
             $requestHtml = "<div class='request__wrapper'><span class='request__alert'>Request rejected!</span></div>";
         }
     } else {
 
-        foreach ($requests->content as $content){
+        foreach ($requests->content as $content) {
             $requestHtml .= "
             <div class='request__wrapper'>
             <span class='request__alert'> $content->trading_name has marked you as an employee.</span>
@@ -63,28 +63,28 @@ if($requests->status == 'success'){
 
 $employeeName = explode("_",$rawData->name)[0];
 $goodcode = $rawData->goodcode;
-if(strlen($rawData->photo_url)>3) {
+if (strlen($rawData->photo_url)>3) {
     $employeeImgUrl = $imgRoot . $rawData->photo_url;
 } else {
     $employeeImgUrl = $imgRoot . "emp_placehold.jpg";
 }
-if(strlen($rawData->description)>3){
+if (strlen($rawData->description)>3) {
     $employeeDescription = $rawData->description;
 } else {
     $employeeDescription = $defaultDescr;
 }
 
-if(true){
+if (true) {
     /** Count and profit **/
     $shortStats = json_decode(employeeView::fetchStats($employeeId,$apikey));
 
-    if(isset($shortStats[0]->ratingCount)){
+    if (isset($shortStats[0]->ratingCount)) {
         $ratingCount = $shortStats[0]->ratingCount;
     } else {
         $ratingCount = 0;
     }
 
-    if(isset($shortStats[0]->earnings) && $shortStats[0]->earnings != NULL){
+    if (isset($shortStats[0]->earnings) && $shortStats[0]->earnings != NULL) {
         $earnings = $shortStats[0]->earnings;
     } else {
         $earnings = 0;

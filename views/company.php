@@ -38,8 +38,8 @@ $address = "";
     <p class="companyDescription"><?php echo $company->description; ?></p>
 
     <?=$employeeSection?>
-    <? foreach($employees as $employee){
-            if($employee->status == "active") {
+    <? foreach($employees as $employee) {
+            if ($employee->status == "active") {
                 company_page::printEmployeeStatus($employee);
             }
         }

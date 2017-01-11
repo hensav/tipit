@@ -8,7 +8,7 @@
 
 session_start();
 
-if($_SESSION['userRole'] != "employer"){
+if ($_SESSION['userRole'] != "employer") {
     header("location: index.php");
     exit();
 }
@@ -19,7 +19,7 @@ $companyId = $company[0]->id;
 $companyName = $company[0]->trading_name;
 $addAlert = "";
 
-if(isset($_GET['addId'])){
+if (isset($_GET['addId'])) {
     company_page::addEmployee($_SESSION['apiKey'],$companyId,$_GET['addId']);
     $addAlert = "Sent request to employee #".$_GET['addId'];
 }
@@ -42,13 +42,13 @@ require('header.php');
         <?php
             //active workers
             $none = true;
-            foreach($managementView as $item){
-                if($item->status == 'active') {
+            foreach($managementView as $item) {
+                if ($item->status == 'active') {
                     company_page::printEmployeeManagement($item);
                     $none=false;
                 }
             }
-            if($none==true){
+            if ($none==true) {
                 echo('<span>You have no linked employees. Why not add a few?</span> ');
             }
         ?>
@@ -58,13 +58,13 @@ require('header.php');
         <?php
             //pending
             $none = true;
-            foreach($managementView as $item){
-                if($item->status == 'pending') {
+            foreach($managementView as $item) {
+                if ($item->status == 'pending') {
                     company_page::printEmployeeManagement($item);
                     $none=false;
                 }
             }
-            if($none==true){
+            if ($none==true) {
                 echo('<span>You have no pending requests.</span> ');
             }
         ?>

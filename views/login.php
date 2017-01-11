@@ -85,7 +85,7 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])
 
 
 
-    }else {
+    } else {
 
         $errorMessage = "Wrong details";
 

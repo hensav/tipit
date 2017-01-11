@@ -23,7 +23,7 @@ if (isset($_POST['role_choice'])) {
 $sel_client = '';
 $sel_employee = '';
 $sel_employer = '';
-if($rolesel == 'employee') {
+if ($rolesel == 'employee') {
     $sel_employee = "selected = 'selected'";
 } elseif ($rolesel == 'employer') {
     $sel_employer = "selected = 'selected'";
@@ -34,13 +34,13 @@ if($rolesel == 'employee') {
 
 if (isset($_POST["submit"])) {
 
-    if ($_POST['role_choice']=='client'){
+    if ($_POST['role_choice']=='client') {
 
-        if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
+        if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])) {
 
             if (!empty ($_POST["signupEmail"]) &&  !empty($_POST["signupPassword"])) {
 
-                if (strlen($_POST['signupPassword']) >=5){
+                if (strlen($_POST['signupPassword']) >=5) {
                     $signupEmail = $_POST["signupEmail"];
                     $signupPassword = $_POST["signupPassword"];
                     $result = $clientAuth->registerRequest($url,$_POST['signupEmail'],$_POST['signupPassword'],"0","0",$_POST['role_choice']);
@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
 
                         exit();
 
-                    } if ($response->status == 'error'){
+                    } if ($response->status == 'error') {
                         $errorMessage = "Email already registered!";
                     }
 
@@ -70,12 +70,12 @@ if (isset($_POST["submit"])) {
 
 
 
-        if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])){
+        if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])) {
 
             if (!empty ($_POST["signupEmail"]) &&  !empty($_POST["signupPassword"]) && !empty ($_POST["firstname"])
                 && !empty($_POST["lastname"]) && !empty ($_POST["phone"]) && !empty ($_POST["phone"])) {
 
-                if (strlen($_POST['signupPassword']) >=5){
+                if (strlen($_POST['signupPassword']) >=5) {
 
                 $signupEmail = $_POST["signupEmail"];
                 $signupPassword = $_POST["signupPassword"];
@@ -89,7 +89,7 @@ if (isset($_POST["submit"])) {
 
                         exit();
 
-                    } if($response->status == 'error'){
+                    } if ($response->status == 'error') {
                         $errorMessage = "Email already registered!";
                     }
 

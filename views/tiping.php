@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if($_SESSION['userRole'] != "client"){
+if ($_SESSION['userRole'] != "client") {
     header("location: index.php");
     exit();
 }
@@ -14,7 +14,7 @@ $apikey = $_SESSION['apikey'];
 
 if (isset ($_POST["goodCode"]) && !empty ($_POST["goodCode"])) {
     $result = clientView::fetchEmployeeByGoodcode($_POST['goodCode'],$apikey);
-    if($result->status=="success"){
+    if ($result->status=="success") {
         $id = $result->msg;
         header("location: tiping_2.php?employeeId=$id");
     } else {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['userRole'] != "employee"){
+if ($_SESSION['userRole'] != "employee") {
     header("location: index.php");
     exit();
 }
@@ -13,20 +13,20 @@ $apikey = $_SESSION['apiKey'];
 
 $defaultDescr = "";
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $description = null;
     $fileName = null;
-    if(isset($_FILES)){
+    if (isset($_FILES)) {
         $uploadAttempt = UploadTools::uploadImage($_FILES);
-        if($uploadAttempt['errorCode']==false){
+        if ($uploadAttempt['errorCode']==false) {
             $fileName = $uploadAttempt["message"];
         }
     }
-    if(isset($_POST['empDescription'])){
+    if (isset($_POST['empDescription'])) {
         $description = $_POST['empDescription'];
     }
     $response = employeeView::updateDetails($description,$fileName,$employeeId,$apikey);
-    if ($response->status == "success"){
+    if ($response->status == "success") {
         header("location: employeeSelfData.php");
     }
 }
@@ -38,12 +38,12 @@ $requests = employeeView::getPendingRequests($employeeId,$apikey);
 $employeeName = explode("_",$rawData->name)[0];
 $goodcode = $rawData->goodcode;
 
-if(strlen($rawData->photo_url)>3) {
+if (strlen($rawData->photo_url)>3) {
     $employeeImgUrl = $imgRoot . $rawData->photo_url;
     } else {
     $employeeImgUrl = $imgRoot . "emp_placehold.jpg";
 }
-if(strlen($rawData->description)>3){
+if (strlen($rawData->description)>3) {
     $employeeDescription = $rawData->description;
     } else {
     $employeeDescription = $defaultDescr;
@@ -65,7 +65,7 @@ if(strlen($rawData->description)>3){
 			</label>
 
  			<textarea id="descriptionArea" name="empDescription"><?php
-                if(empty($employeeDescription)){
+                if (empty($employeeDescription)) {
                     echo trim("Hello! This is my good thought of a day. Read it and replace it with yours.");
                 } else {
                     echo trim($employeeDescription);
@@ -82,10 +82,10 @@ if(strlen($rawData->description)>3){
 
     </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         var emptied = 0;
-       $("#descriptionArea").click(function(){
-           if(emptied != 1) {
+       $("#descriptionArea").click(function() {
+           if (emptied != 1) {
                $("#descriptionArea").val('');
                emptied = 1;
            }

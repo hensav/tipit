@@ -1,10 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
-if($_SESSION['userRole'] != "employer"){
+if ($_SESSION['userRole'] != "employer") {
     header("location: index.php");
     exit();
 
@@ -17,7 +14,7 @@ $employerId = $_SESSION['userId'];
 $apikey = $_SESSION['apiKey'];
 $defaultDescr = "";
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $description = null;
     $fileName = null;
     $trading_name = null;
@@ -26,35 +23,35 @@ if(isset($_POST['submit'])){
     $description = null;
     $opening_hours = null;
 
-    if(isset($_FILES)){
+    if (isset($_FILES)) {
         $uploadAttempt = UploadTools::uploadImage($_FILES);
-        if($uploadAttempt['errorCode']==false){
+        if ($uploadAttempt['errorCode']==false) {
             $fileName = $uploadAttempt["message"];
 
         }
     }
-    if(!empty($fileName)){
+    if (!empty($fileName)) {
         $photo_url = $fileName;
 
     }
-    if(isset($_POST['description'])){
+    if (isset($_POST['description'])) {
         $description = $_POST['description'];
     }
-    if(isset($_POST['trading_name'])){
+    if (isset($_POST['trading_name'])) {
         $trading_name = $_POST['trading_name'];
     }
-    if(isset($_POST['email'])){
+    if (isset($_POST['email'])) {
         $email = $_POST['email'];
     }
-    if(isset($_POST['address'])){
+    if (isset($_POST['address'])) {
         $address = $_POST['address'];
     }
-    if(isset($_POST['opening_hours'])){
+    if (isset($_POST['opening_hours'])) {
         $opening_hours = $_POST['opening_hours'];
     }
     $response = compWelcome::addDetails($fileName,$_SESSION['apiKey'],$_SESSION['userId'],$trading_name,$email,$address,$description,$opening_hours);
     //var_dump($response);
-    if($response->status == "success"){
+    if ($response->status == "success") {
         header('location: manageWorkforce.php');
          exit();
     }
@@ -70,12 +67,12 @@ $employerName = explode("_",$employerRawData->name)[0];
 $related_user = $_SESSION['userId'];
 //var_dump($rawData);
 
-if(strlen($rawData->photo_url)>3) {
+if (strlen($rawData->photo_url)>3) {
     $compImgUrl = $imgRoot . $rawData->photo_url;
 } else {
     $compImgUrl = $imgRoot . "emp_placehold.jpg";
 }
-if(strlen($rawData->description)>3){
+if (strlen($rawData->description)>3) {
     $employeeDescription = $rawData->description;
 
 }
