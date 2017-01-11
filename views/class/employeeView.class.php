@@ -43,13 +43,15 @@ class employeeView
         return json_decode($result);
     }
 
-    public static function getPendingRequests($employeeId, $apikey){
+    public static function getPendingRequests($employeeId, $apikey)
+    {
         $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/getPendingRequests/employeeId/$employeeId";
         $result = file_get_contents($url);
         return json_decode($result);
     }
 
-    public static function respondToRequest($employeeId,$requestId,$response,$apikey){
+    public static function respondToRequest($employeeId,$requestId,$response,$apikey)
+    {
         $url = "http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/respondToRequest/employeeId/$employeeId/requestId/$requestId/response/$response";
         $result = file_get_contents($url);
         return json_decode($result);

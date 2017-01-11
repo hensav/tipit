@@ -12,7 +12,7 @@ class UploadTools
     {
         $extension = pathinfo($origin,PATHINFO_EXTENSION);
         $supportedExtensions = array("jpg","gif","jpeg","png");
-        if(in_array($extension,$supportedExtensions)){
+        if (in_array($extension,$supportedExtensions)) {
             $hash = hash("sha512",$origin);
             $offset = rand(8,strlen($hash));
             $output = substr($hash,$offset-8,8).".".$extension;
@@ -26,7 +26,7 @@ class UploadTools
     {
         $standardizedFilename = UploadTools::standardizeName($input["fileToUpload"]["name"]);
         
-        if($standardizedFilename==false){
+        if ($standardizedFilename==false) {
             return(array(
                 "status"=>"failure",
                 "errorCode" => 001,
@@ -39,9 +39,9 @@ class UploadTools
 
         // Check if image file is a actual image or fake image
 
-        if(isset($_POST["submit"])) {
+        if (isset($_POST["submit"])) {
             $check = getimagesize($input["fileToUpload"]["tmp_name"]);
-            if($check === false) {
+            if ($check === false) {
                 return(array(
                     "status"=>"failure",
                     "errorCode" => 002,

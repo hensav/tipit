@@ -9,7 +9,8 @@
 
 class clientView
 {
-    public static function fetchEmployeeData($employeeId, $apikey){
+    public static function fetchEmployeeData($employeeId, $apikey)
+    {
 
         $url="http://naturaalmajand.us/tipit/api/request.php/apikey/$apikey/view/employeePage/employeeId/$employeeId";
         $result = file_get_contents($url);

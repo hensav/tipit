@@ -10,14 +10,14 @@ class sliderBar
 {
     public $current, $previous, $name;
 
-    function __construct($input){
+    function __construct($input) {
         $this->current=$input['current'];
         $this->previous = $input['previous'];
         $this->name = $input['name'];
     }
 
-    function displaySlider(){
-        if($this->previous<$this->current){
+    function displaySlider() {
+        if ($this->previous<$this->current) {
             $orangeWidth = $this->previous;
             $greenWidth = $this->current-$this->previous;
             $redWidth = 0;

@@ -33,35 +33,35 @@ class compWelcome
     {
         $package = array();
 
-        if(isset($apikey) && !empty($apikey)){
+        if (isset($apikey) && !empty($apikey)) {
             $package['apikey'] = $apikey;
         }
 
-        if(isset($description) && !empty($description)){
+        if (isset($description) && !empty($description)) {
             $package['description'] = $description;
         }
 
-        if(isset($photo_url) && !empty($photo_url)){
+        if (isset($photo_url) && !empty($photo_url)) {
             $package['photo_url'] = $photo_url;
         }
 
-        if(isset($related_user) && !empty($related_user)){
+        if (isset($related_user) && !empty($related_user)) {
             $package['related_user'] = $related_user;
         }
 
-        if(isset($trading_name) && !empty($trading_name)){
+        if (isset($trading_name) && !empty($trading_name)) {
             $package['trading_name'] = $trading_name;
         }
 
-        if(isset($email) && !empty($email)){
+        if (isset($email) && !empty($email)) {
             $package['email'] = $email;
         }
 
-        if(isset($address) && !empty($address)){
+        if (isset($address) && !empty($address)) {
             $package['address'] = $address;
         }
 
-        if(isset($opening_hours) && !empty($opening_hours)){
+        if (isset($opening_hours) && !empty($opening_hours)) {
             $package['opening_hours'] = $opening_hours;
         }
 
