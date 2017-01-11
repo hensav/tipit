@@ -120,24 +120,44 @@ class companyView
     public function addEmployee($companyId,$goodCode)
     {
         $stmt = $this->conn->prepare("
-            INSERT INTO rel_employee_company(company_id,employee_id,status) 
-            VALUES(:companyId, (SELECT user_id FROM goodcode WHERE goodcode = :goodCode LIMIT 1),'pending');
-        ");
+            SELECT
+            goodcode.user_id, rel.status
+            FROM rel_employee_company as rel
+            LEFT JOIN goodcode ON rel.employee_id=goodcode.user_id
+            WHERE goodcode.goodcode= :goodCode AND rel.company_id= :companyId AND rel.status IN('active','pending')
+            ");
+
         $stmt->bindParam(':companyId',$companyId,PDO::PARAM_INT);
         $stmt->bindParam(':goodCode',$goodCode,PDO::PARAM_STR);
-        $stmt->execute();
-        
-        $resultId = $this->conn->lastInsertId();
-        if (isset($resultId) && $resultId>0) {
-            return array(
-                "status" => "success",
-                "relationId" => $resultId
-            );
-        } else {
-            return array(
-                "status" => "error"
 
-            );
+        if ($stmt->execute()) {
+            $check = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (isset($check->status) && !empty($check->status)) {
+                return "Request already sent!";
+            } else {
+
+                $stmt = $this->conn->prepare("
+                    INSERT INTO rel_employee_company(company_id,employee_id,status) 
+                    VALUES(:companyId, (SELECT user_id FROM goodcode WHERE goodcode = :goodCode LIMIT 1),'pending');
+                    ");
+                $stmt->bindParam(':companyId',$companyId,PDO::PARAM_INT);
+                $stmt->bindParam(':goodCode',$goodCode,PDO::PARAM_STR);
+                $stmt->execute();
+
+                $resultId = $this->conn->lastInsertId();
+                if (isset($resultId) && $resultId>0) {
+                    return array(
+                        "status" => "success",
+                        "relationId" => $resultId
+                    );
+                } else {
+                    return array(
+                        "status" => "error"
+
+                    );
+                }
+            }
         }
     }
 
