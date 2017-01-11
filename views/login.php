@@ -78,7 +78,7 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"])
                 $location =  "manageWorkforce.php";
             }
         } elseif ($result->response->role == "employee"){
-            $location = "emp_welcome.php";
+            $location = "employeeSelfData.php";
         }
         header("location: $location");
         exit();
