@@ -31,11 +31,19 @@ if (isset($_GET['apikey'])) {
     if (isset($_GET['view'])) {
 
         if ($_GET['view'] == 'employeePrivateSliders') {
-            require 'src/employeeView.class.php';
-            $employeeView = new employeeView($PDO);
-            if (isset($_GET['employeeId'])) {
-                $result = $employeeView->getBarValues($_GET['employeeId']);
-                print_r(json_encode($result));
+            $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
+            if ($check['status'] == 'success') {
+
+                require 'src/employeeView.class.php';
+                $employeeView = new employeeView($PDO);
+                if (isset($_GET['employeeId'])) {
+                    $result = $employeeView->getBarValues($_GET['employeeId']);
+                    print_r(json_encode($result));
+                }
+
+            } else {
+                print_r(json_encode(array("status" => "failure", "msg" => $check['msg'])));
+                exit();
             }
         }
 
@@ -59,24 +67,39 @@ if (isset($_GET['apikey'])) {
                 exit();
             }
 
-
         }
 
         if ($_GET['view'] == 'respondToRequest') {
-            require 'src/employeeView.class.php';
-            $employeeView = new employeeView($PDO);
-            if (isset($_GET['employeeId']) && isset($_GET['response']) && isset($_GET['requestId'])) {
-                $result = $employeeView->respondToRequest($_GET['employeeId'],$_GET['requestId'],$_GET['response']);
-                print_r(json_encode($result));
+            $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
+
+            if ($check['status'] == 'success') {
+
+                require 'src/employeeView.class.php';
+                $employeeView = new employeeView($PDO);
+                if (isset($_GET['employeeId']) && isset($_GET['response']) && isset($_GET['requestId'])) {
+                    $result = $employeeView->respondToRequest($_GET['employeeId'],$_GET['requestId'],$_GET['response']);
+                    print_r(json_encode($result));
+                }
+            } else {
+                print_r(json_encode(array("status" => "failure", "msg" => $check['msg'])));
+                exit();
             }
         }
 
         if ($_GET['view'] == 'employeePrivateStats') {
-            require 'src/employeeView.class.php';
-            $employeeView = new employeeView($PDO);
-            if (isset($_GET['employeeId'])) {
-                $result = $employeeView->getStatValues($_GET['employeeId']);
-                print_r(json_encode($result));
+
+            $check = $validation->validateRequest('employee',$_GET['employeeId'],$apikey);
+            if ($check['status'] == 'success') {
+
+                require 'src/employeeView.class.php';
+                $employeeView = new employeeView($PDO);
+                if (isset($_GET['employeeId'])) {
+                    $result = $employeeView->getStatValues($_GET['employeeId']);
+                    print_r(json_encode($result));
+                }
+            } else {
+                print_r(json_encode(array("status" => "failure", "msg" => $check['msg'])));
+                exit();
             }
         }
 
@@ -101,10 +124,11 @@ if (isset($_GET['apikey'])) {
 
         }
 
-
+        //To be implemented
         if ($_GET['view'] == 'getNearbyCompanies') {
             echo "nearby restaurants view based on coordinates - to be implemented";
         }
+
 
         if ($_GET['view'] == 'companyView') {
             require 'src/companyView.class.php';
@@ -134,6 +158,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
+
         if ($_GET['view'] == 'employeeManagement') {
             require 'src/companyView.class.php';
             $companyView = new companyView($PDO);
@@ -142,6 +167,7 @@ if (isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
+
 
         if ($_GET['view'] == 'addEmployee') {
             require 'src/companyView.class.php';
@@ -169,7 +195,9 @@ if (isset($_GET['apikey'])) {
                 print_r(json_encode($result));
             }
         }
-        //fetch employer by id
+
+
+
         if ($_GET['view'] == 'compWelcome') {
             require 'src/compWelcome.class.php';
             $compWelcome = new compWelcome($PDO);
@@ -179,7 +207,7 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-//////////testitud
+
         if ($_GET['view'] == 'fetchCompanyView') {
             require 'src/compWelcome.class.php';
             $compWelcome = new compWelcome($PDO);
@@ -215,7 +243,6 @@ if (isset($_GET['apikey'])) {
             }
         }
 
-        //first registration
 
 
         if ($_GET['submit'] == 'rateEmployee') {
@@ -226,7 +253,9 @@ if (isset($_GET['apikey'])) {
             $response = $rate->leaveRating($output);
             print_r(json_encode($response));
         }
-        //Adding and changing employee details
+
+
+
         if ($_GET['submit'] == 'employeeDetails') {
             require "src/employeeDescription.class.php";
             $queryString = $_GET['package'];
@@ -235,6 +264,8 @@ if (isset($_GET['apikey'])) {
             $response = $editing->updateDetails($output);
             print_r(json_encode($response));
         }
+
+
         //Adding and changing company details
         if ($_GET['submit'] == 'companyDetails') {
             require "src/compWelcome.class.php";
@@ -244,7 +275,7 @@ if (isset($_GET['apikey'])) {
             $response = $editing->addDetails($output);
             print_r(json_encode($response));
         }
-///////////
+
         //main registration script
         if ($_GET['submit'] == 'register') {
             if (isset($_GET['email']) && isset($_GET['pass']) && isset($_GET['role'])
