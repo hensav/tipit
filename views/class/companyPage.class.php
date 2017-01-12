@@ -66,7 +66,7 @@ class company_page
         echo("
             <div class='container__employee'>
                 <div class='employeeThumbnail'><img class ='employeeThumbnail' src=$imgPath class='employeeThumbnail'></div>
-                <div class='employeeName'><a href='tiping_2.php?employeeId=$input->id'>$name</a></div>
+                <div class='employeeName'><a class ='txt-none' href='tiping_2.php?employeeId=$input->id'>$name</a></div>
                 <div class='employeeRating'>$rating</div>
             </div>");
     }

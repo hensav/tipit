@@ -106,6 +106,7 @@ a:hover{
 
 .txt-none{
 	border-bottom: none;
+	text-decoration: none;
 }
 
 
@@ -263,10 +264,12 @@ a:hover{
   margin-top: 10px;
 
 }
+
 .container__employee > div {
   margin:10px;
   
 }
+
 .employeeThumbnail, .employeeRating {
   width: 60px;
   height: 60px;
@@ -281,6 +284,8 @@ a:hover{
   font-weight: 300;
   text-align: left;
   border-bottom: none;
+  text-decoration: none;
+ 
 
 }
 
