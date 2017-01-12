@@ -17,7 +17,6 @@
         * v0.2 - Kasutajakontod
         * v0.3 - etc
     * Andmebaasiskeem:
-    [kättesaadav](https://drive.google.com/a/tlu.ee/file/d/0B9uDvSHM3eIyakxHZEVvMVNxNmc/view?usp=sharing)
     ![alt text](https://www.upload.ee/image/6549191/Screen_Shot_2017-01-12_at_08.27.22.png "Andmebaasiskeem")
 
     Andmebaas:
