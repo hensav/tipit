@@ -48,7 +48,7 @@ require('header.php');
                 }
             }
             if ($none==true) {
-                echo('<span>You have no linked employees. Why not add a few?</span> ');
+                echo('<span><p>You have no linked employees. Why not add a few?</p></span> ');
             }
         ?>
 
@@ -64,7 +64,7 @@ require('header.php');
                 }
             }
             if ($none==true) {
-                echo('<span>You have no pending requests.</span> ');
+                echo('<span><p>You have no pending requests.</p></span> ');
             }
         ?>
 
