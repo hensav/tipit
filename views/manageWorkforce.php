@@ -21,7 +21,7 @@ $addAlert = "";
 
 if (isset($_GET['addId'])) {
     company_page::addEmployee($_SESSION['apiKey'],$companyId,$_GET['addId']);
-    $addAlert = "Sent request to employee #".$_GET['addId'];
+    $addAlert = "<p>Sent request to employee with goodCode ".$_GET['addId']."</p>";
 }
 
 $managementView = company_page::employeeManagementView($_SESSION['apiKey'],$companyId);
